@@ -1,5 +1,10 @@
 # 学堂系统
 
+## 入口url参数
+目前使用的身份参数是：openid，userId（js/hepler/route.js）
+
+
+## Files
 - index.html: 首页
 - course-detail：课程详情
 - user.html：我的
@@ -12,3 +17,9 @@
 - user-my-teacher.html：我的老师
 - user-plan.html：成长计划
 - user-plan-detail.html：成长计划详情
+
+## Base Libs
+- VueJs
+- Zepto
+- RequireJs
+- Swiper
