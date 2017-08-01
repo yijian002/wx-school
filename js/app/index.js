@@ -92,12 +92,12 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
         initSearch: function() {
             var timer = null;
 
-            $(window).off('scroll.search').on('scroll.search', function() {
+            $(window).off('scroll').on('scroll', function() {
                 clearTimeout(timer);
 
                 timer = setTimeout(function() {
                     vm.is_search = _canLoad() ? true : false;
-                }, 50);
+                }, 100);
             });
 
             function _canLoad() {
