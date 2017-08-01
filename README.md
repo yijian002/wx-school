@@ -1,7 +1,9 @@
-# 学堂系统
+# School System
 
 ## 入口url参数
-目前使用的身份参数是：openid，userId（js/hepler/route.js）
+目前使用的身份参数是：openid，userId
+所有异步请求默认会传这两个参数
+js/hepler/route.js 可修改参数命名
 
 
 ## Files
