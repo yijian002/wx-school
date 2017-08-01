@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> 已购课程 </title>
+    <meta name="keywords" content="学堂系统" />
+    <meta name="description" content="" />
+    <script type="text/javascript">
+    var w_width = parseInt(window.screen.width);
+    if(w_width < 370) {
+        var phoneScale = w_width / 375;　　
+        document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi" />');
+    }
+    else {
+        document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
+    }    
+    </script>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/user.css" />
+</head>
+
+<body class="user-buyed-class">
+    <div class="list" id="user-class">
+        <ul>
+            <li v-for="item in list">
+                <img class="pic" v-bind:src="item.coverUrl" />
+                <div class="info">
+                    <div>
+                        <div class="tt">{{item.name}}</div>
+                        <div class="time">{{item.startTime}}</div>
+                    </div>
+                    <div class="teacher">{{item.teacherName}}<span class="price">￥{{item.price}}</span></div>
+                    <div>
+                        <div class="longtime">{{item.lessonTotal}}课时</div>
+                        <div class="study">-人学过</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script data-main="js/app/user-buyed-class.js" src="lib/require.js"></script>

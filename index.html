@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> 学堂系统 </title>
+    <meta name="keywords" content="学堂系统" />
+    <meta name="description" content="" />
+    <script type="text/javascript">
+    var w_width = parseInt(window.screen.width);
+    if(w_width < 370) {
+        var phoneScale = w_width / 375;　　
+        document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi" />');
+    }
+    else {
+        document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
+    }    
+    </script>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+
+<body>
+	<div id="index-main">
+		<div class="top-search" v-bind:class="{show: is_search}"><input type="text" name="key" placeholder="Search through your post" /></div>
+
+		<div class="slider swiper-container">
+			<div class="swiper-wrapper">
+	            <div class="swiper-slide"
+	            	v-for="item in slider"
+	             	v-bind:style="{ backgroundImage: 'url('+ item.coverUrl +')' }"
+	             	v-on:click="showPoster(item.type, item.coverUrl)"></div>
+	        </div>
+	        <div class="swiper-pagination"></div>
+		</div>
+
+		<div class="column">
+			<div class="tt">免费微课</div>
+	        <ul class="free-class">
+	            <li v-for="item in free_class">
+	            	<img class="pic" v-bind:src="item.imageUrl" />
+	            	<div class="sound" v-on:click="playSound(item.audioUrl)"></div>
+	            </li>
+	        </ul>
+		</div>
+	    <div class="line h20"></div>
+	    <div class="column">
+	        <div class="tt">精品微课</div>
+	        <ul class="best-class">
+	            <li v-for="item in best_class">
+	                <img class="pic" v-bind:src="item.coverUrl" />
+	                <div class="info">
+	                    <div>
+	                        <div class="tt">{{item.name}}</div>
+	                        <div class="price">￥{{item.price}}</div>
+	                    </div>
+	                    <div class="teacher">{{item.teacherName}}</div>
+	                    <div>
+	                        <div class="longtime">{{item.lessonTotal}}课时</div>
+	                        <div class="study">-人学过</div>
+	                    </div>
+	                </div>
+	            </li>
+	        </ul>
+	    </div>
+	 </div>
+
+	 <div class="dialog dialog-first hide">
+	    <div>
+	    	<div class="top"><i class="close"></i></div>
+	    	<div class="contents">
+	    		<a href="user-join.html" class="btn-join">加入成长营</a>
+	    	</div>
+	    </div>
+    </div>
+
+    <div class="dialog dialog-posters hide">
+    	<div>
+	    	<div class="top"><i class="close"></i></div>
+	    	<div class="contents"></div>
+	    </div>
+    </div>
+
+	<div class="footer"></div>
+    <footer>
+        <div><a href="user-camp.html">成长营</a></div>
+        <div class="selected">父母堂</div>
+        <div><a href="user.html">我的</a></div>
+    </footer>
+</body>
+
+</html>
+<script data-main="js/app/index.js" src="lib/require.js"></script>

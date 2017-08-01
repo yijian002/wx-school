@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> 成长中心 </title>
+    <meta name="keywords" content="学堂系统" />
+    <meta name="description" content="" />
+    <script type="text/javascript">
+    var w_width = parseInt(window.screen.width);
+    if(w_width < 370) {
+        var phoneScale = w_width / 375;　　
+        document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi" />');
+    }
+    else {
+        document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
+    }    
+    </script>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="css/date-time-picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/user.css" />
+</head>
+
+<body class="user-infomation">
+    <div id="user-infomation">
+        <div class="item head">
+            <div class="tt">头像</div>
+            <div class="con"><div class="pic"><img /></div></div>
+        </div>
+        <div class="item">
+            <div class="tt">姓名</div>
+            <div class="con"><input type="tel" placeholder="点击填写" maxlength="11" v-model="user.mobile" @input="change" /></div>
+        </div>
+        <div class="item">
+            <div class="tt">年纪</div>
+            <div class="con"><input type="tel" placeholder="点击填写" maxlength="11" v-model="user.mobile" @input="change" /></div>
+        </div>
+        <div class="item">
+            <div class="tt">手机号</div>
+            <div class="con"><input type="text" placeholder="点击填写" v-model="user.birthday" @input="change" /></div>
+        </div>
+        <div class="item">
+            <div class="tt">所在地</div>
+            <div class="con"><input type="text" placeholder="点击填写" v-model="user.birthday" @input="change" /></div>
+        </div>
+        <div class="item">
+            <div class="tt">平时成绩</div>
+            <div class="con"><input type="text" placeholder="点击填写" v-model="user.birthday" @input="change" /></div>
+        </div>
+        <div class="item">
+            <div class="tt">放学时间</div>
+            <div class="con" @click="selectTime('homeTime')"><span v-html="user.homeTime"></span>
+            <span class="m">></span>
+        </div>
+        </div>
+        <div class="item">
+            <div class="tt long">每天完成作业所花时间</div>
+            <div class="con" @click="selectTime('homeWork')"><span v-html="user.homeWork"></span>
+            <span class="m">></span></div>
+        </div>
+        <div class="item">
+            <div class="tt long">周末课外辅导班或兴趣班时间安排</div>
+            <div class="con" @click="selectTime('interestTime')"><span v-html="user.interestTime"></span>
+            <span class="m">></span></div>
+        </div>
+        <div class="item">
+            <div class="tt">家长评价</div>
+            <div class="con"><span class="m">></span></div>
+        </div>
+        <div class="item">
+            <div class="tt">老师评价</div>
+            <div class="con"><span class="m">></span></div>
+        </div>
+    </div>
+
+    <div class="footer"></div>
+    <footer>
+        <div><a href="user-plan-detail.html">成长计划</a></div>
+        <div class="selected">成长中心</div>
+    </footer>
+</body>
+
+</html>
+<script data-main="js/app/user-camp-center.js" src="lib/require.js"></script>

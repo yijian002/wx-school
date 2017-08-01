@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> 个人资料 </title>
+    <meta name="keywords" content="学堂系统" />
+    <meta name="description" content="" />
+    <script type="text/javascript">
+    var w_width = parseInt(window.screen.width);
+    if(w_width < 370) {
+        var phoneScale = w_width / 375;　　
+        document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi" />');
+    }
+    else {
+        document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
+    }    
+    </script>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/user.css" />
+</head>
+
+<body class="user-infomation">
+    <div id="user-infomation">
+        <div class="item">
+            <div class="tt">昵称</div>
+            <div class="con">{{user.nickname}}</div>
+        </div>
+        <div class="item">
+            <div class="tt">手机号</div>
+            <div class="con"><input type="tel" placeholder="点击填写" maxlength="11" v-model="user.mobile" @input="change" /></div>
+        </div>
+        <div class="item">
+            <div class="tt">生日</div>
+            <div class="con"><input type="text" placeholder="点击填写" v-model="user.birthday" @input="change" /></div>
+        </div>
+        <div class="item">
+            <div class="tt">性别</div>
+            <div class="con" v-html="user.sex === 1 ? '男' : '女'"></div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script data-main="js/app/user-info.js" src="lib/require.js"></script>

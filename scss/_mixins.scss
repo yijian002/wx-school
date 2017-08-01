@@ -1,0 +1,72 @@
+// prefix declarations
+@mixin prefixed($property, $value) {
+    @if $webkit==true {
+        -webkit-#{$property}: #{$value};
+    }
+    @if $moz==true {
+        -moz-#{$property}: #{$value};
+    }
+    @if $ms==true {
+        -ms-#{$property}: #{$value};
+    }
+    @if $o==true {
+        -o-#{$property}: #{$value};
+    }
+    #{$property}: #{$value};
+}
+
+// prefix keyframes
+@mixin keyframes($name) {
+    @if $webkit==true {
+        @-webkit-keyframes #{$name} {
+            @content;
+        }
+    }
+    @if $moz==true {
+        @-moz-keyframes #{$name} {
+            @content;
+        }
+    }
+    @if $ms==true {
+        @-ms-keyframes #{$name} {
+            @content;
+        }
+    }
+    @if $o==true {
+        @-o-keyframes #{$name} {
+            @content;
+        }
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+@mixin ellipsis($line: 1) {
+    overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    display: box;
+    @include prefixed('line-clamp', $line);
+    @include prefixed('box-orient', 'vertical');
+}
+
+@mixin scrollbar($width: 5px, $bgcolor: rgba(0,0,0,0), $from: #545454, $to: #545454, $stop: #545454) {
+    &::-webkit-scrollbar-track {
+        background-color: $bgcolor;
+        border-radius: $width;
+    }
+    &::-webkit-scrollbar {
+        width: $width;
+        background-color: $bgcolor;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: $width;
+        background-color: $bgcolor;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-image: -webkit-gradient(linear, 40% 0%, 75% 84%, from($from), to($to), color-stop(.6, $stop));
+    }
+}

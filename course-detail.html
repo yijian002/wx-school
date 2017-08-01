@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> 课程详情 </title>
+    <meta name="keywords" content="学堂系统" />
+    <meta name="description" content="" />
+    <script type="text/javascript">
+    var w_width = parseInt(window.screen.width);
+    if(w_width < 370) {
+        var phoneScale = w_width / 375;　　
+        document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi" />');
+    }
+    else {
+        document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
+    }    
+    </script>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/course-detail.css" />
+    <link rel="stylesheet" type="text/css" href="http://vjs.zencdn.net/6.2.4/video-js.css" />
+</head>
+
+<body>
+    <div class="top-banner">
+        <video id="my-video" class="video-js" controls preload="auto" width="100%" height="180" poster="http://d2zihajmogu5jn.cloudfront.net/sintel/poster.png" data-setup="{}">
+        <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'>
+      </video>
+    </div>
+    <!-- <div class="player"></div> -->
+    <div class="press"><span class="lf">500人学过</span><span class="rg">学习进度50%</span></div>
+    <div class="line"></div>
+
+    <div class="contents">
+        <h4>课程介绍</h4>
+        <div class="desc">本课程由名师团队打造.............</div>
+        <div class="btns">
+            <div class="sed">生成邀请卡</div>
+            <div>评论</div>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="comments">
+        <ul>
+            <li>
+                <div class="pic"><img /></div>
+                <div class="info">
+                    <div class="name">昵称</div>
+                    <div class="con">学习后收获很大………….</div>
+                    <div class="time">2017.07.07</div>
+                    <div class="star"></div>
+                </div>
+            </li>
+            <li>
+                <div class="pic"><img /></div>
+                <div class="info">
+                    <div class="name">昵称</div>
+                    <div class="con">学习后收获很大…………学习后收获很大…………学习后收获很大…………学习后收获很大…………学习后收获很大………….</div>
+                    <div class="time">2017.07.07</div>
+                    <div class="star"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer"></div>
+    <footer>
+        <div class="selected">营员购买</div>
+        <div class="selected">营员价 ¥500<br />原    价 ¥1000</div>
+    </footer>
+</body>
+
+</html>
+<script src="http://vjs.zencdn.net/6.2.4/video.js"></script>

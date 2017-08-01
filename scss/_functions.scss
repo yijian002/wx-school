@@ -1,0 +1,41 @@
+@function parseInt($n) {
+    @return $n / ($n * 0 + 1);
+}
+
+@function px($value) {
+    @return $value + 0px;
+}
+
+@function pt($value) {
+    @return $value + 0pt;
+}
+
+@function rem($value) {
+    @return $value/$baseFontSize + 0rem;
+}
+
+@function rempx($values) {
+    $list: ();
+    @each $value in $values {
+        @if (type-of($value)=="number") and ($value !=0) {
+            $unit: unit($value);
+            $val: parseInt($value);
+            @if ($pxOnly) and ($unit=='rem') {
+                $list: append($list, ($val * $baseFontSize) + px);
+            }
+            @else if ($pxOnly) {
+                $list: append($list, px($val));
+            }
+            @else if ($unit=='rem') {
+                $list: append($list, $value);
+            }
+            @else {
+                $list: append($list, rem($val));
+            }
+        }
+        @else {
+            $list: append($list, $value);
+        }
+    }
+    @return $list();
+}

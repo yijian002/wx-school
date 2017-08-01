@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> 我的 </title>
+    <meta name="keywords" content="学堂系统" />
+    <meta name="description" content="" />
+    <script type="text/javascript">
+    var w_width = parseInt(window.screen.width);
+    if(w_width < 370) {
+        var phoneScale = w_width / 375;　　
+        document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi" />');
+    }
+    else {
+        document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
+    }    
+    </script>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/user.css" />
+</head>
+
+<body class="user-index">
+    <div id="user-main">
+        <div class="user-info">
+        	<div class="head"><img v-bind:src="user.headimgurl" /></div>
+            <div class="name">{{ user.nickname }}</div>
+            <div class="editinfo"><a href="user-info.html">完善个人资料 ></a></div>
+            <div class="stars">
+                <div>
+                    <div class="level">{{ user.pointsLevel }}</div>
+                    <div class="help">{{ user.pointsTotal }}/{{user.levelPoints}}</div>
+                </div>
+                <div class="press"><div class="ing" v-bind:style="{width: user.leveling}"></div></div>
+            </div>
+        </div>
+
+        <div class="menu">
+            <div class="poster">我的海报<a href="index.html"></a></div>
+            <div class="buyed-class">已购课程<a href="user-buyed-class.html"></a></div>
+            <div class="my-teacher">我的老师<a href="user-my-teacher.html"></a></div>
+            <div class="join">加入成长营<a href="user-join.html"></a></div>
+            <div class="plan">成长计划<a href="user-plan.html"></a></div>
+            <div class="feedback">意见反馈<a href="user-feedback.html"></a></div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script data-main="js/app/user.js" src="lib/require.js"></script>

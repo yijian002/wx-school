@@ -1,0 +1,53 @@
+@charset "UTF-8";
+@import "options";
+@import "mixins";
+
+$ns: $nameSpaceImg;
+
+.#{$ns}comm {
+    vertical-align: middle;
+}
+
+.#{$ns}lger {
+    @extend .#{$ns}comm;
+    &:hover {
+        @include prefixed(transform, scale(1.1));
+        @include prefixed(transition, .3s);
+    }
+}
+
+.#{$ns}rot {
+    @extend .#{$ns}comm;
+    &:hover {
+        @include prefixed(transform, rotate(360deg));
+        @include prefixed(transition, .3s linear);
+        @include prefixed(transition-delay, .2s);
+    }
+}
+
+.#{$ns}rot-half {
+    @extend .#{$ns}comm;
+    &:hover {
+        @include prefixed(transform, rotate(180deg));
+        @include prefixed(transition, .3s linear);
+        @include prefixed(transition-delay, .2s);
+    }
+}
+
+.#{$ns}rot-lger {
+    @extend .#{$ns}comm;
+    &:hover {
+        @include prefixed(transform, rotate(360deg) scale(1.1));
+        @include prefixed(transition, .3s linear);
+        @include prefixed(transition-delay, .2s);
+    }
+}
+
+.#{$ns}tilt-lger {
+    @extend .#{$ns}comm;
+    &:hover {
+        @include prefixed(transform, rotate(3deg) scale(1.1));
+        @include prefixed(transition, .3s linear);
+        @include prefixed(transition-delay, .2s);
+    }
+}

@@ -1,0 +1,103 @@
+@charset "UTF-8";
+$ns: $nameSpaceComm;
+
+.#{$ns}hide {
+    display: none;
+}
+
+// align
+.#{$ns}t-center {
+    text-align: center;
+}
+
+// color
+.#{$ns}ca {
+    color: #a7a7a7;
+}
+
+// float
+.#{$ns}fl {
+    float: left;
+}
+
+.#{$ns}fr {
+    float: right;
+}
+
+// font-size
+.#{$ns}f12 {
+    font-size: 12px;
+}
+
+.#{$ns}f14 {
+    font-size: 14px;
+}
+
+.#{$ns}f16 {
+    font-size: 16px;
+}
+
+// margin: top right bottom left
+.#{$ns}mt5 {
+    margin-top: 10px;
+}
+
+.#{$ns}mt10 {
+    margin-top: 10px;
+}
+
+.#{$ns}mt15 {
+    margin-top: 15px;
+}
+
+.#{$ns}mt20 {
+    margin-top: 20px;
+}
+
+.#{$ns}mr5 {
+    margin-right: 5px;
+}
+
+.#{$ns}mr10 {
+    margin-right: 10px;
+}
+
+.#{$ns}mr15 {
+    margin-right: 15px;
+}
+
+.#{$ns}mr20 {
+    margin-right: 20px;
+}
+
+.#{$ns}mb5 {
+    margin-bottom: 5px;
+}
+
+.#{$ns}mb10 {
+    margin-bottom: 10px;
+}
+
+.#{$ns}mb15 {
+    margin-bottom: 15px;
+}
+
+.#{$ns}mb20 {
+    margin-bottom: 20px;
+}
+
+.#{$ns}ml5 {
+    margin-left: 5px;
+}
+
+.#{$ns}ml10 {
+    margin-left: 10px;
+}
+
+.#{$ns}ml15 {
+    margin-left: 15px;
+}
+
+.#{$ns}ml20 {
+    margin-left: 20px;
+}
