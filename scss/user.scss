@@ -157,6 +157,7 @@
 	    display: flex;
 	    -webkit-flex-direction: row;
 		flex-direction: row;
+		overflow: hidden;
 		&.head {
 			height: 80px;
 			line-height: 80px;
