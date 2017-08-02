@@ -101,7 +101,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
             });
 
             function _canLoad() {
-                return (document.documentElement.scrollHeight) <= (document.documentElement.scrollTop | document.body.scrollTop) + document.documentElement.clientHeight + 150;
+                return (document.documentElement.scrollHeight) <= (document.documentElement.scrollTop | document.body.scrollTop) + document.documentElement.clientHeight + 50;
             }
         },
         init: function() {
