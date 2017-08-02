@@ -26,11 +26,13 @@
 
 <body>
     <div class="top-banner">
-        <video id="my-video" class="video-js" controls preload="auto" width="100%" height="180" poster="http://d2zihajmogu5jn.cloudfront.net/sintel/poster.png" data-setup="{}">
-        <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'>
+        <video id="my-video" class="video-js vjs-big-play-centered" controls preload="none" width="100%" height="180" 
+            poster="http://1.im.guokr.com/3WuTCB3uhXXNX2VH-2aJ48S4AcT3PQV0wGIzyks_KQLoAwAAFQIAAEpQ.jpg" 
+            data-setup="{}">
+        <source src="http://tb-video.bdstatic.com/tieba-smallvideo-transcode/114186298_43a96602cd564a3f5f45165046b89241_3.mp4?authorization=bce-auth-v1%2Fde94045c2e42438fad71ab8df47a6727%2F2017-05-18T03%3A21%3A05Z%2F1800%2F%2F53fbc9052bcc7b4f7d6dee989ebf850154a140d38d84059fff6f53cf2106475d" type='video/mp4'>        
       </video>
     </div>
-    <!-- <div class="player"></div> -->
+
     <div class="press"><span class="lf">500人学过</span><span class="rg">学习进度50%</span></div>
     <div class="line"></div>
 
@@ -66,11 +68,29 @@
         </ul>
     </div>
 
+    <!-- 访客 -->
+    <div class="dialog dialog-playend hide">
+        <div>
+            <div class="top"><i class="close"></i></div>
+            <div class="contents">
+                <div class="tip">试听结束</div>
+                <a href="#" class="btn-join">听完整课程</a>
+            </div>
+        </div>
+    </div>
+
     <div class="footer"></div>
-    <footer>
+    <!-- 会员 -->
+    <!-- <footer class="member">
         <div class="selected">营员购买</div>
         <div class="selected">营员价 ¥500<br />原    价 ¥1000</div>
+    </footer> -->
+    <!-- 访客 -->
+    <footer class="guest">
+        <div class="selected"><span>加入成长营<br />免费畅听</span>¥480/年</div>
+        <div class="selected">单次购买 ¥1000</div>
     </footer>
 </body>
 
 </html>
+<script data-main="js/app/course-detail.js" src="lib/require.js"></script>
