@@ -25,6 +25,7 @@ require(['zepto', 'route', 'util', 'comm'], function($, route, util, comm) {
             var player = videojs('my-video');
             player.on('timeupdate', function() {
                 if (player.duration() != 0 && player.currentTime() === player.duration()) { // 播放结束
+                    this.exitFullscreen();
                     util.dialog('.dialog-playend');
                 }
             });

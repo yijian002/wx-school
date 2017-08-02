@@ -50,10 +50,10 @@
 	        <div class="tt">精品微课</div>
 	        <ul class="best-class">
 	            <li v-for="item in best_class">
-	                <img class="pic" v-bind:src="item.coverUrl" />
+	                <a href="course-detail.html"><img class="pic" v-bind:src="item.coverUrl" /></a>
 	                <div class="info">
 	                    <div>
-	                        <div class="tt">{{item.name}}</div>
+	                        <a href="course-detail.html"><div class="tt">{{item.name}}</div></a>
 	                        <div class="price">￥{{item.price}}</div>
 	                    </div>
 	                    <div class="teacher">{{item.teacherName}}</div>

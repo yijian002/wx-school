@@ -10,23 +10,24 @@ body {
 video::-webkit-media-controls {  
     display:none !important;
 }
+.video-js {
+	width: 100%;
+	height: 180px;
+}
 .vjs-poster {
 	background-size: 100% 100%;
 }
 
 .top-banner {
 	width: 100%;
-	height: auto;
-	min-height: 180px;
+	height: 180px;
 	background: #D8D8D8;
 	margin-bottom: 20px;
+	overflow: hidden;
 	>img, video {
 		width: 100%;
 		height: 100%;
 		display: block;
-	}
-	>.video-js {
-		width: 100%;
 	}
 }
 
