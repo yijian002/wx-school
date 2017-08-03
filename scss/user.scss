@@ -519,3 +519,66 @@
 		text-align: center;
 	}
 }
+
+.user-bind-phone {
+	.form {
+		width: px(320);
+		height: auto;
+		margin: px(43 - 8) auto 0 auto;
+		>div {
+			margin-top: 8px;
+		}
+		input {
+			font-size: 14px;
+			color: #9B9B9B;
+			text-align: center;
+			height: 48px;
+			line-height: 48px;
+		}
+		.phone {
+			width: 318px;
+			border: 1px solid #D4D4D4;
+			border-radius: 100px;
+		}
+		.code {
+			width: 193px;
+			border: 1px solid #D4D4D4;
+			border-radius: 100px 0 0 100px;
+		}
+		.send-code {
+			font-size: 14px;
+			color: #FEC73A;
+			width: 115px;
+			height: 48px;
+			line-height: 48px;
+			float: right;
+			background: #fff;
+			border: 1px solid #FEC73A;
+			border-radius: 0 100px 100px 0;
+			text-align: center;
+			display: inline-block;
+		}
+	}
+	.btn {
+		font-size: 18px;
+		color: #fff;
+		width: 320px;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		background: #FEC73A;
+		border-radius: 100px;
+		margin: 16px auto 0 auto;
+	}
+	.bt-tip {
+		font-size: 14px;
+		color: #9B9B9B;
+		width: 100%;
+		line-height: 16px;
+		text-align: center;
+		position: fixed;
+		// top: 240px;
+		bottom: 37px;
+		z-index: 10;
+	}
+}

@@ -10,6 +10,7 @@
 - index.html: 首页
 - course-detail：课程详情
 - user.html：我的
+- user-bind-phone.html：手机绑定
 - user-buyed-class.html：已购课程
 - user-camp.html：成长营
 - user-camp-center.html：成长中心
