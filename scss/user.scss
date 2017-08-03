@@ -4,6 +4,10 @@
 @import "_mixins";
 @import "_functions";
 
+body {
+	background: #f8f8f8;
+}
+
 .user-index {
 	background: #f8f8f8;
 	.user-info {
@@ -521,6 +525,7 @@
 }
 
 .user-bind-phone {
+	background: #f8f8f8;
 	.form {
 		width: px(320);
 		height: auto;
@@ -534,6 +539,7 @@
 			text-align: center;
 			height: 48px;
 			line-height: 48px;
+			background: #fff;
 		}
 		.phone {
 			width: 318px;
@@ -557,6 +563,7 @@
 			border-radius: 0 100px 100px 0;
 			text-align: center;
 			display: inline-block;
+			background: #fff;
 		}
 	}
 	.btn {
