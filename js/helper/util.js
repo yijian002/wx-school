@@ -3,6 +3,29 @@ define('util', ['zepto', 'comm'], function($, comm) {
 	var timer_tip_hide = null;
 
 	var util = {
+			oaudio: new Audio(),
+			sound: function(opts) {
+				var a = this.oaudio;
+				a.preload = 'auto';
+
+				if(opts === 'pause' || a.paused === false) {
+					a.pause();
+					return;
+				}
+
+				if(opts.url) {
+					if(a.src !== opts.url) {
+						a.src = opts.url;
+					}
+					a.play();
+				}
+
+				a.addEventListener('ended', function() {
+					if(opts.ended) {
+						opts.ended();
+					}
+				});
+			},
 			goTop: function(opts) {
 				var options = {
 						cont: $('#btn-back-top')
@@ -138,6 +161,7 @@ define('util', ['zepto', 'comm'], function($, comm) {
 				_init();
 			},
 			dialog: function(container, opts) {
+				opts = opts || {};
 				if(typeof container === 'string') {
 					container = $(container);
 				}
@@ -146,6 +170,9 @@ define('util', ['zepto', 'comm'], function($, comm) {
 					.removeClass('hide')
 					.find('.close').off().on('click', function() {
 						container.addClass('hide');
+						if(opts.close) {
+							opts.close();
+						}
 					});
 
 				return container;

@@ -68,19 +68,14 @@
 			float: left;
 		}
 		.sound {
-			width: auto;
-			min-width: px(80);
-			max-width: px(232);
+			width: 200px;
+			// min-width: px(80);
+			// max-width: px(232);
 			height: px(40);
-			background: #fff;
-			border: 1px solid #E6E6E6;
 			border-radius: 100px;
 			float: left;
 			margin-top: px(4);
 			margin-left: px(25);
-			background: url(../images/ico-sound.png) no-repeat;
-			background-size: px(42/2) auto;
-			background-position: 20px center;
 		}
 	}
 	.best-class { // 精品微课
@@ -160,21 +155,55 @@
 }
 
 .dialog-first {
+	>div {
+		height: px(140);
+		margin-top: px(140/-2);
+	}
+	.info {
+		height: 65px;
+		margin-left: 20px;
+		margin-top: 30px;
+		>div {
+			float: left;
+		}
+		.pic {
+			height: 65px;
+			width: 65px;
+			background: #eee;
+			border-radius: 50%;
+			overflow: hidden;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.sound {
+			margin-left: 20px;
+			width: px(120);
+			height: px(60);
+			border-radius: 30px;
+			margin-top: px(3);
+		}
+	}
 	.btn-join {
 		font-size: 14px;
-		color: #fff;
-		width: 220px;
-		height: 46px;
-		line-height: 46px;
-		text-align: center;
-		background: #FEC73A;
-		border-radius: 100px;
-		display: block;
-		margin: 0 auto;
-		margin-top: 200px;
-		&:hover {
-			color: #fff;
-		}
+		color: #FEC73A;
+		display: inline-block;
+		margin: 10px 20px 0 0;
+		text-align: right;
+		float: right;
+		// width: 220px;
+		// height: 46px;
+		// line-height: 46px;
+		// text-align: center;
+		// background: #FEC73A;
+		// border-radius: 100px;
+		// display: block;
+		// margin: 0 auto;
+		// margin-top: 200px;
+		// &:hover {
+		// 	color: #fff;
+		// }
 	}
 }
 

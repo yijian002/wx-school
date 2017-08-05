@@ -170,6 +170,39 @@ video::-webkit-media-controls {
 	}
 }
 
+.add-comments {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	padding: 10px 0;
+	border-top: 1px solid #ccc;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 20;
+	display: none;
+	text-align: center;
+	input {
+		font-size: 14px;
+		padding: 0 10px;
+		width: 74%;
+		height: 28px;
+		border: 1px solid #E6E6E6;
+	}
+	.btn {
+		color: #fff;
+		font-size: 14px;
+		height: 30px;
+		padding: 0 10px;
+		background: #F6A623;
+		display: inline-block;
+		border-radius: 5px;
+		margin-left: 10px;
+	}
+}
+
 .dialog-playend {
 	>div {
 		height: 180px;

@@ -15,7 +15,7 @@
     }
     else {
         document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
-    }    
+    }
     </script>
     <meta name="format-detection" content="telephone=no" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
@@ -24,7 +24,9 @@
 
 <body>
 	<div id="index-main">
-		<div class="top-search" v-bind:class="{show: is_search}"><input type="text" name="key" placeholder="Search through your post" /></div>
+		<div class="top-search" v-bind:class="{show: is_search}">
+			<input type="text" name="key" placeholder="Search through your post" @focus="inputSearch" @blur="blurSearch" />
+		</div>
 
 		<div class="slider swiper-container">
 			<div class="swiper-wrapper">
@@ -39,9 +41,9 @@
 		<div class="column">
 			<div class="tt">免费微课</div>
 	        <ul class="free-class">
-	            <li v-for="item in free_class">
+	            <li v-for="item in free_class" v-bind:id="'free_class_'+ item.id">
 	            	<img class="pic" v-bind:src="item.imageUrl" />
-	            	<div class="sound" v-on:click="playSound(item.audioUrl)"></div>
+	            	<div class="sound" v-on:click="playSound(item.audioUrl, item.id)"></div>
 	            </li>
 	        </ul>
 		</div>
@@ -50,18 +52,20 @@
 	        <div class="tt">精品微课</div>
 	        <ul class="best-class">
 	            <li v-for="item in best_class">
-	                <a href="course-detail.html"><img class="pic" v-bind:src="item.coverUrl" /></a>
+	                <a v-bind:href="'course-detail.html?id='+item.id"><img class="pic" v-bind:src="item.coverUrl" /></a>
+	                <a v-bind:href="'course-detail.html?id='+item.id">
 	                <div class="info">
 	                    <div>
-	                        <a href="course-detail.html"><div class="tt">{{item.name}}</div></a>
-	                        <div class="price">￥{{item.price}}</div>
+	                        <div class="tt" v-html="item.name"></div>
+	                        <div class="price" v-html="'￥'+ item.price"></div>
 	                    </div>
-	                    <div class="teacher">{{item.teacherName}}</div>
+	                    <div class="teacher" v-html="item.teacherName"></div>
 	                    <div>
-	                        <div class="longtime">{{item.lessonTotal}}课时</div>
-	                        <div class="study">-人学过</div>
+	                        <div class="longtime" v-html="item.lessonTotal +'课时'"></div>
+	                        <div class="study" v-html="item.durationTotal + '人学过'"></div>
 	                    </div>
 	                </div>
+	                </a>
 	            </li>
 	        </ul>
 	    </div>
@@ -71,7 +75,10 @@
 	    <div>
 	    	<div class="top"><i class="close"></i></div>
 	    	<div class="contents">
-	    		<a href="user-join.html" class="btn-join">加入成长营</a>
+	    		<div class="info">
+	    			<div class="pic"></div><div class="sound"></div>
+	    		</div>
+	    		<a href="user-camp.html" class="btn-join">加入成长营</a>
 	    	</div>
 	    </div>
     </div>

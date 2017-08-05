@@ -22,9 +22,9 @@ define('route', ['zepto', 'comm'], function($, comm) {
 		$.ajax({
 			// url: 'http://112.74.102.63' + opts.url,
 			url: 'http://39.108.129.226:30000' + opts.url,
-			data: $.extend(opt_key, opts.params || {}),
+			data: $.extend(opts.params || {}, opt_key),
 			type: opts.type || 'GET',
-			cache: false,
+			cache: opts.type === 'POST' ? true : false,
 			beforeSend: opts.beforeSend || function(){},
 			success: function(response) {
 				if(response.code !== 200) {

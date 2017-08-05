@@ -25,29 +25,33 @@
 </head>
 
 <body>
+<div id="course-detail-main">
     <div class="top-banner">
         <video id="my-video" class="video-js vjs-big-play-centered" controls playsinline preload="auto" width="100%" height="180" 
-            poster="./images/slider/2.jpg" 
+            v-bind:poster="detail.coverUrl" 
             data-setup="{}">
         <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" type='video/mp4'>
       </video>
     </div>
 
-    <div class="press"><span class="lf">500人学过</span><span class="rg">学习进度50%</span></div>
+    <div class="press">
+        <span class="lf">{{detail.lessonTotal}}人学过</span>
+        <!-- <span class="rg">学习进度50%</span> -->
+    </div>
     <div class="line"></div>
 
     <div class="contents">
-        <h4>课程介绍</h4>
-        <div class="desc">本课程由名师团队打造.............</div>
+        <h4>{{detail.name}}</h4>
+        <div class="desc">本课程由名师团队打造</div>
         <div class="btns">
             <div class="sed">生成邀请卡</div>
-            <div>评论</div>
+            <div @click="is_comments=true;add_comments='';">评论</div>
         </div>
     </div>
     <div class="line"></div>
     <div class="comments">
         <ul>
-            <li>
+            <li v-for="item in comments">
                 <div class="pic"><img /></div>
                 <div class="info">
                     <div class="name">昵称</div>
@@ -56,16 +60,12 @@
                     <div class="star"></div>
                 </div>
             </li>
-            <li>
-                <div class="pic"><img /></div>
-                <div class="info">
-                    <div class="name">昵称</div>
-                    <div class="con">学习后收获很大…………学习后收获很大…………学习后收获很大…………学习后收获很大…………学习后收获很大………….</div>
-                    <div class="time">2017.07.07</div>
-                    <div class="star"></div>
-                </div>
-            </li>
         </ul>
+    </div>
+
+    <div class="add-comments" v-bind:class="{show:is_comments}">
+        <input type="text" id="add-comments" v-if="is_comments" placeholder="请输入评论..." v-model.trim="add_comments" v-focus />
+        <div class="btn" @click="addComments" >发送</div>
     </div>
 
     <!-- 访客 -->
@@ -81,15 +81,16 @@
 
     <div class="footer"></div>
     <!-- 会员 -->
-    <!-- <footer class="member">
+    <!-- <footer class="member" v-bind:class="{hide:is_comments}">
         <div class="selected">营员购买</div>
         <div class="selected">营员价 ¥500<br />原    价 ¥1000</div>
     </footer> -->
     <!-- 访客 -->
-    <footer class="guest">
-        <div class="selected"><span>加入成长营<br />免费畅听</span>¥480/年</div>
+    <footer class="guest" v-bind:class="{hide:is_comments}">
+        <div class="selected" onclick="window.location.href='user-camp.html'"><span>加入成长营<br />免费畅听</span>¥480/年</div>
         <div class="selected">单次购买 ¥1000</div>
     </footer>
+</div>
 </body>
 
 </html>

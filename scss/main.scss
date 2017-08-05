@@ -59,6 +59,18 @@ footer {
     }
 }
 
+#audio {
+	display: none;
+}
+
+.sound {
+	border: 1px solid #E6E6E6;
+	background: #fff;
+	background: url(../images/ico-sound.png) no-repeat;
+	background-size: px(42/2) auto;
+	background-position: 20px center;
+}
+
 .bt-joinme {
 	font-size: 16px;
 	color: #FFFFFF;
