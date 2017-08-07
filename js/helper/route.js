@@ -19,12 +19,14 @@ define('route', ['zepto', 'comm'], function($, comm) {
 			return;
 		}
 
+		var data = opts.noParams ? (opts.params || {}) : $.extend(opts.params || {}, opt_key);
+
 		$.ajax({
 			// url: 'http://112.74.102.63' + opts.url,
 			url: 'http://39.108.129.226:30000' + opts.url,
-			data: $.extend(opts.params || {}, opt_key),
+			data: data,
 			type: opts.type || 'GET',
-			cache: opts.type === 'POST' ? true : false,
+			cache: opts.noParams ? true : false,
 			beforeSend: opts.beforeSend || function(){},
 			success: function(response) {
 				if(response.code !== 200) {

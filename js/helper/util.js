@@ -26,6 +26,20 @@ define('util', ['zepto', 'comm'], function($, comm) {
 					}
 				});
 			},
+			wxPay: function(opts, data) {
+				WeixinJSBridge.invoke('getBrandWCPayRequest', data, function(response) {
+                    if(response.err_msg === 'get_brand_wcpay_request:ok') { // 支付成功
+                    	if(opts.success) {
+                    		opts.success();
+                    	}
+                    }
+                    else {
+                    	if(opts.fail) {
+                    		opts.fail(response.err_msg);
+                    	}
+                    }
+                });
+			},
 			goTop: function(opts) {
 				var options = {
 						cont: $('#btn-back-top')

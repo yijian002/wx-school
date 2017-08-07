@@ -9,88 +9,85 @@
     <meta name="description" content="" />
     <script type="text/javascript">
     var w_width = parseInt(window.screen.width);
-    if(w_width < 370) {
+    if (w_width < 370) {
         var phoneScale = w_width / 375;　　
         document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi" />');
-    }
-    else {
+    } else {
         document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
-    }    
+    }
     </script>
     <meta name="format-detection" content="telephone=no" />
-    <link rel="stylesheet" type="text/css" href="css/video-js.min.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/course-detail.css" />
-    <script type="text/javascript" src="lib/video.min.js"></script>
 </head>
 
 <body>
-<div id="course-detail-main">
-    <div class="top-banner">
-        <video id="my-video" class="video-js vjs-big-play-centered" controls playsinline preload="auto" width="100%" height="180" 
-            v-bind:poster="detail.coverUrl" 
-            data-setup="{}">
-        <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" type='video/mp4'>
-      </video>
-    </div>
-
-    <div class="press">
-        <span class="lf">{{detail.lessonTotal}}人学过</span>
-        <!-- <span class="rg">学习进度50%</span> -->
-    </div>
-    <div class="line"></div>
-
-    <div class="contents">
-        <h4>{{detail.name}}</h4>
-        <div class="desc">本课程由名师团队打造</div>
-        <div class="btns">
-            <div class="sed">生成邀请卡</div>
-            <div @click="is_comments=true;add_comments='';">评论</div>
+    <div id="course-detail-main">
+        <div class="top-banner swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="item in detail.banners" v-bind:style="{ backgroundImage: 'url('+ item.imageUrl +')' }"></div>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
-    </div>
-    <div class="line"></div>
-    <div class="comments">
-        <ul>
-            <li v-for="item in comments">
-                <div class="pic"><img /></div>
-                <div class="info">
-                    <div class="name">昵称</div>
-                    <div class="con">学习后收获很大………….</div>
-                    <div class="time">2017.07.07</div>
-                    <div class="star"></div>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <div class="add-comments" v-bind:class="{show:is_comments}">
-        <input type="text" id="add-comments" v-if="is_comments" placeholder="请输入评论..." v-model.trim="add_comments" v-focus />
-        <div class="btn" @click="addComments" >发送</div>
-    </div>
-
-    <!-- 访客 -->
-    <div class="dialog dialog-playend hide">
-        <div>
-            <div class="top"><i class="close"></i></div>
-            <div class="contents">
-                <div class="tip">试听结束</div>
-                <a href="#" class="btn-join">听完整课程</a>
+        <div class="player">
+            <div class="audio-js-box">
+                <audio src="http://kolber.github.io/audiojs/demos/mp3/juicy.mp3" preload="none"></audio>
             </div>
         </div>
+        <div class="press">
+            <span class="lf">{{detail.lessonTotal}}人学过</span>
+            <!-- <span class="rg">学习进度50%</span> -->
+        </div>
+        <div class="line"></div>
+        <div class="contents">
+            <h4>{{detail.name}}</h4>
+            <div class="desc">本课程由名师团队打造</div>
+            <div class="btns">
+                <div class="sed">生成邀请卡</div>
+                <div @click="is_comments=true;add_comments='';">评论</div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="comments">
+            <ul>
+                <li v-for="item in comments">
+                    <div class="pic"><img /></div>
+                    <div class="info">
+                        <div class="name">-</div>
+                        <div class="con" v-html="item.comment"></div>
+                        <div class="time" v-html="item.createTime"></div>
+                        <!-- <div class="star"></div> -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="add-comments" v-bind:class="{show:is_comments}">
+            <input type="text" id="add-comments" v-if="is_comments" placeholder="请输入评论..." v-model.trim="add_comments" v-focus />
+            <div class="btn" @click="addComments">发送</div>
+        </div>
+        <div class="footer"></div>
+        <!-- 会员 -->
+        <footer class="member" v-if="is_vip" v-bind:class="{hide:is_comments}">
+            <div class="selected" @click="buy(500)">营员购买</div>
+            <div class="selected">营员价 ¥500
+                <br />原 价 ¥1000</div>
+        </footer>
+        <!-- 访客 -->
+        <div class="dialog dialog-playend hide" v-if="!is_vip">
+            <div>
+                <div class="top"><i class="close"></i></div>
+                <div class="contents">
+                    <div class="tip">试听结束</div>
+                    <a href="#" class="btn-join">听完整课程</a>
+                </div>
+            </div>
+        </div>
+        <!-- 访客 -->
+        <footer class="guest" v-if="!is_vip" v-bind:class="{hide:is_comments}">
+            <div class="selected" onclick="window.location.href='user-camp.html'"><span>加入成长营<br />免费畅听</span>¥480/年</div>
+            <div class="selected" @click="buy(1000)">单次购买 ¥1000</div>
+        </footer>
     </div>
-
-    <div class="footer"></div>
-    <!-- 会员 -->
-    <!-- <footer class="member" v-bind:class="{hide:is_comments}">
-        <div class="selected">营员购买</div>
-        <div class="selected">营员价 ¥500<br />原    价 ¥1000</div>
-    </footer> -->
-    <!-- 访客 -->
-    <footer class="guest" v-bind:class="{hide:is_comments}">
-        <div class="selected" onclick="window.location.href='user-camp.html'"><span>加入成长营<br />免费畅听</span>¥480/年</div>
-        <div class="selected">单次购买 ¥1000</div>
-    </footer>
-</div>
 </body>
 
 </html>

@@ -2,6 +2,8 @@
 @import "_options";
 @import "_mixins";
 @import "_functions";
+@import "_swiper";
+@import "_audio";
 
 body {
 	background: #f8f8f8;
@@ -24,18 +26,26 @@ video::-webkit-media-controls {
 	background: #D8D8D8;
 	margin-bottom: 20px;
 	overflow: hidden;
-	>img, video {
+	// >img, video {
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	display: block;
+	// }
+	.swiper-slide {
+		background-size: 100% auto;
+		background-position: center center;
+	}
+	img {
 		width: 100%;
 		height: 100%;
-		display: block;
 	}
 }
 
-// .player {
-// 	width: 350px;
-// 	height: 80px;
-// 	margin: 10px auto;
-// }
+.player {
+	width: 350px;
+	height: 80px;
+	margin: 10px auto;
+}
 
 .press {
 	font-size: 14px;
