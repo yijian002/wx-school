@@ -483,6 +483,7 @@ footer {
 
 .sound {
   border: 1px solid #E6E6E6;
+  background: #fff;
   background: url(../images/ico-sound.png) no-repeat;
   background-size: 21px auto;
   background-position: 20px center; }
@@ -575,5 +576,11 @@ footer {
 
 :-ms-input-placeholder {
   color: #c8c8c8; }
+
+.audiojs {
+  width: 350px; }
+
+.audiojs .scrubber {
+  width: 190px; }
 
 /*# sourceMappingURL=main.css.map */

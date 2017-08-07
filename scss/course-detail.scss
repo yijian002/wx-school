@@ -24,7 +24,7 @@ video::-webkit-media-controls {
 	width: 100%;
 	height: 180px;
 	background: #D8D8D8;
-	margin-bottom: 20px;
+	// margin-bottom: 10px;
 	overflow: hidden;
 	// >img, video {
 	// 	width: 100%;
@@ -42,9 +42,24 @@ video::-webkit-media-controls {
 }
 
 .player {
-	width: 350px;
-	height: 80px;
-	margin: 10px auto;
+	width: 100%;
+	height: px(36);
+	margin-bottom: 15px;
+	
+	background: #404040;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #444), color-stop(0.5, #555), color-stop(0.51, #444), color-stop(1, #444));
+    background-image: -moz-linear-gradient(center top, #444 0%, #555 50%, #444 51%, #444 100%);
+    -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    -o-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+	>div {
+		width: 350px;
+		margin: 0 auto;
+		.audiojs {
+			box-shadow: none;
+			-webkit-box-shadow: none;
+		}
+	}
 }
 
 .press {

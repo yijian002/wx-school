@@ -70,6 +70,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
     });
 
     var app = {
+        _page: 1,
         getBanners: function() {
             route({url: '/api/parentsHall/banners'}, function(response) {
                 if(! response) {
@@ -85,24 +86,23 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                     return;
                 }
 
-                // var sound;
-                // for (var i = response.length - 1; i >= 0; i--) {
-                //     sound = new Audio(response[i].audioUrl);
-                //     _showDuration(sound.duration);
-                // }
-
-                // function _showDuration(duration) {
-                //     setTimeout(function() {
-                //         console.log(duration);
-                //     }, 1000);
-                // }
-
                 vm.free_class = response;
             });
         },
         getBestClass: function() {
-            route({url: '/api/parentsHall/courses'}, function(response) {
-                if(! response) {
+            var _this = this,
+                page = this._page;
+            if(page < 1) {
+                this._page = -1;
+                return;
+            }
+
+            route({url: '/api/parentsHall/courses', params: {
+                pageNum: page,
+                pageSize: 10,
+            }}, function(response) {
+                if(! response || !response.length) {
+                    _this.page = -1;
                     return;
                 }
 
@@ -110,7 +110,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                     response[i].durationTotal = response[i].durationTotal.toFixed(0);
                 }
 
-                vm.best_class = response;
+                vm.best_class = vm.best_class.concat(response);
             });
         },
         initFirst: function() {
@@ -143,24 +143,35 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
         },
         initSearch: function() {
             var _this = this;
-            $(window).off('scroll').on('scroll', function() {
+            $(window).on('scroll.search', function() {
                 clearTimeout(timer_search);
 
                 timer_search = setTimeout(function() {
                     vm.is_search = _canLoad() ? true : false;
 
                     _this.blurSearch();
-                }, 100);
+                }, 0);
             });
 
             function _canLoad() {
-                return (document.documentElement.scrollHeight) <= (document.documentElement.scrollTop | document.body.scrollTop) + document.documentElement.clientHeight + 50;
+                return (document.documentElement.scrollTop || document.body.scrollTop) > 300;
+                // return (document.documentElement.scrollHeight) <= (document.documentElement.scrollTop | document.body.scrollTop) + document.documentElement.clientHeight + 50;
             }
         },
         blurSearch: function() {
             timer_search = setTimeout(function() { // 3秒自动隐藏
                 vm.is_search = false;
             }, 2000);
+        },
+        bind: function() {
+            var _this = this;
+
+            util.loadMore({
+                loading: function() {
+                    _this.page++;
+                    _this.getBestClass();
+                }
+            });
         },
         init: function() {
             this.initFirst();
@@ -169,6 +180,8 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
             this.getBanners();
             this.getFreeClass();
             this.getBestClass();
+
+            this.bind();
             delete this.init;
         }
     };

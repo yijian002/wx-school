@@ -173,3 +173,14 @@ footer {
 :-ms-input-placeholder {
     color: #c8c8c8;
 }
+
+// audiojs
+.audiojs {
+	width: px(460 - 110);
+	// background: #fff;
+	// background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #eee), color-stop(0.5, #fff), color-stop(0.51, #eee), color-stop(1, #eee));
+ //    background-image: -moz-linear-gradient(center top, #eee 0%, #fff 50%, #eee 51%, #eee 100%);
+}
+.audiojs .scrubber {
+	width: 190px;
+}

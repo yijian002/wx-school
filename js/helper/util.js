@@ -27,18 +27,36 @@ define('util', ['zepto', 'comm'], function($, comm) {
 				});
 			},
 			wxPay: function(opts, data) {
-				WeixinJSBridge.invoke('getBrandWCPayRequest', data, function(response) {
-                    if(response.err_msg === 'get_brand_wcpay_request:ok') { // 支付成功
-                    	if(opts.success) {
+				wx.chooseWXPay({
+					timestamp: data.timeStamp,
+					nonceStr: data.nonceStr,
+					package: data.package,
+					signType: data.signType,
+					paySign: data.paySign,
+					success: function (res) {
+						if(opts.success) {
                     		opts.success();
                     	}
-                    }
-                    else {
-                    	if(opts.fail) {
-                    		opts.fail(response.err_msg);
+					},
+					error: function (res) {
+						if(opts.fail) {
+                    		opts.fail(res.err_msg);
                     	}
-                    }
-                });
+					}
+				});
+
+				// WeixinJSBridge.invoke('getBrandWCPayRequest', data, function(response) {
+    //                 if(response.err_msg === 'get_brand_wcpay_request:ok') { // 支付成功
+    //                 	if(opts.success) {
+    //                 		opts.success();
+    //                 	}
+    //                 }
+    //                 else {
+    //                 	if(opts.fail) {
+    //                 		opts.fail(response.err_msg);
+    //                 	}
+    //                 }
+    //             });
 			},
 			goTop: function(opts) {
 				var options = {
@@ -148,7 +166,7 @@ define('util', ['zepto', 'comm'], function($, comm) {
 				_init();
 			},
 			loadMore: function(opts) {
-				var options = {loading: function(){}, offset: 30},
+				var options = {loading: function(){}, offset: 100},
 					timer = null;
 
 				$.extend(options, opts || {});

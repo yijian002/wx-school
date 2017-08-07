@@ -23,32 +23,35 @@
 </head>
 
 <body class="user-camp">
-    <div class="content">
-        <div class="list">
-            <ul>
-                <li>
-                    <div class="time">2112-12-12 11:00</div>
-                    <div class="info">
-                        <div class="head"></div>
-                        <div class="con"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="time">2112-12-12 11:00</div>
-                    <div class="info">
-                        <div class="head"></div>
-                        <div class="con">说了什么是什么</div>
-                    </div>
-                </li>
-            </ul>
+    <div id="user-camp-main">
+        <div class="content">
+            <div class="list">
+                <ul>
+                    <li>
+                        <div class="time">2112-12-12 11:00</div>
+                        <div class="info">
+                            <div class="head"></div>
+                            <div class="con"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="time">2112-12-12 11:00</div>
+                        <div class="info">
+                            <div class="head"></div>
+                            <div class="con">说了什么</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="splace"></div>
+            <div class="desc">成长营介绍</div>
         </div>
 
-        <div class="splace"></div>
-        <div class="desc">成长营介绍</div>
+        <div class="footer"></div>
+        <div class="bt-joinme" @click="join()">立即加入成长营 ¥480/年<!-- <a href="user-join.html"></a> --></div>
     </div>
-
-    <div class="footer"></div>
-    <div class="bt-joinme">立即加入成长营 ¥480/年<a href="user-join.html"></a></div>
 </body>
 
 </html>
+<script data-main="js/app/user-camp.js" src="lib/require.js"></script>

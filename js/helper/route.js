@@ -1,17 +1,17 @@
 define('route', ['zepto', 'comm'], function($, comm) {
 
-	if(comm.getUrlParam('openid')) {
-		comm.setCache('openid', comm.getUrlParam('openid'));
-	}
+	// if(comm.getUrlParam('openid')) {
+	// 	comm.setCache('openid', comm.getUrlParam('openid'));
+	// }
 
-	if(comm.getUrlParam('userId')) {
-		comm.setCache('userId', comm.getUrlParam('userId'));
-	}
-
-	var opt_key = {
-			openid: comm.getCache('openid') || '',
-			userId: comm.getCache('userId') || ''
-		};
+	// if(comm.getUrlParam('userId')) {
+	// 	comm.setCache('userId', comm.getUrlParam('userId'));
+	// }
+	var opt_key = {};
+	// var opt_key = {
+	// 		openid: comm.getCache('openid') || '',
+	// 		userId: comm.getCache('userId') || ''
+	// 	};
 
 	function route(opts, callback) {
 		if(! opts) {

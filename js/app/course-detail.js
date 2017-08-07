@@ -3,6 +3,7 @@ require.config({
     paths: {
         vue: 'lib/vue.min',
         zepto: 'lib/zepto.min',
+        wx: 'http://res.wx.qq.com/open/js/jweixin-1.2.0',
         audiojs: 'lib/audiojs/audio.min',
         swiper: 'lib/swiper.min',
         route: 'js/helper/route',
@@ -20,7 +21,8 @@ require.config({
     }
 });
 
-require(['vue', 'zepto', 'route', 'util', 'comm', 'audiojs', 'swiper'], function(vue, $, route, util, comm) {
+require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'], 
+    function(vue, $, route, util, comm, wx) {
 
     vue.directive('focus', {
         inserted: function(el) {
@@ -53,8 +55,23 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'audiojs', 'swiper'], function
                     }
                 });
             },
-            buy: function(price) {
+            join: function() {
+                window.location.href='user-camp.html?id=' + app._id;
+            },
+            buy: function() {
+                route({
+                    url: '/api/pay/payInfo/buyCourse',
+                    type: 'POST',
+                    params: {courseId: app._id}
+                }, function(response) {
+                    if (!response) {
+                        return;
+                    }
 
+                    util.wxPay({success: function() {
+                        alert('恭喜，支付成功！');
+                    }}, response);
+                });
             },
             addComments: function(event) {
                 this.is_comments = false;
@@ -81,37 +98,25 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'audiojs', 'swiper'], function
         },
         watch: {},
         updated: function() {
+            var $audio_box = $('.audio-js-box');
+
             new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination',
                 paginationClickable: false,
                 spaceBetween: 30,
-                loop: false
-            });
+                loop: false,
+                onSlideChangeEnd: function(swiper) {
+                    $.each($audio_box.find('.playing'), function(idx) {
+                        // this.pause();
+                        $(this).find('.pause').click();
+                    });
 
-            audiojs.events.ready(function() {
-                var audios = document.getElementsByTagName('audio');
-                if (!audios || !audios[0]) {
-                    return;
+                    $audio_box.hide().eq(swiper.activeIndex).show();
                 }
-
-                var a1 = audiojs.create(audios[0], {
-                    css: false,
-                    createPlayer: {
-                        markup: false,
-                        playPauseClass: 'play-pauseZ',
-                        scrubberClass: 'scrubberZ',
-                        progressClass: 'progressZ',
-                        loaderClass: 'loadedZ',
-                        timeClass: 'timeZ',
-                        durationClass: 'durationZ',
-                        playedClass: 'playedZ',
-                        errorMessageClass: 'error-messageZ',
-                        playingClass: 'playingZ',
-                        loadingClass: 'loadingZ',
-                        errorClass: 'errorZ'
-                    }
-                });
             });
+
+            $audio_box.hide().eq(0).show();
+            audiojs.createAll();
         }
     });
 
@@ -154,27 +159,21 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'audiojs', 'swiper'], function
                 }
 
                 wx.config({
-                    debug: false,
+                    debug: true,
                     appId: response.appId,
                     timestamp: response.timestamp,
                     nonceStr: response.nonceStr,
                     signature: response.signature,
-                    jsApiList: ['hideMenuItems', 'onMenuShareTimeline', 'onMenuShareAppMessage']
+                    jsApiList: ['chooseWXPay']
                 });
             });
+
+            wx.ready(function(){
+            });
         },
-        // initPlayer: function() {
-        //     var player = videojs('my-video');
-        //     player.on('timeupdate', function() {
-        //         if (player.duration() != 0 && player.currentTime() === player.duration()) { // 播放结束
-        //             this.exitFullscreen();
-        //             util.dialog('.dialog-playend');
-        //         }
-        //     });
-        // },
         init: function() {
             var _this = this;
-
+_this.getInfo();
             this.getUserInfo(function() {
                 _this.getInfo();
                 _this.getComments();
