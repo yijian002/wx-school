@@ -21,12 +21,12 @@ require.config({
 require(['vue', 'zepto', 'route', 'util', 'comm'], function(vue, $, route, util, comm) {
 
     var vm = new vue({
-        el: '#user-plan-detail-main',
+        el: '#user-plan-task-main',
         data: {
         },
         methods: {
-            showTask: function(id) {
-                window.location.href = 'user-plan-task.html';
+            addFeedback: function() {
+                window.location.href = 'user-plan-feedback.html';
             }
         },
         watch: {},

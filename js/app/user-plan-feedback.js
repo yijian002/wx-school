@@ -21,12 +21,30 @@ require.config({
 require(['vue', 'zepto', 'route', 'util', 'comm'], function(vue, $, route, util, comm) {
 
     var vm = new vue({
-        el: '#user-plan-detail-main',
+        el: '#user-plan-feedback-main',
         data: {
+            text: '',
+            imgs: [
+                {idx: 0, img_id: null},
+                {idx: 1, img_id: null},
+                {idx: 2, img_id: null},
+                {idx: 3, img_id: null},
+                {idx: 4, img_id: null},
+                {idx: 5, img_id: null},
+                {idx: 6, img_id: null},
+                {idx: 7, img_id: null},
+                {idx: 8, img_id: null}
+            ],
+            sound: ''
         },
         methods: {
-            showTask: function(id) {
-                window.location.href = 'user-plan-task.html';
+            setSound: function() {
+            },
+            uploadImg: function(idx) {
+
+            },
+            save: function() {
+                
             }
         },
         watch: {},

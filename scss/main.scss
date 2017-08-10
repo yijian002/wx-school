@@ -69,6 +69,10 @@ footer {
 	background: url(../images/ico-sound.png) no-repeat;
 	background-size: px(42/2) auto;
 	background-position: 20px center;
+	&.playing {
+		background-image: url(../images/ico-sound-ing.png);
+		border: 1px solid #84ff84;
+	}
 }
 
 .bt-joinme {

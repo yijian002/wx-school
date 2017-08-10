@@ -357,6 +357,34 @@ body {
     font-size: 16px;
     color: #9B9B9B;
     clear: both; }
+.user-camp .ico-add {
+  width: 50px;
+  height: 50px;
+  background: #D8D8D8;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  margin-left: -25px;
+  z-index: 30; }
+  .user-camp .ico-add:after {
+    content: '';
+    width: 26px;
+    height: 2px;
+    background: #818181;
+    position: absolute;
+    top: 24px;
+    left: 12px;
+    z-index: 10; }
+  .user-camp .ico-add:before {
+    content: '';
+    height: 26px;
+    width: 2px;
+    background: #818181;
+    position: absolute;
+    top: 12px;
+    left: 24px;
+    z-index: 10; }
 
 .user-feedback {
   background: #f8f8f8; }
@@ -378,6 +406,66 @@ body {
     width: 350px;
     left: 50%;
     margin-left: -175px; }
+
+.user-plan-feedback .content {
+  padding: 22px; }
+  .user-plan-feedback .content .item {
+    width: 100%;
+    height: auto;
+    min-height: 60px;
+    border-bottom: 1px solid #ECECEC; }
+    .user-plan-feedback .content .item:last-child {
+      border-bottom: 0; }
+    .user-plan-feedback .content .item > div {
+      height: 32px;
+      line-height: 32px;
+      margin-top: 14px;
+      float: left;
+      display: inline-block; }
+    .user-plan-feedback .content .item .tt {
+      font-size: 18px;
+      color: #666;
+      margin-right: 30px;
+      line-height: 32px; }
+    .user-plan-feedback .content .item .con {
+      position: relative; }
+      .user-plan-feedback .content .item .con input {
+        font-size: 18px;
+        color: #9B9B9B;
+        width: 200px;
+        height: 32px;
+        background: #f8f8f8;
+        border: 0; }
+      .user-plan-feedback .content .item .con .imgs {
+        width: 300px;
+        height: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 2; }
+        .user-plan-feedback .content .item .con .imgs li {
+          width: 80px;
+          height: 80px;
+          overflow: hidden;
+          background: #D8D8D8;
+          float: left;
+          margin: 5px; }
+          .user-plan-feedback .content .item .con .imgs li img {
+            width: 100%;
+            height: 100%; }
+  .user-plan-feedback .content .sound {
+    width: 200px;
+    height: 40px;
+    border-radius: 100px;
+    float: left;
+    margin-top: -4px; }
+  .user-plan-feedback .content .say {
+    width: 24px;
+    height: 32px;
+    float: left;
+    background: url(../images/Page_1@2x.png) no-repeat;
+    background-size: 100% 100%;
+    margin-left: 30px; }
 
 .user-my-teacher .head {
   width: 100px;

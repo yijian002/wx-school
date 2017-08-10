@@ -23,10 +23,14 @@
 </head>
 
 <body class="user-plan">
-    <div class="content">成长计划项目介绍</div>
+    <div id="user-plan-main">
+        <div class="content">成长计划项目介绍</div>
 
-    <div class="footer"></div>
-    <div class="bt-joinme">加入30天成长计划 ¥1000</div>
+        <div class="footer"></div>
+        <div class="bt-joinme hide" v-bind:class="{show: !is_vip}" @click="join()">加入30天成长计划 ¥1000</div>
+        <div class="bt-joinme hide" v-bind:class="{show: is_vip}">我的成长计划<a href="user-plan-detail.html"></a></div>
+    </div>
 </body>
 
 </html>
+<script data-main="js/app/user-plan.js" src="lib/require.js"></script>

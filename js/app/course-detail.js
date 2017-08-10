@@ -69,7 +69,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                     }
 
                     util.wxPay({success: function() {
-                        alert('恭喜，支付成功！');
+                        window.location.reload(true);
                     }}, response);
                 });
             },
@@ -173,7 +173,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
         },
         init: function() {
             var _this = this;
-_this.getInfo();
+
             this.getUserInfo(function() {
                 _this.getInfo();
                 _this.getComments();

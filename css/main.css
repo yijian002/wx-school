@@ -385,6 +385,12 @@ ul, ol {
 .f16 {
   font-size: 16px; }
 
+.f18 {
+  font-size: 18px; }
+
+.f20 {
+  font-size: 20px; }
+
 .mt5 {
   margin-top: 10px; }
 
@@ -487,6 +493,9 @@ footer {
   background: url(../images/ico-sound.png) no-repeat;
   background-size: 21px auto;
   background-position: 20px center; }
+  .sound.playing {
+    background-image: url(../images/ico-sound-ing.png);
+    border: 1px solid #84ff84; }
 
 .bt-joinme {
   font-size: 16px;

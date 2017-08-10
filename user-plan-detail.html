@@ -23,34 +23,36 @@
 </head>
 
 <body class="user-plan-detail">
-    <div class="top-banner"></div>
-    <div class="contents">
-        <div class="item">
-            <i class="ico"></i>
-            <div class="tt">第一阶段<div class="sub">（1～10天）</div></div>
-            <div class="tasks">
-                <ul>
-                    <li>
-                        <div class="name">任务名称</div>
-                        <div class="desc">本期课程任务是……本期课程任务是……本期课程任务是……本期课程任务是……</div>
-                    </li>
-                    <li>
-                        <div class="name">任务名称</div>
-                        <div class="desc">本期课程任务是……本期课程任务是……本期课程任务是……本期课程任务是……</div>
-                    </li>
-                </ul>
+    <div id="user-plan-detail-main">
+        <div class="top-banner"></div>
+        <div class="contents">
+            <div class="item">
+                <i class="ico"></i>
+                <div class="tt">第一阶段<div class="sub">（1～10天）</div></div>
+                <div class="tasks">
+                    <ul>
+                        <li @click="showTask()">
+                            <div class="name">任务名称</div>
+                            <div class="desc">本期课程任务是……本期课程任务是……本期课程任务是……本期课程任务是……</div>
+                        </li>
+                        <li @click="showTask()">
+                            <div class="name">任务名称</div>
+                            <div class="desc">本期课程任务是……本期课程任务是……本期课程任务是……本期课程任务是……</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="item close">
-            <i class="ico"></i>
-            <div class="tt">第二阶段<div class="sub">（1～10天）</div></div>
-            <div class="tasks">
-                <ul>
-                    <li>
-                        <div class="name">任务名称</div>
-                        <div class="desc">本期课程任务是……本期课程任务是</div>
-                    </li>
-                </ul>
+            <div class="item close">
+                <i class="ico"></i>
+                <div class="tt">第二阶段<div class="sub">（1～10天）</div></div>
+                <div class="tasks">
+                    <ul>
+                        <li @click="showTask()">
+                            <div class="name">任务名称</div>
+                            <div class="desc">本期课程任务是……本期课程任务是</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

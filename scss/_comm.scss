@@ -37,6 +37,14 @@ $ns: $nameSpaceComm;
     font-size: 16px;
 }
 
+.#{$ns}f18 {
+    font-size: 18px;
+}
+
+.#{$ns}f20 {
+    font-size: 20px;
+}
+
 // margin: top right bottom left
 .#{$ns}mt5 {
     margin-top: 10px;

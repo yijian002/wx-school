@@ -439,6 +439,37 @@ body {
 			clear: both;
 		}
 	}
+	.ico-add {
+		width: 50px;
+		height: 50px;
+		background: #D8D8D8;
+		border-radius: 50%;
+		position: fixed;
+		bottom: 25px;
+		left: 50%;
+		margin-left: -25px;
+		z-index: 30;
+		&:after {
+			content: '';
+			width: 26px;
+			height: 2px;
+			background: #818181;
+			position: absolute;
+			top: px((50 - 2) / 2);
+			left: px((50 - 26) /2);
+			z-index: 10;
+		}
+		&:before {
+			content: '';
+			height: 26px;
+			width: 2px;
+			background: #818181;
+			position: absolute;
+			top: px((50 - 26) / 2);
+			left: px((50 - 2) /2);
+			z-index: 10;
+		}
+	}
 }
 
 .user-feedback {
@@ -463,62 +494,80 @@ body {
 		left: 50%;
 		margin-left: px(330/-2 - 10);
 	}
-	// .content {
-	// 	padding: 22px;
-	// 	.item {
-	// 		width: 100%;
-	// 		height: auto;
-	// 		min-height: 60px;
-	// 		// border-bottom: 1px solid #ECECEC;
-	// 		// &:last-child {
-	// 		// 	border-bottom: 0;
-	// 		// }
-	// 		// >div {
-	// 		// 	height: 32px;
-	// 		// 	line-height: 32px;
-	// 		// 	margin-top: px(14);
-	// 		// 	float: left;
-	// 		// 	display: inline-block;
-	// 		// }
-	// 		// .tt {
-	// 		// 	font-size: 18px;
-	// 		// 	color: #666;
-	// 		// 	margin-right: 30px;
-	// 		// 	line-height: 32px;
-	// 		// }
-	// 		// .con {
-	// 		// 	position: relative;
-	// 		// 	input {
-	// 		// 		font-size: 18px;
-	// 		// 		color: #9B9B9B;
-	// 		// 		width: 200px;
-	// 		// 		height: 32px;
-	// 		// 		background: #f8f8f8;
-	// 		// 		border: 0;
-	// 		// 	}
-	// 		// 	.imgs {
-	// 		// 		width: 300px;
-	// 		// 		height: auto;
-	// 		// 		position: absolute;
-	// 		// 		left: 0;
-	// 		// 		right: 0;
-	// 		// 		z-index: 2;
-	// 		// 		li {
-	// 		// 			width: 80px;
-	// 		// 			height: 80px;
-	// 		// 			overflow: hidden;
-	// 		// 			background: #D8D8D8;
-	// 		// 			float: left;
-	// 		// 			margin: 5px;
-	// 		// 			img {
-	// 		// 				width: 100%;
-	// 		// 				height: 100%;
-	// 		// 			}
-	// 		// 		}
-	// 		// 	}
-	// 		// }
-	// 	}
-	// }
+}
+
+.user-plan-feedback {
+	.content {
+		padding: 22px;
+		.item {
+			width: 100%;
+			height: auto;
+			min-height: 60px;
+			border-bottom: 1px solid #ECECEC;
+			&:last-child {
+				border-bottom: 0;
+			}
+			>div {
+				height: 32px;
+				line-height: 32px;
+				margin-top: px(14);
+				float: left;
+				display: inline-block;
+			}
+			.tt {
+				font-size: 18px;
+				color: #666;
+				margin-right: 30px;
+				line-height: 32px;
+			}
+			.con {
+				position: relative;
+				input {
+					font-size: 18px;
+					color: #9B9B9B;
+					width: 200px;
+					height: 32px;
+					background: #f8f8f8;
+					border: 0;
+				}
+				.imgs {
+					width: 300px;
+					height: auto;
+					position: absolute;
+					left: 0;
+					right: 0;
+					z-index: 2;
+					li {
+						width: 80px;
+						height: 80px;
+						overflow: hidden;
+						background: #D8D8D8;
+						float: left;
+						margin: 5px;
+						img {
+							width: 100%;
+							height: 100%;
+						}
+					}
+				}
+			}
+		}
+		.sound {
+			width: 200px;
+			height: px(40);
+			border-radius: 100px;
+			float: left;
+			margin-top: px(-4);
+		}
+		.say {
+			width: px(48/2);
+			height: px(64/2);
+			float: left;
+			background: url(../images/Page_1@2x.png) no-repeat;
+			background-size: 100% 100%;
+			margin-left: 30px;
+		}
+	}
 }
 
 .user-my-teacher {

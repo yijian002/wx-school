@@ -14,6 +14,8 @@
 - user-my-teacher.html：我的老师
 - user-plan.html：成长计划
 - user-plan-detail.html：成长计划详情
+- user-plan-task.html： 成长任务
+- user-plan-feedback.html：成长意见反馈
 
 ## Base Libs
 - VueJs

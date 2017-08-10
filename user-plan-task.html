@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> 任务名称 </title>
+    <meta name="keywords" content="学堂系统" />
+    <meta name="description" content="" />
+    <script type="text/javascript">
+    var w_width = parseInt(window.screen.width);
+    if(w_width < 370) {
+        var phoneScale = w_width / 375;　　
+        document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi" />');
+    }
+    else {
+        document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
+    }    
+    </script>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/user.css" />
+</head>
+
+<body class="user-camp">
+    <div id="user-plan-task-main">
+        <div class="content">
+            <div class="list">
+                <ul>
+                    <li>
+                        <div class="time">2112-12-12 11:00</div>
+                        <div class="info">
+                            <div class="head"></div>
+                            <div class="con"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="time">2112-12-12 11:00</div>
+                        <div class="info">
+                            <div class="head"></div>
+                            <div class="con">说了什么</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="splace"></div>
+            <!-- <div class="desc">成长营介绍</div> -->
+        </div>
+
+        <div class="footer"></div>
+        <div class="ico-add" @click="addFeedback()"></div>
+    </div>
+</body>
+
+</html>
+<script data-main="js/app/user-plan-task.js" src="lib/require.js"></script>

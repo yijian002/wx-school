@@ -23,33 +23,42 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx'],
     function(vue, $, route, util, comm, wx) {
 
     var vm = new vue({
-        el: '#user-camp-main',
+        el: '#user-plan-main',
         data: {
+            is_vip: false
         },
         methods: {
             join: function() {
                 route({
                     url: '/api/pay/payInfo/joinClub',
                     type: 'POST',
-                    params: {clubId: app._id}
+                    params: {}
                 }, function(response) {
                     if (!response) {
                         return;
                     }
 
-                    util.wxPay({success: function() {
-                        window.location.href = 'user-join.html'; // 入群页面
+                    util.wxPay({success: function() { // 支付成功
+                        window.location.href = 'user-plan-detail.html';
                     }}, response);
                 });
             }
         },
         watch: {},
-        updated: function() {
-        }
+        updated: function() {}
     });
 
     var app = {
-        _id: comm.getUrlParam('id'),
+        getUserInfo: function(callback) {
+            route({ url: '/api/me/userInfo' }, function(response) {
+
+                vm.is_vip = response.vipTag || false;
+
+                if (callback) {
+                    callback();
+                }
+            });
+        },
         initSDK: function() {
             var _this = this;
 
@@ -72,6 +81,12 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx'],
             });
         },
         init: function() {
+            var _this = this;
+
+            this.getUserInfo(function() {
+                
+            });
+
             this.initSDK();
 
             delete this.init;
