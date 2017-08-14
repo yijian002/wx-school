@@ -82,14 +82,17 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                 }
 
                 var _this = this;
-                $.ajax({
+                route({
                     url: '/api/course/comment',
                     type: 'POST',
-                    data: JSON.stringify({courseId: app._id, comment: _this.add_comments}),
-                    contentType: 'application/json',
-                    success:  function() {
-                        app.getComments();
+                    params: JSON.stringify({courseId: app._id, comment: _this.add_comments}),
+                    isJson: true
+                }, function(response) {
+                    if (!response) {
+                        return;
                     }
+
+                    app.getComments();
                 });
             },
             invitationCard: function() { // 邀请卡

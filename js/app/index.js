@@ -167,11 +167,10 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
 
             function _canLoad() {
                 return (document.documentElement.scrollTop || document.body.scrollTop) > 300;
-                // return (document.documentElement.scrollHeight) <= (document.documentElement.scrollTop | document.body.scrollTop) + document.documentElement.clientHeight + 50;
             }
         },
         blurSearch: function() {
-            timer_search = setTimeout(function() { // 3秒自动隐藏
+            timer_search = setTimeout(function() { // 2秒自动隐藏
                 vm.is_search = false;
             }, 2000);
         },

@@ -33,12 +33,15 @@ require(['vue', 'zepto', 'route', 'comm', 'wx'], function(vue, $, route, comm, w
     var app = {
         _courseid: comm.getUrlParam('courseid'),
         _myposter: comm.getUrlParam('myposter'),
-        getInvitation: function() {
+        getInvitation: function(callback) {
             route({
                 url: '/api/course/invitation?courseId=' + this._courseid,
                 type: 'POST',
-                // params: {courseId: this._courseid}
             }, function(response) {
+                if(callback) {
+                    callback();
+                }
+                
                 if (!response) {
                     return;
                 }
@@ -46,8 +49,12 @@ require(['vue', 'zepto', 'route', 'comm', 'wx'], function(vue, $, route, comm, w
                 vm.img = response.imageUrl;
             });
         },
-        getPoster: function() {
+        getPoster: function(callback) {
             route({url: '/api/me/poster'}, function(response) {
+                if(callback) {
+                    callback();
+                }
+
                 if (!response) {
                     return;
                 }
@@ -119,6 +126,9 @@ require(['vue', 'zepto', 'route', 'comm', 'wx'], function(vue, $, route, comm, w
         init: function() {
             if(this._courseid) {
                 this.getInvitation();    
+            }
+            else {
+                this.getPoster();
             }
             
             this.initSDK();

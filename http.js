@@ -25,7 +25,7 @@ var mine = {
     "mp3": "audio/mpeg"
 };
 
-var PORT = 8000;
+var PORT = 8002;
 
 var server = http.createServer(function(request, response) {
     var pathname = url.parse(request.url).pathname;

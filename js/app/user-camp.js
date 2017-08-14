@@ -40,8 +40,8 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx'],
                     util.wxPay({
                         wx: wx,
                         success: function() {
-                        window.location.href = 'user-join.html'; // 入群页面
-                    }}, response);
+                            window.location.href = 'user-join.html'; // 入群页面
+                        }}, response);
                 });
             }
         },
