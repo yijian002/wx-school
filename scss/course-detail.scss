@@ -24,13 +24,7 @@ video::-webkit-media-controls {
 	width: 100%;
 	height: 180px;
 	background: #D8D8D8;
-	// margin-bottom: 10px;
 	overflow: hidden;
-	// >img, video {
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	display: block;
-	// }
 	.swiper-slide {
 		background-size: 100% auto;
 		background-position: center center;
@@ -60,6 +54,10 @@ video::-webkit-media-controls {
 			-webkit-box-shadow: none;
 		}
 	}
+}
+
+.player {
+	width: 300px;
 }
 
 .press {
@@ -201,6 +199,7 @@ video::-webkit-media-controls {
 	line-height: 30px;
 	font-size: 14px;
 	padding: 10px 0;
+	background: #fff;
 	border-top: 1px solid #ccc;
 	position: fixed;
 	bottom: 0;
@@ -259,7 +258,7 @@ video::-webkit-media-controls {
 }
 
 footer {
-	&.member {
+	&.member { // 会员
 		>div {
 			&:first-child {
 				font-size: 18px;
@@ -274,7 +273,7 @@ footer {
 			}
 		}
 	}
-	&.guest {
+	&.guest { // 游客
 		>div {
 			&:first-child {
 				border-right: 1px solid #fff;

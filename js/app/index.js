@@ -114,7 +114,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
 
                 response = response.result;
                 if(! response || !response.length) {
-                    _this.page = -1;
+                    _this._page = -1;
                     return;
                 }
 
@@ -179,7 +179,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
 
             util.loadMore({
                 loading: function() {
-                    _this.page++;
+                    _this._page++;
                     _this.getBestClass();
                 }
             });

@@ -24,6 +24,7 @@ require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c,
     var vm = new vue({
         el: '#user-main',
         data: {
+            show: false,
             user: {
 
             }
@@ -34,17 +35,25 @@ require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c,
     });
 
     var app = {
-        get: function() {
+        get: function(callback) {
             route({url: '/api/me/userInfo'}, function(response) {
                 response.levelPoints = 500;
                 response.leveling = (response.pointsTotal / response.levelPoints * 100) + '%';
 
                 vm.user = response;
                 comm.setCache(_c.CACHE_USER_INFO, response);
+
+                if(callback) {
+                    callback();
+                }
             });
         },
+        loaded: function() {
+            util.loading('hide');
+            vm.show = true;
+        },
         init: function() {
-            this.get();
+            this.get(this.loaded);
             delete this.init;
         }
     };

@@ -23,7 +23,9 @@
 </head>
 
 <body class="user-buyed-class">
-    <div class="list" id="user-class">
+    <div id="loading"><div id="loading-center"><div id="loading-center-absolute"><div id="object"></div></div></div></div>
+
+    <div id="user-class" class="list hide" v-bind:class="{show: show}">
         <ul>
             <li v-for="item in list">
                 <img class="pic" v-bind:src="item.course.coverUrl" />
@@ -40,6 +42,7 @@
                 </div>
             </li>
         </ul>
+        <div class="nothing" v-if="show && !list.length">您还没有购买课程</div>
     </div>
 </body>
 

@@ -40,6 +40,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
     var vm = new vue({
         el: '#course-detail-main',
         data: {
+            show: false,
             detail: {},
             comments: [],
             add_comments: '',
@@ -110,7 +111,6 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                 loop: false,
                 onSlideChangeEnd: function(swiper) {
                     $.each($audio_box.find('.playing'), function(idx) {
-                        // this.pause();
                         $(this).find('.pause').click();
                     });
 
@@ -126,16 +126,26 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
     var app = {
         _id: comm.getUrlParam('id'),
         _comment_page: 1,
-        getInfo: function() {
+        getInfo: function(callback) {
             route({ url: '/api/course/info', params: { id: this._id } }, function(response) {
                 if (!response) {
                     return;
                 }
 
                 vm.detail = response;
+
+                if(callback) {
+                    callback();
+                }
             });
         },
         getComments: function() {
+            var _this = this;
+            if(this._comment_page < 1) {
+                this._comment_page = -1;
+                return;
+            }
+
             route({ url: '/api/course/comments', params: { 
                 courseId: this._id,
                 pageNum: this._comment_page,
@@ -145,13 +155,18 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                     return;
                 }
 
-                vm.comments = response.result;
+                if(!response.result.length) {
+                    _this._comment_page = -1;
+                    return;
+                }
+
+                vm.comments = vm.comments.concat(response.result);
             });
         },
         getUserInfo: function(callback) {
             route({ url: '/api/me/userInfo' }, function(response) {
 
-                vm.is_vip = response.vipTag || false;
+                vm.is_vip = response.clubTag || false;
 
                 if (callback) {
                     callback();
@@ -179,15 +194,30 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
             wx.ready(function(){
             });
         },
+        bind: function() {
+            var _this = this;
+
+            util.loadMore({
+                loading: function() {
+                    _this._comment_page++;
+                    _this.getComments();
+                }
+            });
+        },
+        loaded: function() {
+            util.loading('hide');
+            vm.show = true;
+        },
         init: function() {
             var _this = this;
 
             this.getUserInfo(function() {
-                _this.getInfo();
+                _this.getInfo(_this.loaded);
                 _this.getComments();
             });
 
             this.initSDK();
+            this.bind();
 
             delete this.init;
         }

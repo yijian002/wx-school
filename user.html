@@ -23,7 +23,9 @@
 </head>
 
 <body class="user-index">
-    <div id="user-main">
+    <div id="loading"><div id="loading-center"><div id="loading-center-absolute"><div id="object"></div></div></div></div>
+    
+    <div id="user-main" class="hide" v-bind:class="{show: show}">
         <div class="user-info">
         	<div class="head"><img v-bind:src="user.headimgurl" /></div>
             <div class="name">{{ user.nickname }}</div>

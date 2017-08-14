@@ -22,7 +22,9 @@
 </head>
 
 <body>
-    <div id="course-detail-main">
+    <div id="loading"><div id="loading-center"><div id="loading-center-absolute"><div id="object"></div></div></div></div>
+    
+    <div id="course-detail-main" class="hide" v-bind:class="{show: show}">
         <div class="top-banner swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" v-for="item in detail.banners" v-bind:style="{ backgroundImage: 'url('+ item.imageUrl +')' }"></div>

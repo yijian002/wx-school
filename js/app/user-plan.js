@@ -54,7 +54,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx'],
         getUserInfo: function(callback) {
             route({ url: '/api/me/userInfo' }, function(response) {
 
-                vm.is_vip = response.vipTag || false;
+                vm.is_vip = response.clubTag || false;
 
                 if (callback) {
                     callback();

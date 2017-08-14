@@ -23,6 +23,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm'], function(vue, $, route, util,
     var vm = new vue({
         el: '#user-class',
         data: {
+            show: false,
             list: []
         },
         methods: {}
@@ -30,7 +31,13 @@ require(['vue', 'zepto', 'route', 'util', 'comm'], function(vue, $, route, util,
 
     var app = {
         _page: 1,
-        getList: function() {
+        getList: function(callback) {
+            var _this = this;
+            if(this._page < 1) {
+                this._page = -1;
+                return;
+            }
+
             route({url: '/api/me/courses', params: {
                 pageNum: this._page,
                 pageSize: 10
@@ -39,18 +46,35 @@ require(['vue', 'zepto', 'route', 'util', 'comm'], function(vue, $, route, util,
                     return;
                 }
 
-                response.result = response.result || [];
-
                 if(!response.result.length) {
-                    alert('您还没购买过课程');
+                    _this._page = -1;
                     return;
                 }
 
-                vm.list = response.result;
+                vm.list = vm.list.concat(response.result);
+
+                if(callback) {
+                    callback();
+                }
             });
         },
+        bind: function() {
+            var _this = this;
+
+            util.loadMore({
+                loading: function() {
+                    _this._page++;
+                    _this.getList();
+                }
+            });
+        },
+        loaded: function() {
+            util.loading('hide');
+            vm.show = true;
+        },
         init: function() {
-            this.getList()
+            this.getList(this.loaded)
+            this.bind();
 
             delete this.init;
         }
