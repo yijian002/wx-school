@@ -2,6 +2,7 @@ require.config({
     baseUrl: './',
     paths: {
         vue: 'lib/vue.min',
+        wx: 'http://res.wx.qq.com/open/js/jweixin-1.2.0',
         zepto: 'lib/zepto.min',
         route: 'js/helper/route',
         comm: 'js/helper/comm'
@@ -17,7 +18,7 @@ require.config({
     }
 });
 
-require(['vue', 'zepto', 'route', 'comm'], function(vue, $, route, comm) {
+require(['vue', 'zepto', 'route', 'comm', 'wx'], function(vue, $, route, comm, wx) {
 
     var vm = new vue({
         el: '#share-main',
@@ -31,12 +32,22 @@ require(['vue', 'zepto', 'route', 'comm'], function(vue, $, route, comm) {
 
     var app = {
         _courseid: comm.getUrlParam('courseid'),
+        _myposter: comm.getUrlParam('myposter'),
         getInvitation: function() {
             route({
                 url: '/api/course/invitation?courseId=' + this._courseid,
                 type: 'POST',
                 // params: {courseId: this._courseid}
             }, function(response) {
+                if (!response) {
+                    return;
+                }
+
+                vm.img = response.imageUrl;
+            });
+        },
+        getPoster: function() {
+            route({url: '/api/me/poster'}, function(response) {
                 if (!response) {
                     return;
                 }
@@ -81,7 +92,7 @@ require(['vue', 'zepto', 'route', 'comm'], function(vue, $, route, comm) {
                     ]
                 });
 
-                var SHARE_TITLE = '课程邀请卡';
+                var SHARE_TITLE = _this._courseid ? '课程邀请卡' : '我的海报';
 
                 // 分享到朋友圈
                 wx.onMenuShareTimeline({
@@ -96,7 +107,7 @@ require(['vue', 'zepto', 'route', 'comm'], function(vue, $, route, comm) {
                 // 分享给朋友
                 wx.onMenuShareAppMessage({
                     title: SHARE_TITLE,
-                    desc: '非常棒的课程，邀请你也来试试吧！',
+                    desc: _this._courseid ? '非常棒的课程，邀请你也来试试吧！' : '快来看我的海报吧，棒棒哒~',
                     link: window.location.href,
                     // imgUrl: IMG_TT,
                     success: function() {
@@ -106,7 +117,10 @@ require(['vue', 'zepto', 'route', 'comm'], function(vue, $, route, comm) {
             });
         },
         init: function() {
-            this.getInvitation();
+            if(this._courseid) {
+                this.getInvitation();    
+            }
+            
             this.initSDK();
 
             delete this.init;
