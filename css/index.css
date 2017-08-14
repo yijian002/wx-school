@@ -525,6 +525,8 @@ button.swiper-pagination-bullet {
 .column {
   margin-top: 20px;
   padding: 0 20px; }
+  .column.search-list {
+    margin-top: 60px; }
   .column .tt {
     font-size: 18px;
     color: #4a4a4a;

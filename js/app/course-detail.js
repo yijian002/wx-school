@@ -109,6 +109,8 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                 paginationClickable: false,
                 spaceBetween: 30,
                 loop: false,
+                nextButton: '.ico-next',
+                prevButton: '.ico-prev',
                 onSlideChangeEnd: function(swiper) {
                     $.each($audio_box.find('.playing'), function(idx) {
                         $(this).find('.pause').click();
@@ -118,8 +120,11 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                 }
             });
 
-            $audio_box.hide().eq(0).show();
-            audiojs.createAll();
+            try {
+                $audio_box.hide().eq(0).show();
+                audiojs.createAll();
+            }
+            catch(e) {}
         }
     });
 
@@ -210,11 +215,12 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
         },
         init: function() {
             var _this = this;
-
-            this.getUserInfo(function() {
-                _this.getInfo(_this.loaded);
+_this.getInfo(_this.loaded);
                 _this.getComments();
-            });
+            // this.getUserInfo(function() {
+            //     _this.getInfo(_this.loaded);
+            //     _this.getComments();
+            // });
 
             this.initSDK();
             this.bind();

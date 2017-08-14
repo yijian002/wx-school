@@ -26,11 +26,12 @@
 	<div id="loading"><div id="loading-center"><div id="loading-center-absolute"><div id="object"></div></div></div></div>
 
 	<div id="index-main" class="hide" v-bind:class="{show: show}">
+
 		<div class="top-search" v-bind:class="{show: is_search}">
-			<input type="text" name="key" placeholder="Search through your post" @focus="inputSearch" @blur="blurSearch" />
+			<input type="text" name="key" placeholder="Search through your post" v-model="search_key" @focus="inputSearch" @blur="blurSearch" @input="search" />
 		</div>
 
-		<div class="slider swiper-container">
+		<div class="slider swiper-container" v-bind:class="{hide: is_search && search_key!==''}">
 			<div class="swiper-wrapper">
 	            <div class="swiper-slide"
 	            	v-for="item in slider"
@@ -40,7 +41,7 @@
 	        <div class="swiper-pagination"></div>
 		</div>
 
-		<div class="column">
+		<div class="column" v-bind:class="{hide: is_search && search_key!==''}">
 			<div class="tt">免费微课</div>
 	        <ul class="free-class">
 	            <li v-for="item in free_class" v-bind:id="'free_class_'+ item.id">
@@ -49,8 +50,9 @@
 	            </li>
 	        </ul>
 		</div>
-	    <div class="line h20"></div>
-	    <div class="column">
+	    <div class="line h20" v-bind:class="{hide: is_search && search_key!==''}"></div>
+
+	    <div class="column" v-bind:class="{hide: is_search && search_key!==''}">
 	        <div class="tt">精品微课</div>
 	        <ul class="best-class">
 	            <li v-for="item in best_class">
@@ -64,13 +66,36 @@
 	                    <div class="teacher" v-html="item.teacherName"></div>
 	                    <div>
 	                        <div class="longtime" v-html="item.lessonTotal +'课时'"></div>
-	                        <div class="study" v-html="item.durationTotal + '人学过'"></div>
+	                        <div class="study" v-html="item.studentTotal + '人学过'"></div>
 	                    </div>
 	                </div>
 	                </a>
 	            </li>
 	        </ul>
 	    </div>
+
+	    <!-- 搜索结果 -->
+	    <div class="column search-list" v-if="is_search && search_key !== ''">
+	        <ul class="best-class">
+	            <li v-for="item in search_class">
+	                <a v-bind:href="'course-detail.html?id='+item.id"><img class="pic" v-bind:src="item.coverUrl" /></a>
+	                <a v-bind:href="'course-detail.html?id='+item.id">
+	                <div class="info">
+	                    <div>
+	                        <div class="tt" v-html="item.name"></div>
+	                        <div class="price" v-html="'￥'+ item.price"></div>
+	                    </div>
+	                    <div class="teacher" v-html="item.teacherName"></div>
+	                    <div>
+	                        <div class="longtime" v-html="item.lessonTotal +'课时'"></div>
+	                        <div class="study" v-html="item.studentTotal + '人学过'"></div>
+	                    </div>
+	                </div>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+
 	 </div>
 
 	 <div class="dialog dialog-first hide">

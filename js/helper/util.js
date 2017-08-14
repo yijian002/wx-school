@@ -35,7 +35,7 @@ define('util', ['zepto', 'comm'], function($, comm) {
 				else if(type === 'hide') {
 					setTimeout(function() {
 						$loading.hide();
-					}, 100);
+					}, 150);
 				}
 			},
 			wxPay: function(opts, data) {

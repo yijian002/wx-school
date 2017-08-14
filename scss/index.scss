@@ -48,6 +48,9 @@
 .column {
 	margin-top: px(20);
 	padding: 0 px(20);
+	&.search-list {
+		margin-top: 60px;
+	}
 	.tt {
 		font-size: px(18);
 		color: #4a4a4a;

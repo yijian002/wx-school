@@ -21,17 +21,19 @@ require.config({
 
 require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, route, util, comm) {
 
-    var timer_search = null;
+    var timer_search = null,
+        timer_srcoll = null;
 
     var vm = new vue({
         el: '#index-main',
         data: {
             show: false,
-            // loaded: true,
             is_search: false,
+            search_key: '',
             slider: [],
             free_class: [],
-            best_class: []
+            best_class: [],
+            search_class: []
         },
         methods: {
             showPoster: function(type, url) {
@@ -51,7 +53,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                 }});
             },
             inputSearch: function() {
-                clearTimeout(timer_search);
+                clearTimeout(timer_srcoll);
                 $(window).off('scroll');
 
                 this.is_search = true;
@@ -59,6 +61,14 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
             blurSearch: function() {
                 app.blurSearch();
                 app.initSearch();
+            },
+            search: function() {
+                clearTimeout(timer_search);
+
+                timer_search = setTimeout(function() {
+                    app._spage = 1;
+                    app.getSearchClass();
+                }, 100);
             }
         },
         watch: {
@@ -75,6 +85,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
 
     var app = {
         _page: 1,
+        _spage: 1,
         getBanners: function() {
             route({url: '/api/parentsHall/banners'}, function(response) {
                 if(! response) {
@@ -84,11 +95,15 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                 vm.slider = response;
             });
         },
-        getFreeClass: function() {
+        getFreeClass: function(callback) {
             route({url: '/api/parentsHall/freeCourses', params: {
                 pageNum: 1,
                 pageSize: 2,
             }}, function(response) {
+                if(callback) {
+                    callback();
+                }
+
                 if(! response) {
                     return;
                 }
@@ -125,6 +140,34 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                 vm.best_class = vm.best_class.concat(response);
             });
         },
+        getSearchClass: function() {
+            if(vm.search_key === '') {
+                // this.initSearch();
+                // this.blurSearch();
+                return;
+            }
+
+            var _this = this;
+
+            if(this._spage < 1) {
+                this._spage = -1;
+                return;
+            }
+
+            route({url: '/api/parentsHall/courses', type: 'POST', params: JSON.stringify( {'pageNum':this._spage,'pageSize':10,'keywords':vm.search_key} ), isJson: true}, function(response) {
+
+                if(_this._spage === 1) {
+                    vm.search_class = [];
+                }
+
+                if(! response.result || !response.result.length) {
+                    _this._spage = -1;
+                    return;
+                }
+
+                vm.search_class = vm.search_class.concat(response.result);
+            });
+        },
         initFirst: function() {
             var _this = this;
             var cache_name = 'welcome_first';
@@ -155,22 +198,28 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
         },
         initSearch: function() {
             var _this = this;
-            $(window).on('scroll.search', function() {
-                clearTimeout(timer_search);
+            $(window).off('scroll.search').on('scroll.search', function() {
+                clearTimeout(timer_srcoll);
 
-                timer_search = setTimeout(function() {
-                    vm.is_search = _canLoad() ? true : false;
+                timer_srcoll = setTimeout(function() {
+                    vm.is_search = _canLoad() || vm.search_key !== '' ? true : false;
 
                     _this.blurSearch();
                 }, 0);
             });
 
             function _canLoad() {
-                return (document.documentElement.scrollTop || document.body.scrollTop) > 300;
+                return (document.documentElement.scrollTop || document.body.scrollTop) > 260;
             }
         },
         blurSearch: function() {
-            timer_search = setTimeout(function() { // 2秒自动隐藏
+            if(vm.search_key !== '') {
+                // this._spage = 1;
+                // this.getSearchClass();
+                return;
+            }
+
+            timer_srcoll = setTimeout(function() { // 2秒自动隐藏
                 vm.is_search = false;
             }, 2000);
         },
@@ -179,20 +228,30 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
 
             util.loadMore({
                 loading: function() {
-                    _this._page++;
-                    _this.getBestClass();
+                    if(vm.search_key !== '') {
+                        _this._spage++;
+                        _this.getSearchClass();
+                    }
+                    else {
+                        _this._page++;
+                        _this.getBestClass();
+                    }
                 }
             });
         },
+        loaded: function() {
+            util.loading('hide');
+            vm.show = true;
+        },
         init: function() {
+            var _this = this;
+
             this.initFirst();
             this.initSearch();
 
             this.getBanners();
-            this.getFreeClass();
-            this.getBestClass(function() {
-                util.loading('hide');
-                vm.show = true;
+            this.getFreeClass(function() {
+                _this.getBestClass(_this.loaded);
             });
 
             this.bind();

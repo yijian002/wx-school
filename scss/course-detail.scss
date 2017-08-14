@@ -12,13 +12,6 @@ body {
 video::-webkit-media-controls {  
     display:none !important;
 }
-.video-js {
-	width: 100%;
-	height: 180px;
-}
-.vjs-poster {
-	background-size: 100% 100%;
-}
 
 .top-banner {
 	width: 100%;
@@ -40,14 +33,14 @@ video::-webkit-media-controls {
 	height: px(36);
 	margin-bottom: 15px;
 	
-	background: #404040;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #444), color-stop(0.5, #555), color-stop(0.51, #444), color-stop(1, #444));
-    background-image: -moz-linear-gradient(center top, #444 0%, #555 50%, #444 51%, #444 100%);
-    -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
-    -o-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+	// background: #404040;
+ //    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #444), color-stop(0.5, #555), color-stop(0.51, #444), color-stop(1, #444));
+ //    background-image: -moz-linear-gradient(center top, #444 0%, #555 50%, #444 51%, #444 100%);
+    // -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    // -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    // -o-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
 	>div {
-		width: 350px;
+		width: 320px;
 		margin: 0 auto;
 		.audiojs {
 			box-shadow: none;
@@ -57,7 +50,120 @@ video::-webkit-media-controls {
 }
 
 .player {
-	width: 300px;
+	width: 320px;
+	height: 90px;
+	margin: 0 auto;
+	position: relative;
+	.ico-prev {
+		width: 30px;
+		height: 22px;
+		background: url(../images/ico-prev.png) no-repeat;
+		position: absolute;
+		top: 50px;
+		left: 30px;
+		z-index: 15;
+	}
+	.ico-next {
+		width: 30px;
+		height: 22px;
+		background: url(../images/ico-next.png) no-repeat;
+		position: absolute;
+		top: 50px;
+		right: 30px;
+		z-index: 15;
+	}
+	.audio-js-box {
+		width: 100%;
+		height: 100%;
+	}
+	.audiojs {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		text-align: center;
+		background: none;
+		.scrubber {
+			height: 3px;
+			// background-image: linear-gradient(-90deg, #E7E7E7 1%, #E7E7E7 39%, #000000 40%, rgba(0,0,0,0.70) 40%, rgba(0,0,0,0.70) 100%);
+			background: #333;
+			border-radius: 2px;
+			position: relative;
+			overflow: initial;
+		}
+		.progress {
+			height: 3px;
+			&:after {
+				content: '';
+				width: 15px;
+				height: 15px;
+				border-radius: 50%;
+				background: #fff;
+				border: 0 solid rgba(0,0,0,0.10);
+				box-shadow: 0 2px 1px 0 rgba(0,0,0,0.05), 0 1px 1px 0 rgba(0,0,0,0.10), 0 2px 2px 0 rgba(0,0,0,0.05);
+				position: absolute;
+				right: -7px;
+				top: -7px;
+				z-index: 10;
+			}
+		}
+		.loaded {
+			height: 3px;
+			background: none;
+			// background-image: linear-gradient(-90deg, #E7E7E7 1%, #E7E7E7 39%, #000000 40%, rgba(0,0,0,0.70) 40%, rgba(0,0,0,0.70) 100%);
+			border-radius: 2px;
+		}
+		.play-pause {
+			position: absolute;
+		    top: 46px;
+		    left: 50%;
+		    margin-left: -15px;
+		    z-index: 10;
+		    border: 0;
+		    >p {
+		    	width: 30px;
+		    	height: 22px;
+		    	background-repeat: no-repeat;
+		    	background-position: 0 0;
+		    	background-size: 100% 100%;
+		    }
+		    .play {
+		    	background-image: url(../images/ico-play.png);
+		    }
+		    .pause {
+		    	background-image: url(../images/ico-halt.png);
+		    }
+		}
+		.scrubber {
+			width: 300px;
+			display: inline-block;
+			margin-top: 15px;
+		}
+		.time {
+			font-size: 0;
+			border: 0;
+			width: 100%;
+			margin: -11px 0 0 0;
+			padding: 0;
+			text-shadow: none;
+			font-family: '.AppleSystemUIFont';
+			.played {
+				color: #000;
+				font-size: 13px;
+				letter-spacing: -0.08px;
+				float: left;
+			}
+			.duration {
+				color: #000;
+				font-size: 13px;
+				letter-spacing: -0.08px;
+				float: right;
+			}
+		}
+	}
+}
+
+.vjs-poster {
+	background-size: 100% 100%;
 }
 
 .press {
