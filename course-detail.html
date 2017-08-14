@@ -35,15 +35,15 @@
             </div>
         </div>
         <div class="press">
-            <span class="lf">{{detail.lessonTotal}}人学过</span>
-            <!-- <span class="rg">学习进度50%</span> -->
+            <span class="lf">{{detail.studentTotal}}人学过</span>
+            <span class="rg">{{detail.lessonTotal}}学时</span>
         </div>
         <div class="line"></div>
         <div class="contents">
             <h4>{{detail.name}}</h4>
-            <div class="desc">本课程由名师团队打造</div>
+            <div class="desc">{{detail.introduction}}</div>
             <div class="btns">
-                <div class="sed">生成邀请卡</div>
+                <div class="sed" @click="invitationCard()">生成邀请卡</div>
                 <div @click="is_comments=true;add_comments='';">评论</div>
             </div>
         </div>
@@ -51,9 +51,9 @@
         <div class="comments">
             <ul>
                 <li v-for="item in comments">
-                    <div class="pic"><img /></div>
+                    <div class="pic"><img v-bind:src="item.userHeadimgurl" /></div>
                     <div class="info">
-                        <div class="name">-</div>
+                        <div class="name" v-html="item.userNickname"></div>
                         <div class="con" v-html="item.comment"></div>
                         <div class="time" v-html="item.createTime"></div>
                         <!-- <div class="star"></div> -->
@@ -69,8 +69,8 @@
         <!-- 会员 -->
         <footer class="member" v-if="is_vip" v-bind:class="{hide:is_comments}">
             <div class="selected" @click="buy()">营员购买</div>
-            <div class="selected">营员价 ¥500
-                <br />原 价 ¥1000</div>
+            <div class="selected">营员价 ¥{{detail.vipPrice}}
+                <br />原 价 ¥{{detail.price}}</div>
         </footer>
         <!-- 访客 -->
         <div class="dialog dialog-playend hide" v-if="!is_vip">
@@ -84,8 +84,8 @@
         </div>
         <!-- 访客 -->
         <footer class="guest" v-if="!is_vip" v-bind:class="{hide:is_comments}">
-            <div class="selected" @click="join()"><span>加入成长营<br />免费畅听</span>¥480/年</div>
-            <div class="selected" @click="buy()">单次购买 ¥1000</div>
+            <div class="selected" @click="join()"><span>加入成长营<br />免费畅听</span>¥{{detail.vipPrice}}/年</div>
+            <div class="selected" @click="buy()">单次购买 ¥{{detail.price}}</div>
         </footer>
     </div>
 </body>

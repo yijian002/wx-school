@@ -30,11 +30,11 @@
         </div>
         <div class="item">
             <div class="tt">手机号</div>
-            <div class="con"><input type="tel" placeholder="点击填写" maxlength="11" v-model="user.mobile" @input="change" /></div>
+            <div class="con" v-html="user.mobile" @click="bindPhone()"></div>
         </div>
         <div class="item">
             <div class="tt">生日</div>
-            <div class="con"><input type="text" placeholder="点击填写" v-model="user.birthday" @input="change" /></div>
+            <div class="con"><input type="text" placeholder="点击填写" v-model="user.birthday" @input="change()" /></div>
         </div>
         <div class="item">
             <div class="tt">性别</div>

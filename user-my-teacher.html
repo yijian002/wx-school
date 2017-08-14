@@ -23,10 +23,13 @@
 </head>
 
 <body class="user-my-teacher">
-    <div class="head"><img /></div>
-    <div class="name">老师名字</div>
-    <div class="qrcode"></div>
-    <div class="code-desc">老师微信二维码</div>
+    <div id="user-my-teacher-main">
+        <div class="head"><img v-bind:src="teacherHead" /></div>
+        <div class="name">{{teacherName}}</div>
+        <div class="qrcode" id="qrcode"><img v-bind:src="imageUrl" /></div>
+        <div class="code-desc">老师微信二维码</div>
+    </div>
 </body>
 
 </html>
+<script data-main="js/app/user-my-teacher.js" src="lib/require.js"></script>

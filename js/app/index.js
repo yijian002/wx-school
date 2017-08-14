@@ -26,6 +26,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
     var vm = new vue({
         el: '#index-main',
         data: {
+            show: false,
             // loaded: true,
             is_search: false,
             slider: [],
@@ -36,6 +37,9 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
             showPoster: function(type, url) {
                 if(type === 'poster') {
                     util.dialog('.dialog-posters').find('.contents').css({backgroundImage: 'url('+ url +')'});
+                }
+                else if(type === 'link') {
+                    window.location.href = url;
                 }
             },
             playSound: function(url, id) {
@@ -81,7 +85,10 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
             });
         },
         getFreeClass: function() {
-            route({url: '/api/parentsHall/freeCourses'}, function(response) {
+            route({url: '/api/parentsHall/freeCourses', params: {
+                pageNum: 1,
+                pageSize: 2,
+            }}, function(response) {
                 if(! response) {
                     return;
                 }
@@ -89,7 +96,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                 vm.free_class = response;
             });
         },
-        getBestClass: function() {
+        getBestClass: function(callback) {
             var _this = this,
                 page = this._page;
             if(page < 1) {
@@ -99,8 +106,12 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
 
             route({url: '/api/parentsHall/courses', params: {
                 pageNum: page,
-                pageSize: 10,
+                pageSize: 5,
             }}, function(response) {
+                if(callback) {
+                    callback();
+                }
+
                 if(! response || !response.length) {
                     _this.page = -1;
                     return;
@@ -179,7 +190,10 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
 
             this.getBanners();
             this.getFreeClass();
-            this.getBestClass();
+            this.getBestClass(function() {
+                util.loading('hide');
+                vm.show = true;
+            });
 
             this.bind();
             delete this.init;

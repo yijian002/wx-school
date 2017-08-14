@@ -79,14 +79,12 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                     return;
                 }
 
-                var _this = this;
+                var _this = this,
+                    params = JSON.stringify({courseId: app._id, comment: _this.add_comments});
                 route({
                     url: '/api/course/comment',
                     type: 'POST',
-                    params: {
-                        courseId: app._id,
-                        comment: _this.add_comments
-                    }
+                    params: params
                 }, function(response) {
                     if (!response) {
                         return;
@@ -94,6 +92,9 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
 
                     app.getComments();
                 });
+            },
+            invitationCard: function() { // 邀请卡
+                window.location.href = 'share.html?courseid=' + app._id;
             }
         },
         watch: {},
@@ -122,6 +123,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
 
     var app = {
         _id: comm.getUrlParam('id'),
+        _comment_page: 1,
         getInfo: function() {
             route({ url: '/api/course/info', params: { id: this._id } }, function(response) {
                 if (!response) {
@@ -132,12 +134,16 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
             });
         },
         getComments: function() {
-            route({ url: '/api/course/comments', params: { courseId: this._id } }, function(response) {
+            route({ url: '/api/course/comments', params: { 
+                courseId: this._id,
+                pageNum: this._comment_page,
+                pageSize: 10
+            }}, function(response) {
                 if (!response) {
                     return;
                 }
 
-                vm.comments = response;
+                vm.comments = response.result;
             });
         },
         getUserInfo: function(callback) {

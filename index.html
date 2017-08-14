@@ -23,7 +23,9 @@
 </head>
 
 <body>
-	<div id="index-main">
+	<div id="loading"><div id="loading-center"><div id="loading-center-absolute"><div id="object"></div></div></div></div>
+
+	<div id="index-main" class="hide" v-bind:class="{show: show}">
 		<div class="top-search" v-bind:class="{show: is_search}">
 			<input type="text" name="key" placeholder="Search through your post" @focus="inputSearch" @blur="blurSearch" />
 		</div>
@@ -33,7 +35,7 @@
 	            <div class="swiper-slide"
 	            	v-for="item in slider"
 	             	v-bind:style="{ backgroundImage: 'url('+ item.coverUrl +')' }"
-	             	v-on:click="showPoster(item.type, item.coverUrl)"></div>
+	             	v-on:click="showPoster(item.type, item.detailUrl)"></div>
 	        </div>
 	        <div class="swiper-pagination"></div>
 		</div>

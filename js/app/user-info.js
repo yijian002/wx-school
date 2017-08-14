@@ -24,11 +24,17 @@ require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c,
     var vm = new vue({
         el: '#user-infomation',
         data: {
-            user: {}
+            user: {
+                birthday: '',
+                mobile: ''
+            }
         },
         methods: {
             change: function(e) {
                 app.save();
+            },
+            bindPhone: function() {
+                window.location.href = 'user-bind-phone.html';
             }
         },
         watch: {}
@@ -36,15 +42,13 @@ require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c,
 
     var app = {
         save: function() {
-            var mobile = vm.user.mobile,
-                birthday = vm.user.birthday;
+            var birthday = vm.user.birthday;
 
-            if(String(mobile).length !== 11 || birthday === '') {
+            if(birthday === '') {
                 return;
             }
 
             route({url: '/api/me/userInfo', type: 'POST', params: {
-                mobile: mobile,
                 birthday: birthday
             }}, function() {
 

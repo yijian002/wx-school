@@ -5,6 +5,10 @@ $ns: $nameSpaceComm;
     display: none;
 }
 
+.#{$ns}show {
+    display: block !important;
+}
+
 // align
 .#{$ns}t-center {
     text-align: center;

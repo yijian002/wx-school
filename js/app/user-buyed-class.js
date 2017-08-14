@@ -29,18 +29,24 @@ require(['vue', 'zepto', 'route', 'util', 'comm'], function(vue, $, route, util,
     });
 
     var app = {
+        _page: 1,
         getList: function() {
-            route({url: '/api/me/courses'}, function(response) {
+            route({url: '/api/me/courses', params: {
+                pageNum: this._page,
+                pageSize: 10
+            }}, function(response) {
                 if(! response) {
                     return;
                 }
 
-                if(!response.length) {
-                    alert('暂无购买课程');
+                response.result = response.result || [];
+
+                if(!response.result.length) {
+                    alert('您还没购买过课程');
                     return;
                 }
 
-                vm.list = response;
+                vm.list = response.result;
             });
         },
         init: function() {

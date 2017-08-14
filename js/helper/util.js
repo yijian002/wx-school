@@ -26,6 +26,18 @@ define('util', ['zepto', 'comm'], function($, comm) {
 					}
 				});
 			},
+			loading: function(type) {
+				var $loading = $('#loading');
+
+				if(type === 'show') {
+					$loading.show();
+				}
+				else if(type === 'hide') {
+					setTimeout(function() {
+						$loading.hide();
+					}, 100);
+				}
+			},
 			wxPay: function(opts, data) {
 				wx.chooseWXPay({
 					timestamp: data.timeStamp,
@@ -44,19 +56,6 @@ define('util', ['zepto', 'comm'], function($, comm) {
                     	}
 					}
 				});
-
-				// WeixinJSBridge.invoke('getBrandWCPayRequest', data, function(response) {
-    //                 if(response.err_msg === 'get_brand_wcpay_request:ok') { // 支付成功
-    //                 	if(opts.success) {
-    //                 		opts.success();
-    //                 	}
-    //                 }
-    //                 else {
-    //                 	if(opts.fail) {
-    //                 		opts.fail(response.err_msg);
-    //                 	}
-    //                 }
-    //             });
 			},
 			goTop: function(opts) {
 				var options = {

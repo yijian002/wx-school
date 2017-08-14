@@ -23,13 +23,13 @@
 </head>
 
 <body class="user-bind-phone">
-    <div class="form">
-        <div><input type="tel" name="phone" class="phone" placeholder="请输入手机号码" /></div>
+    <div class="form" id="user-bind-phone-main">
+        <div><input type="tel" name="phone" class="phone" placeholder="请输入手机号码" maxlength="11" v-model="mobile" /></div>
         <div>
-            <input type="text" name="code" class="code" placeholder="请输入验证码" />
-            <span class="send-code">获取验证码</span>
+            <input type="text" name="code" class="code" placeholder="请输入验证码" v-model="code" />
+            <span class="send-code" @click="getCode()">获取验证码<i v-if="sec>0">[{{sec}}]</i></span>
         </div>
-        <div class="btn">绑定</div>
+        <div class="btn" @click="save()">绑定</div>
     </div>
     <div class="bt-tip">
         本页面由铅笔头学堂提供<br />
@@ -39,3 +39,4 @@
 </body>
 
 </html>
+<script data-main="js/app/user-bind-phone.js" src="lib/require.js"></script>
