@@ -31,13 +31,15 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx'],
                 route({
                     url: '/api/pay/payInfo/joinClub',
                     type: 'POST',
-                    params: {clubId: app._id}
+                    params: {clubId: 1}
                 }, function(response) {
                     if (!response) {
                         return;
                     }
 
-                    util.wxPay({success: function() {
+                    util.wxPay({
+                        wx: wx,
+                        success: function() {
                         window.location.href = 'user-join.html'; // 入群页面
                     }}, response);
                 });
@@ -59,7 +61,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx'],
                 }
 
                 wx.config({
-                    debug: true,
+                    //debug: true,
                     appId: response.appId,
                     timestamp: response.timestamp,
                     nonceStr: response.nonceStr,

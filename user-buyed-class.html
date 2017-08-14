@@ -26,16 +26,16 @@
     <div class="list" id="user-class">
         <ul>
             <li v-for="item in list">
-                <img class="pic" v-bind:src="item.coverUrl" />
+                <img class="pic" v-bind:src="item.course.coverUrl" />
                 <div class="info">
                     <div>
                         <div class="tt">{{item.name}}</div>
-                        <div class="time">{{item.startTime}}</div>
+                        <div class="time">{{item.createTime}}</div>
                     </div>
-                    <div class="teacher">{{item.teacherName}}<span class="price">￥{{item.price}}</span></div>
+                    <div class="teacher">{{item.teacherName}}<span class="price">￥{{item.buyPrice}}</span></div>
                     <div>
-                        <div class="longtime">{{item.lessonTotal}}课时</div>
-                        <div class="study">-人学过</div>
+                        <div class="longtime">{{item.course.lessonTotal}}课时</div>
+                        <div class="study">{{item.course.studentTotal}}人学过</div>
                     </div>
                 </div>
             </li>

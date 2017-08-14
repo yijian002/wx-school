@@ -68,9 +68,11 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                         return;
                     }
 
-                    util.wxPay({success: function() {
-                        window.location.reload(true);
-                    }}, response);
+                    util.wxPay({
+                        wx: wx,
+                        success: function() {
+                            window.location.reload(true);
+                        }}, response);
                 });
             },
             addComments: function(event) {
@@ -79,18 +81,15 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                     return;
                 }
 
-                var _this = this,
-                    params = JSON.stringify({courseId: app._id, comment: _this.add_comments});
-                route({
+                var _this = this;
+                $.ajax({
                     url: '/api/course/comment',
                     type: 'POST',
-                    params: params
-                }, function(response) {
-                    if (!response) {
-                        return;
+                    data: JSON.stringify({courseId: app._id, comment: _this.add_comments}),
+                    contentType: 'application/json',
+                    success:  function() {
+                        app.getComments();
                     }
-
-                    app.getComments();
                 });
             },
             invitationCard: function() { // 邀请卡
@@ -165,7 +164,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                 }
 
                 wx.config({
-                    debug: true,
+                    //debug: true,
                     appId: response.appId,
                     timestamp: response.timestamp,
                     nonceStr: response.nonceStr,

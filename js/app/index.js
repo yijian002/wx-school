@@ -93,7 +93,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                     return;
                 }
 
-                vm.free_class = response;
+                vm.free_class = response.result;
             });
         },
         getBestClass: function(callback) {
@@ -112,6 +112,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                     callback();
                 }
 
+                response = response.result;
                 if(! response || !response.length) {
                     _this.page = -1;
                     return;

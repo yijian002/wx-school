@@ -32,19 +32,16 @@ require(['vue', 'zepto', 'route'], function(vue, $, route) {
                     return;
                 }
 
-                var params = JSON.stringify({content: this.content});
 
-                route({
+                $.ajax({
                     url: '/api/me/feedback',
                     type: 'POST',
-                    params: params
-                }, function(response) {
-                    if (!response) {
-                        return;
+                    data: JSON.stringify({content: this.content}),
+                    contentType: 'application/json',
+                    success: function() {
+                        alert('感谢您的反馈');
+                        window.location.href = 'user.html';
                     }
-
-                    alert('感谢您的反馈');
-                    window.location.href = 'user.html';
                 });
             }
         }

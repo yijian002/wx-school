@@ -39,7 +39,7 @@ define('util', ['zepto', 'comm'], function($, comm) {
 				}
 			},
 			wxPay: function(opts, data) {
-				wx.chooseWXPay({
+				opts.wx.chooseWXPay({
 					timestamp: data.timeStamp,
 					nonceStr: data.nonceStr,
 					package: data.package,

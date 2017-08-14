@@ -23,7 +23,7 @@ define('route', ['zepto', 'comm'], function($, comm) {
 
 		$.ajax({
 			// url: 'http://112.74.102.63' + opts.url,
-			url: 'http://39.108.129.226:30000' + opts.url,
+			url: 'http://wxmptest.vrtyg.net' + opts.url,
 			data: data,
 			type: opts.type || 'GET',
 			cache: opts.noParams ? true : false,

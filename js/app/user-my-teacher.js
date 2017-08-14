@@ -35,7 +35,7 @@ require(['vue', 'zepto', 'route', 'qrcode'], function(vue, $, route) {
 
     var app = {
         get: function() {
-            route({url: '/api/me/teacher'}}, function(response) {
+            route({url: '/api/me/teacher'}, function(response) {
                 if (!response) {
                     return;
                 }

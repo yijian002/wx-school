@@ -38,7 +38,9 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx'],
                         return;
                     }
 
-                    util.wxPay({success: function() { // 支付成功
+                    util.wxPay({
+                        wx: wx,
+                        success: function() { // 支付成功
                         window.location.href = 'user-plan-detail.html';
                     }}, response);
                 });
@@ -68,7 +70,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx'],
                 }
 
                 wx.config({
-                    debug: true,
+                    //debug: true,
                     appId: response.appId,
                     timestamp: response.timestamp,
                     nonceStr: response.nonceStr,
