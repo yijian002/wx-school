@@ -12,12 +12,15 @@ define('route', ['zepto', 'comm'], function($, comm) {
 		var data = opts.params || {};
 
 		var setting = {
-				// url: 'http://wxmptest.vrtyg.net' + opts.url,
+				// url: 'http://wechat.qianbitour.com' + opts.url,
 				url: 'http://test.vrtyg.net' + opts.url,
 				data: data,
 				type: opts.type || 'GET',
 				cache: opts.noParams ? true : false,
 				beforeSend: opts.beforeSend || function(){},
+				xhrFields: {
+                    withCredentials: true
+                },
 				success: function(response) {
 					if(response.code !== 200) {
 	                    alert(response.message || '接口返回错误['+ response.code +']');
