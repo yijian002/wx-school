@@ -6,6 +6,10 @@
 @import "_comm";
 @import "_loading";
 
+input{
+    -webkit-appearance: none;
+}
+
 body {
     background: #fff;
 }

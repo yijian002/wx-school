@@ -23,7 +23,9 @@
 </head>
 
 <body class="user-infomation">
-    <div id="user-infomation">
+    <div id="loading"><div id="loading-center"><div id="loading-center-absolute"><div id="object"></div></div></div></div>
+
+    <div id="user-infomation" class="hide" v-bind:class="{show: show}">
         <div class="item">
             <div class="tt">昵称</div>
             <div class="con">{{user.nickname}}</div>
@@ -34,7 +36,7 @@
         </div>
         <div class="item">
             <div class="tt">生日</div>
-            <div class="con"><input type="text" placeholder="点击填写" v-model="user.birthday" @input="change()" /></div>
+            <div class="con"><input type="date" placeholder="点击填写" v-model="user.birthday" @input="change()" /></div>
         </div>
         <div class="item">
             <div class="tt">性别</div>

@@ -28,7 +28,7 @@
 	<div id="index-main" class="hide" v-bind:class="{show: show}">
 
 		<div class="top-search" v-bind:class="{show: is_search}">
-			<input type="text" name="key" placeholder="Search through your post" v-model="search_key" @focus="inputSearch" @blur="blurSearch" @input="search" />
+			<input type="search" name="key" placeholder="Search through your post" v-model="search_key" @focus="inputSearch" @blur="blurSearch" @input="search" />
 		</div>
 
 		<div class="slider swiper-container" v-bind:class="{hide: is_search && search_key!==''}">

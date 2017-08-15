@@ -19,11 +19,12 @@ require.config({
     }
 });
 
-require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c, comm) {
+require(['vue', 'zepto', 'route', 'config', 'comm', 'util'], function(vue, $, route, _c, comm, util) {
 
     var vm = new vue({
         el: '#user-infomation',
         data: {
+            show: false,
             user: {
                 birthday: '',
                 mobile: ''
@@ -43,6 +44,7 @@ require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c,
     var app = {
         save: function() {
             var birthday = vm.user.birthday;
+            // alert(birthday);
 
             if(birthday === '') {
                 return;
@@ -54,9 +56,15 @@ require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c,
 
             });
         },
+        loaded: function() {
+            util.loading('hide');
+            vm.show = true;
+        },
         init: function() {
             var user = comm.getCache(_c.CACHE_USER_INFO);
             vm.user = user ? JSON.parse(user) : {};
+
+            this.loaded();
 
             delete this.init;
         }

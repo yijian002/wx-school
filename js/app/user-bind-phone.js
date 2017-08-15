@@ -19,11 +19,12 @@ require.config({
     }
 });
 
-require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c, comm) {
+require(['vue', 'zepto', 'route', 'config', 'comm', 'util'], function(vue, $, route, _c, comm, util) {
 
     var vm = new vue({
         el: '#user-bind-phone-main',
         data: {
+            show: false,
             mobile: '',
             code: '',
             sec: 0
@@ -58,7 +59,7 @@ require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c,
                     return;
                 }
 
-                route({url: '/api/me/userInfo', type: 'POST', params: JSON.stringify( {code: this.code, mobile: this.mobile} )}, function(response) {
+                route({url: '/api/me/userInfo', type: 'POST', isJson: true, params: JSON.stringify( {code: this.code, mobile: this.mobile} )}, function(response) {
                     if (!response) {
                         return;
                     }
@@ -81,7 +82,12 @@ require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c,
                 }
             }, 1000);
         },
+        loaded: function() {
+            util.loading('hide');
+            vm.show = true;
+        },
         init: function() {
+            this.loaded();
 
             delete this.init;
         }

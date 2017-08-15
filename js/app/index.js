@@ -24,6 +24,8 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
     var timer_search = null,
         timer_srcoll = null;
 
+    var o_swiper = null;
+
     var vm = new vue({
         el: '#index-main',
         data: {
@@ -74,11 +76,15 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
         watch: {
         },
         updated: function() {
-            new Swiper('.swiper-container', {
+            if(o_swiper) {
+                o_swiper.destroy();
+            }
+
+            o_swiper = new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination',
                 paginationClickable: false,
                 spaceBetween: 30,
-                loop: true
+                loop: false
             });
         }
     });

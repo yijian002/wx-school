@@ -23,7 +23,9 @@
 </head>
 
 <body class="user-bind-phone">
-    <div class="form" id="user-bind-phone-main">
+    <div id="loading"><div id="loading-center"><div id="loading-center-absolute"><div id="object"></div></div></div></div>
+
+    <div class="form hide" id="user-bind-phone-main" v-bind:class="{show: show}">
         <div><input type="tel" name="phone" class="phone" placeholder="请输入手机号码" maxlength="11" v-model="mobile" /></div>
         <div>
             <input type="text" name="code" class="code" placeholder="请输入验证码" v-model="code" />
@@ -31,6 +33,7 @@
         </div>
         <div class="btn" @click="save()">绑定</div>
     </div>
+    
     <div class="bt-tip">
         本页面由铅笔头学堂提供<br />
         绑定手机仅用于提升您的学习体验<br />

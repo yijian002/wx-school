@@ -24,6 +24,8 @@ require.config({
 require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'], 
     function(vue, $, route, util, comm, wx) {
 
+    var o_swiper = null;
+
     vue.directive('focus', {
         inserted: function(el) {
             setTimeout(function() {
@@ -100,11 +102,21 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                 window.location.href = 'share.html?courseid=' + app._id;
             }
         },
-        watch: {},
+        // watch: {},
         updated: function() {
             var $audio_box = $('.audio-js-box');
 
-            new Swiper('.swiper-container', {
+            if(o_swiper) {
+                o_swiper.destroy();
+            }
+            
+            if(!$('.play-pause').length && $audio_box.eq(0).find('audio').attr('src') !== '') {
+                $audio_box.hide().eq(0).show();
+                audiojs.createAll();
+                // console.log(2);
+            }
+
+            o_swiper = new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination',
                 paginationClickable: false,
                 spaceBetween: 30,
@@ -119,12 +131,6 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                     $audio_box.hide().eq(swiper.activeIndex).show();
                 }
             });
-
-            try {
-                $audio_box.hide().eq(0).show();
-                audiojs.createAll();
-            }
-            catch(e) {}
         }
     });
 

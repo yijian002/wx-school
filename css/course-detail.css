@@ -676,20 +676,22 @@ video::-webkit-media-controls {
   margin: 0 auto;
   position: relative; }
   .player .ico-prev {
-    width: 30px;
+    width: 22px;
     height: 22px;
     background: url(../images/ico-prev.png) no-repeat;
+    background-size: 100% 100%;
     position: absolute;
     top: 50px;
-    left: 30px;
+    left: 40px;
     z-index: 15; }
   .player .ico-next {
-    width: 30px;
+    width: 22px;
     height: 22px;
     background: url(../images/ico-next.png) no-repeat;
+    background-size: 100% 100%;
     position: absolute;
     top: 50px;
-    right: 30px;
+    right: 50px;
     z-index: 15; }
   .player .audio-js-box {
     width: 100%;
@@ -722,17 +724,17 @@ video::-webkit-media-controls {
         z-index: 10; }
     .player .audiojs .loaded {
       height: 3px;
-      background: none;
+      background: rgba(255, 255, 255, 0.4);
       border-radius: 2px; }
     .player .audiojs .play-pause {
       position: absolute;
       top: 46px;
       left: 50%;
-      margin-left: -12px;
+      margin-left: -15px;
       z-index: 10;
       border: 0; }
       .player .audiojs .play-pause > p {
-        width: 30px;
+        width: 22px;
         height: 22px;
         background-repeat: no-repeat;
         background-position: 0 0;
@@ -741,6 +743,22 @@ video::-webkit-media-controls {
         background-image: url(../images/ico-play.png); }
       .player .audiojs .play-pause .pause {
         background-image: url(../images/ico-halt.png); }
+      .player .audiojs .play-pause .loading {
+        background-image: url(../images/ico-ref.png);
+        -webkit-animation: anim-change 0.5s linear infinite;
+        animation: anim-change 0.5s linear infinite; }
+      .player .audiojs .play-pause .error {
+        background-image: url(../images/ico-stop.png); }
+@keyframes anim-change {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+@-webkit-keyframes anim-change {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
     .player .audiojs .scrubber {
       width: 300px;
       display: inline-block;
