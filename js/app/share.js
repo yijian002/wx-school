@@ -71,7 +71,7 @@ require(['vue', 'zepto', 'route', 'comm', 'wx'], function(vue, $, route, comm, w
                 }
 
                 wx.config({
-                    debug: true,
+                    // debug: true,
                     appId: response.appId,
                     timestamp: response.timestamp,
                     nonceStr: response.nonceStr,

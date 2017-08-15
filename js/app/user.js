@@ -19,7 +19,7 @@ require.config({
     }
 });
 
-require(['vue', 'zepto', 'route', 'config', 'comm'], function(vue, $, route, _c, comm) {
+require(['vue', 'zepto', 'route', 'config', 'comm', 'util'], function(vue, $, route, _c, comm, util) {
 
     var vm = new vue({
         el: '#user-main',

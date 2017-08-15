@@ -216,7 +216,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
         init: function() {
             var _this = this;
 _this.getInfo(_this.loaded);
-                _this.getComments();
+_this.getComments();
             // this.getUserInfo(function() {
             //     _this.getInfo(_this.loaded);
             //     _this.getComments();
