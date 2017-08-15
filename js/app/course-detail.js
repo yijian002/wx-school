@@ -93,7 +93,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                         return;
                     }
 
-                    app.getComments();
+                    app.reloadComments();
                 });
             },
             invitationCard: function() { // 邀请卡
@@ -143,6 +143,12 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                     callback();
                 }
             });
+        },
+        reloadComments: function() {
+            vm.comments = [];
+
+            this._comment_page = 1;
+            this.getComments();
         },
         getComments: function() {
             var _this = this;
@@ -215,6 +221,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
         },
         init: function() {
             var _this = this;
+            
 _this.getInfo(_this.loaded);
 _this.getComments();
             // this.getUserInfo(function() {
