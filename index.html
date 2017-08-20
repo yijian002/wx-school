@@ -46,6 +46,7 @@
 	        <ul class="free-class">
 	            <li v-for="item in free_class" v-bind:id="'free_class_'+ item.id">
 	            	<img class="pic" v-bind:src="item.imageUrl" />
+	            	<audio v-bind:src="item.audioUrl" preload="preload" class="hide"></audio>
 	            	<div class="sound" v-on:click="playSound(item.audioUrl, item.id)"></div>
 	            </li>
 	        </ul>

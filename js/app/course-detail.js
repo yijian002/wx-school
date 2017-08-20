@@ -29,14 +29,15 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
     vue.directive('focus', {
         inserted: function(el) {
             setTimeout(function() {
+                window.scrollTo(0,document.body.scrollHeight);
                 el.focus();
-            }, 100);
-        },
-        updated: function(el) {
-            setTimeout(function() {
-                el.focus();
-            }, 100);
+            }, 150);
         }
+        // updated: function(el) {
+        //     setTimeout(function() {
+        //         el.focus();
+        //     }, 100);
+        // }
     });
 
     var vm = new vue({
@@ -228,12 +229,12 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
         init: function() {
             var _this = this;
             
-_this.getInfo(_this.loaded);
-_this.getComments();
-            // this.getUserInfo(function() {
-            //     _this.getInfo(_this.loaded);
-            //     _this.getComments();
-            // });
+// _this.getInfo(_this.loaded);
+// _this.getComments();
+            this.getUserInfo(function() {
+                _this.getInfo(_this.loaded);
+                _this.getComments();
+            });
 
             this.initSDK();
             this.bind();

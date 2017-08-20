@@ -47,6 +47,11 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                 }
             },
             playSound: function(url, id) {
+                if(!url) {
+                    alert('没有发现音频文件');
+                    return;
+                }
+
                 $('.sound.playing').removeClass('playing');
                 $('#free_class_'+ id).find('.sound').toggleClass('playing');
 
@@ -84,7 +89,9 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                 pagination: '.swiper-pagination',
                 paginationClickable: false,
                 spaceBetween: 30,
-                loop: false
+                loop: false,
+                autoplay: 3000,
+                autoplayDisableOnInteraction: false
             });
         }
     });
@@ -99,6 +106,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                 }
 
                 vm.slider = response;
+                // vm.slider.push(response[0])
             });
         },
         getFreeClass: function(callback) {
@@ -148,8 +156,6 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
         },
         getSearchClass: function() {
             if(vm.search_key === '') {
-                // this.initSearch();
-                // this.blurSearch();
                 return;
             }
 
