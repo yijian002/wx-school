@@ -1,11 +1,10 @@
 # School System
 
 ## Files
-Any pages
+- Pages
 
 ## Base Libs
 - VueJs
 - Zepto
 - RequireJs
 - Swiper
-- AudioJs

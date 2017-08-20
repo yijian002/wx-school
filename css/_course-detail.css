@@ -776,9 +776,7 @@ video::-webkit-media-controls {
   .mejs__time-rail .mejs__time-current, .mejs__time-rail .mejs__time-handle-content {
     background: rgba(0, 0, 0, 0.8); }
 
-.mejs__time-total, .mejs__time-buffering, .mejs__time-loaded,
-.mejs__time-current, .mejs__time-float, .mejs__time-hovered,
-.mejs__time-float-current, .mejs__time-float-corner, .mejs__time-marker {
+.mejs__time-total, .mejs__time-buffering, .mejs__time-loaded, .mejs__time-current, .mejs__time-float, .mejs__time-hovered, .mejs__time-float-current, .mejs__time-float-corner, .mejs__time-marker {
   height: 3px; }
 
 .press {
@@ -963,4 +961,4 @@ footer.guest > div:first-child {
     margin-right: 10px;
     text-align: right; }
 
-/*# sourceMappingURL=course-detail.css.map */
+/*# sourceMappingURL=_course-detail.css.map */

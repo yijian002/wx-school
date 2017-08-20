@@ -4,7 +4,7 @@ require.config({
         vue: 'lib/vue.min',
         zepto: 'lib/zepto.min',
         wx: 'http://res.wx.qq.com/open/js/jweixin-1.2.0',
-        audiojs: 'lib/audiojs/audio.min',
+        mediaelement: 'lib/mediaelement/mediaelement-and-player.min',
         swiper: 'lib/swiper.min',
         route: 'js/helper/route',
         util: 'js/helper/util',
@@ -21,7 +21,7 @@ require.config({
     }
 });
 
-require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'], 
+require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'], 
     function(vue, $, route, util, comm, wx) {
 
     var o_swiper = null;
@@ -33,11 +33,6 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                 el.focus();
             }, 150);
         }
-        // updated: function(el) {
-        //     setTimeout(function() {
-        //         el.focus();
-        //     }, 100);
-        // }
     });
 
     var vm = new vue({
@@ -105,17 +100,19 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
         },
         // watch: {},
         updated: function() {
-            var $audio_box = $('.audio-js-box');
+            var $audio_box = $('.audio-js-box audio');
 
             if(o_swiper) {
                 o_swiper.destroy();
             }
-            
-            if(!$('.play-pause').length && $audio_box.eq(0).find('audio').attr('src') !== '') {
-                $audio_box.hide().eq(0).show();
-                audiojs.createAll();
-                // console.log(2);
-            }
+
+            $.each($audio_box, function() {
+                new MediaElementPlayer(this, {
+                    stretching: 'auto',
+                    success: function (media) {
+                    }
+                });
+            });
 
             o_swiper = new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination',
@@ -144,6 +141,9 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'audiojs', 'swiper'],
                     return;
                 }
 
+                // response.lessons = [{
+                //     audioUrl: 'http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3'
+                // }]
                 vm.detail = response;
 
                 if(callback) {
