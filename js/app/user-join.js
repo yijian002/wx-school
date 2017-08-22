@@ -3,9 +3,7 @@ require.config({
     paths: {
         vue: 'lib/vue.min',
         zepto: 'lib/zepto.min',
-        qrcode: 'lib/qrcode.min',
         route: 'js/helper/route',
-        util: 'js/helper/util',
         comm: 'js/helper/comm'
     },
     shim: {
@@ -19,35 +17,21 @@ require.config({
     }
 });
 
-require(['vue', 'zepto', 'route', 'qrcode'], function(vue, $, route) {
+require(['vue', 'zepto', 'route'], function(vue, $, route) {
 
     var vm = new vue({
         el: '#user-join',
         data: {
-            code: 6666
+            randomCode: null,
+            imageUrl: null
         },
-        methods: {
-
+        created: function () {
+            var _this = this;
+            route({url: '/api/qrcode/clubTeacher'}, function(data){
+                _this.randomCode = data.randomCode;
+                _this.imageUrl = data.imageUrl;
+            });
         }
     });
-
-    var app = {
-        initQrcode: function() {
-            var qrcode = document.getElementById('qrcode');
-
-            new QRCode(qrcode, {
-                text: 'http://www.baidu.com/',
-                width: 110,
-                height: 110,
-                correctLevel : QRCode.CorrectLevel.L
-            });
-        },
-        init: function() {
-            this.initQrcode();
-            delete this.init;
-        }
-    };
-
-    app.init();
 
 });
