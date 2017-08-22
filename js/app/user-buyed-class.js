@@ -46,12 +46,11 @@ require(['vue', 'zepto', 'route', 'util', 'comm'], function(vue, $, route, util,
                     return;
                 }
 
-                if(!response.result.length) {
+                if (response.result.length === 0) {
                     _this._page = -1;
-                    return;
+                } else {
+                    vm.list = vm.list.concat(response.result);
                 }
-
-                vm.list = vm.list.concat(response.result);
 
                 if(callback) {
                     callback();
