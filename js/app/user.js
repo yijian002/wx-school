@@ -37,8 +37,7 @@ require(['vue', 'zepto', 'route', 'config', 'comm', 'util'], function(vue, $, ro
     var app = {
         get: function(callback) {
             route({url: '/api/me/userInfo'}, function(response) {
-                response.levelPoints = 500;
-                response.leveling = (response.pointsTotal / response.levelPoints * 100) + '%';
+                response.leveling = (response.pointsTotal / response.pointsLevelMaxValue * 100) + '%';
 
                 vm.user = response;
                 comm.setCache(_c.CACHE_USER_INFO, response);
