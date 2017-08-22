@@ -71,110 +71,9 @@ video::-webkit-media-controls {
 		width: 100%;
 		height: 100%;
 	}
-	// .audiojs {
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	position: relative;
-	// 	text-align: center;
-	// 	background: none;
-	// 	.scrubber {
-	// 		height: 3px;
-	// 		// background-image: linear-gradient(-90deg, #E7E7E7 1%, #E7E7E7 39%, #000000 40%, rgba(0,0,0,0.70) 40%, rgba(0,0,0,0.70) 100%);
-	// 		background: #333;
-	// 		border-radius: 2px;
-	// 		position: relative;
-	// 		overflow: initial;
-	// 	}
-	// 	.progress {
-	// 		height: 3px;
-	// 		&:after {
-	// 			content: '';
-	// 			width: 15px;
-	// 			height: 15px;
-	// 			border-radius: 50%;
-	// 			background: #fff;
-	// 			border: 0 solid rgba(0,0,0,0.10);
-	// 			box-shadow: 0 2px 1px 0 rgba(0,0,0,0.05), 0 1px 1px 0 rgba(0,0,0,0.10), 0 2px 2px 0 rgba(0,0,0,0.05);
-	// 			position: absolute;
-	// 			right: -7px;
-	// 			top: -7px;
-	// 			z-index: 10;
-	// 		}
-	// 	}
-	// 	.loaded {
-	// 		height: 3px;
-	// 		background: rgba(255,255,255,.4);
-	// 		// background-image: linear-gradient(-90deg, #E7E7E7 1%, #E7E7E7 39%, #000000 40%, rgba(0,0,0,0.70) 40%, rgba(0,0,0,0.70) 100%);
-	// 		border-radius: 2px;
-	// 	}
-	// 	.play-pause {
-	// 		position: absolute;
-	// 	    top: 46px;
-	// 	    left: 50%;
-	// 	    margin-left: -15px;
-	// 	    z-index: 10;
-	// 	    border: 0;
-	// 	    >p {
-	// 	    	width: 22px;
-	// 	    	height: 22px;
-	// 	    	background-repeat: no-repeat;
-	// 	    	background-position: 0 0;
-	// 	    	background-size: 100% 100%;
-	// 	    }
-	// 	    .play {
-	// 	    	background-image: url(../images/ico-play.png);
-	// 	    }
-	// 	    .pause {
-	// 	    	background-image: url(../images/ico-halt.png);
-	// 	    }
-	// 	    .loading {
-	// 	    	background-image: url(../images/ico-ref.png);
-	// 	    	@include prefixed(animation, anim-change .5s linear infinite);
-	// 	    }
-	// 	    .error {
-	// 	    	background-image: url(../images/ico-stop.png);
-	// 	    }
-	// 	    @keyframes anim-change{
-	// 		    0%{transform:rotate(0deg);}
-	// 		    100%{transform:rotate(360deg);}
-	// 		}
-	// 	    @-webkit-keyframes anim-change{
-	// 		    0%{-webkit-transform:rotate(0deg);}
-	// 		    100%{-webkit-transform:rotate(360deg);}
-	// 		}
-	// 	}
-	// 	.scrubber {
-	// 		width: 300px;
-	// 		display: inline-block;
-	// 		margin-top: 15px;
-	// 	}
-	// 	.time {
-	// 		font-size: 0;
-	// 		border: 0;
-	// 		width: 100%;
-	// 		margin: -11px 0 0 0;
-	// 		padding: 0;
-	// 		text-shadow: none;
-	// 		font-family: '.AppleSystemUIFont';
-	// 		.played {
-	// 			color: #000;
-	// 			font-size: 13px;
-	// 			letter-spacing: -0.08px;
-	// 			float: left;
-	// 		}
-	// 		.duration {
-	// 			color: #000;
-	// 			font-size: 13px;
-	// 			letter-spacing: -0.08px;
-	// 			float: right;
-	// 		}
-	// 	}
-	// }
+	
 }
 
-// .vjs-poster {
-// 	background-size: 100% 100%;
-// }
 .mejs__container {
 	width: 320px !important;
 	min-width: 320px !important;
@@ -355,8 +254,13 @@ video::-webkit-media-controls {
 	    -webkit-flex-direction: row;
 		flex-direction: row;
 		margin: 10px 0;
+		padding: 10px 0;
+		border-bottom: 1px solid #ccc;
 		&:first-child {
 			margin-top: 0;
+		}
+		&:last-child {
+			border-bottom: 0;
 		}
 		>div {
 			float: left;

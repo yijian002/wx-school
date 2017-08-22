@@ -55,6 +55,11 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                 });
             },
             join: function() {
+                if(this.detail.isGroup) { // 入群克
+                    window.location.href = 'user-join.html';
+                    return;
+                }
+
                 window.location.href='user-camp.html?id=' + app._id;
             },
             buy: function() {
@@ -91,7 +96,9 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                         return;
                     }
 
-                    app.reloadComments();
+                    setTimeout(function() {
+                        app.reloadComments();
+                    }, 500);
                 });
             },
             invitationCard: function() { // 邀请卡
@@ -100,18 +107,22 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
         },
         // watch: {},
         updated: function() {
-            var $audio_box = $('.audio-js-box audio');
+            var $audio_box = $('.audio-js-box');
 
             if(o_swiper) {
                 o_swiper.destroy();
             }
 
-            $.each($audio_box, function() {
-                new MediaElementPlayer(this, {
+            $.each($audio_box, function(idx) {
+                new MediaElementPlayer($(this).find('audio')[0], {
                     stretching: 'auto',
                     success: function (media) {
                     }
                 });
+
+                if(idx > 0) {
+                    $(this).hide();
+                }
             });
 
             o_swiper = new Swiper('.swiper-container', {
@@ -122,11 +133,11 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                 nextButton: '.ico-next',
                 prevButton: '.ico-prev',
                 onSlideChangeEnd: function(swiper) {
-                    $.each($audio_box.find('.playing'), function(idx) {
-                        $(this).find('.pause').click();
+                    $.each($audio_box.find('.mejs__pause'), function(idx) {
+                        $(this).click();
                     });
 
-                    $audio_box.hide().eq(swiper.activeIndex).show();
+                    $audio_box.hide().eq(swiper.activeIndex).show().find('.mejs__play').click();
                 }
             });
         }
@@ -144,6 +155,12 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                 // response.lessons = [{
                 //     audioUrl: 'http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3'
                 // }]
+                var len = response.lessons.length - response.banners.length;
+                if(len > 0) { // lessons 和 banners的长度保持一致
+                    for (var i = 0; i < len; i++) {
+                        response.banners.push(response.banners[0]);
+                    }
+                }
                 vm.detail = response;
 
                 if(callback) {

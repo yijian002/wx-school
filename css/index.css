@@ -554,12 +554,15 @@ button.swiper-pagination-bullet {
     margin-top: 10px; }
     .column .best-class li {
       width: 100%;
-      height: 80px;
+      height: 95px;
       margin: 20px 0;
       display: -webkit-flex;
       display: flex;
       -webkit-flex-direction: row;
-      flex-direction: row; }
+      flex-direction: row;
+      border-bottom: 1px solid #ccc; }
+      .column .best-class li:last-child {
+        border-bottom: 0; }
     .column .best-class .pic {
       width: 116px;
       height: 80px;

@@ -85,12 +85,16 @@
 		margin-top: px(10);
 		li {
 			width: 100%;
-			height: px(80);
+			height: px(95);
 			margin: px(20) 0;
 			display: -webkit-flex;
 			display: flex;
 			-webkit-flex-direction: row;
 			flex-direction: row;
+			border-bottom: 1px solid #ccc;
+			&:last-child {
+				border-bottom: 0;
+			}
 		}
 		.pic {
 			width: px(116);

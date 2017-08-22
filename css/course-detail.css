@@ -850,9 +850,13 @@ video::-webkit-media-controls {
     display: flex;
     -webkit-flex-direction: row;
     flex-direction: row;
-    margin: 10px 0; }
+    margin: 10px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc; }
     .comments li:first-child {
       margin-top: 0; }
+    .comments li:last-child {
+      border-bottom: 0; }
     .comments li > div {
       float: left; }
     .comments li .pic {

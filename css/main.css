@@ -370,6 +370,9 @@ ul, ol {
 .t-center {
   text-align: center; }
 
+.t-lineth {
+  text-decoration: line-through; }
+
 .ca {
   color: #a7a7a7; }
 
