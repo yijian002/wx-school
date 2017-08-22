@@ -50,9 +50,9 @@ require(['vue', 'zepto', 'route', 'config', 'comm', 'util'], function(vue, $, ro
                 return;
             }
 
-            route({url: '/api/me/userInfo', type: 'POST', params: {
+            route({url: '/api/me/userInfo', type: 'POST', isJson: true, params: JSON.stringify( {
                 birthday: birthday
-            }}, function() {
+            })}, function() {
 
             });
         },

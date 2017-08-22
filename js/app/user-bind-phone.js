@@ -40,7 +40,7 @@ require(['vue', 'zepto', 'route', 'config', 'comm', 'util'], function(vue, $, ro
                     return;
                 }
 
-                route({url: '/api/sms/send', type: 'POST', params: JSON.stringify( {type: 'changeMobile', mobile: this.mobile} )}, function(response) {
+                route({url: '/api/sms/send', type: 'POST', isJson: true, params: JSON.stringify( {type: 'changeMobile', mobile: this.mobile} )}, function(response) {
                     if (!response) {
                         return;
                     }
