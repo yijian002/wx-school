@@ -246,12 +246,9 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
         init: function() {
             var _this = this;
             
-// _this.getInfo(_this.loaded);
-// _this.getComments();
-            this.getUserInfo(function() {
-                _this.getInfo(_this.loaded);
-                _this.getComments();
-            });
+            this.getUserInfo();
+            this.getInfo(this.loaded);
+            this.getComments();
 
             this.initSDK();
             this.bind();
