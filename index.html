@@ -36,7 +36,7 @@
 	            <div class="swiper-slide"
 	            	v-for="item in slider"
 	             	v-bind:style="{ backgroundImage: 'url('+ item.coverUrl +')' }"
-	             	v-on:click="showPoster(item.type, item.detailUrl)"></div>
+	             	v-on:click="showPoster(item.type, item.detailUrl, item.isShowDetail)"></div>
 	        </div>
 	        <div class="swiper-pagination"></div>
 		</div>

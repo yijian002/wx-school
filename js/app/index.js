@@ -38,12 +38,14 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
             search_class: []
         },
         methods: {
-            showPoster: function(type, url) {
-                if(type === 'poster') {
-                    util.dialog('.dialog-posters').find('.contents').css({backgroundImage: 'url('+ url +')'});
-                }
-                else if(type === 'link') {
-                    window.location.href = url;
+            showPoster: function(type, url, isShowDetail) {
+                if(isShowDetail){
+                    if(type === 'poster') {
+                        util.dialog('.dialog-posters').find('.contents').css({backgroundImage: 'url('+ url +')'});
+                    }
+                    else if(type === 'link') {
+                        window.location.href = url;
+                    }
                 }
             },
             playSound: function(url, id) {
