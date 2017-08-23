@@ -258,7 +258,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
         init: function() {
             var _this = this;
 
-            this.initFirst();
+            // this.initFirst();
             this.initSearch();
 
             this.getBanners();

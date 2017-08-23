@@ -28,7 +28,7 @@
 	<div id="index-main" class="hide" v-bind:class="{show: show}">
 
 		<div class="top-search" v-bind:class="{show: is_search}">
-			<input type="search" name="key" placeholder="Search through your post" v-model="search_key" @focus="inputSearch" @blur="blurSearch" @input="search" />
+			<input type="search" name="key" placeholder="输入课程名、讲师名进行搜索" v-model="search_key" @focus="inputSearch" @blur="blurSearch" @input="search" />
 		</div>
 
 		<div class="slider swiper-container" v-bind:class="{hide: is_search && search_key!==''}">
@@ -99,7 +99,7 @@
 
 	 </div>
 
-	 <div class="dialog dialog-first hide">
+	 <!-- <div class="dialog dialog-first hide">
 	    <div>
 	    	<div class="top"><i class="close"></i></div>
 	    	<div class="contents">
@@ -109,7 +109,7 @@
 	    		<a href="user-camp.html" class="btn-join">加入成长营</a>
 	    	</div>
 	    </div>
-    </div>
+    </div> -->
 
     <div class="dialog dialog-posters hide">
     	<div>
