@@ -552,8 +552,9 @@ footer {
   background-size: 21px auto;
   background-position: 20px center; }
   .sound.playing {
+    background-color: #9CEA45;
     background-image: url(../images/ico-sound-ing.png);
-    border: 1px solid #84ff84; }
+    border: 1px solid #86CA3A; }
 
 .bt-joinme {
   font-size: 16px;

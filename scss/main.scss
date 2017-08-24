@@ -75,8 +75,9 @@ footer {
 	background-size: px(42/2) auto;
 	background-position: 20px center;
 	&.playing {
+		background-color: #9CEA45;
 		background-image: url(../images/ico-sound-ing.png);
-		border: 1px solid #84ff84;
+		border: 1px solid #86CA3A;
 	}
 }
 

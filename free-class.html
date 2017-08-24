@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> 免费课程 </title>
+    <meta name="keywords" content="学堂系统" />
+    <meta name="description" content="" />
+    <script type="text/javascript">
+    var w_width = parseInt(window.screen.width);
+    if(w_width < 370) {
+        var phoneScale = w_width / 375;　　
+        document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi" />');
+    }
+    else {
+        document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
+    }
+    </script>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <style type="text/css">
+    .column .free-class li {
+    	height: 60px;
+    	border-bottom: 1px solid #ccc;
+    }
+    </style>
+</head>
+
+<body>
+	<div id="loading"><div id="loading-center"><div id="loading-center-absolute"><div id="object"></div></div></div></div>
+
+	<div id="free-class-main" class="hide" v-bind:class="{show: show}">
+
+		<div class="column">
+	        <ul class="free-class">
+	            <li v-for="item in free_class" v-bind:id="'free_class_'+ item.id">
+	            	<img class="pic" v-bind:src="item.imageUrl" />
+	            	<audio v-bind:src="item.audioUrl" preload="preload" class="hide"></audio>
+	            	<div class="sound" v-on:click="playSound(item.audioUrl, item.id)"></div>
+                    <div class="longtime">{{ item.longtime }}</div>
+	            </li>
+	        </ul>
+		</div>
+
+	 </div>
+
+</body>
+
+</html>
+<script data-main="js/app/free-class.js" src="lib/require.js"></script>

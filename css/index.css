@@ -531,6 +531,11 @@ button.swiper-pagination-bullet {
     font-size: 18px;
     color: #4a4a4a;
     letter-spacing: -0.43px; }
+    .column .tt .more {
+      font-size: 14px;
+      color: #4A4A4A;
+      letter-spacing: -0.34px;
+      float: right; }
   .column .free-class {
     margin-top: 10px; }
     .column .free-class li {
@@ -538,18 +543,25 @@ button.swiper-pagination-bullet {
       height: 48px;
       margin: 10px 0; }
     .column .free-class .pic {
-      width: 60px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
       background: #D8D8D8;
-      border-radius: 4px;
+      margin-top: 4px;
       float: left; }
     .column .free-class .sound {
-      width: 200px;
+      width: 190px;
       height: 40px;
       border-radius: 100px;
       float: left;
       margin-top: 4px;
-      margin-left: 25px; }
+      margin-left: 20px; }
+    .column .free-class .longtime {
+      font-size: 14px;
+      color: #9B9B9B;
+      letter-spacing: -0.39px;
+      float: left;
+      margin-left: 10px;
+      margin-top: 17px; }
   .column .best-class {
     margin-top: 10px; }
     .column .best-class li {
@@ -591,7 +603,9 @@ button.swiper-pagination-bullet {
         -webkit-flex-direction: row;
         flex-direction: row; }
       .column .best-class .info .tt {
+        color: #4A4A4A;
         font-size: 18px;
+        letter-spacing: -0.5px;
         float: left;
         -webkit-flex: 1;
         flex: 1;
@@ -605,27 +619,27 @@ button.swiper-pagination-bullet {
         line-clamp: 1;
         -webkit-box-orient: vertical;
         box-orient: vertical; }
-      .column .best-class .info .price {
-        width: 60px;
-        float: right;
-        text-align: right;
-        color: #F6A623;
-        -webkit-flex-shrink: 0;
-        flex-shrink: 0; }
       .column .best-class .info .teacher {
+        color: #9B9B9B;
         text-align: left;
         clear: both;
         margin-top: 10px; }
-      .column .best-class .info .longtime {
+      .column .best-class .info .study {
         float: left;
         -webkit-flex: 1;
-        flex: 1; }
-      .column .best-class .info .study {
+        flex: 1;
+        font-size: 14px;
+        color: #F6A623;
+        letter-spacing: -0.34px; }
+      .column .best-class .info .price {
         float: right;
         text-align: right;
         color: #9B9B9B;
         -webkit-flex: 1;
-        flex: 1; }
+        flex: 1;
+        font-size: 14px;
+        color: #F6A623;
+        letter-spacing: -0.34px; }
 
 .dialog-first > div {
   height: 140px;

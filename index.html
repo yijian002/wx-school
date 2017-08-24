@@ -42,12 +42,13 @@
 		</div>
 
 		<div class="column" v-bind:class="{hide: is_search && search_key!==''}">
-			<div class="tt">免费微课</div>
+			<div class="tt">免费微课<a href="free-class.html" class="more">更多 > </a></div>
 	        <ul class="free-class">
 	            <li v-for="item in free_class" v-bind:id="'free_class_'+ item.id">
 	            	<img class="pic" v-bind:src="item.imageUrl" />
 	            	<audio v-bind:src="item.audioUrl" preload="preload" class="hide"></audio>
 	            	<div class="sound" v-on:click="playSound(item.audioUrl, item.id)"></div>
+	            	<div class="longtime">{{ item.longtime }}</div>
 	            </li>
 	        </ul>
 		</div>
@@ -62,12 +63,11 @@
 	                <div class="info">
 	                    <div>
 	                        <div class="tt" v-html="item.name"></div>
-	                        <div class="price" v-html="'￥'+ item.price"></div>
 	                    </div>
-	                    <div class="teacher" v-html="item.teacherName"></div>
+	                    <div class="teacher" v-html="'主讲：'+ item.teacherName +'／'+ item.lessonTotal +'节课'"></div>
 	                    <div>
-	                        <div class="longtime" v-html="item.lessonTotal +'课时'"></div>
 	                        <div class="study" v-html="item.studentTotal + '人学过'"></div>
+	                        <div class="price" v-html="item.price + '元'"></div>
 	                    </div>
 	                </div>
 	                </a>
@@ -84,12 +84,11 @@
 	                <div class="info">
 	                    <div>
 	                        <div class="tt" v-html="item.name"></div>
-	                        <div class="price" v-html="'￥'+ item.price"></div>
 	                    </div>
-	                    <div class="teacher" v-html="item.teacherName"></div>
+	                    <div class="teacher" v-html="'主讲：'+ item.teacherName +'／'+ item.lessonTotal +'节课'"></div>
 	                    <div>
-	                        <div class="longtime" v-html="item.lessonTotal +'课时'"></div>
 	                        <div class="study" v-html="item.studentTotal + '人学过'"></div>
+	                        <div class="price" v-html="item.price + '元'"></div>
 	                    </div>
 	                </div>
 	                </a>

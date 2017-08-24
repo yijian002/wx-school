@@ -124,6 +124,22 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                     return;
                 }
 
+                for (var i = 0; i < response.result.length; i++) {
+                    if(response.result[i].duration) {
+                        response.result[i].longtime = parseInt(response.result[i].duration/60) + "'";
+                        if(response.result[i].duration%60 > 0) {
+                            var s = (response.result[i].duration%60).toFixed(0);
+                            if(s < 10) {
+                                s = '0' + s;
+                            }
+                            response.result[i].longtime += s + '"';
+                        }
+                    }
+                    else {
+                        response.result[i].longtime = '0"';
+                    }
+                }
+
                 vm.free_class = response.result;
             });
         },
