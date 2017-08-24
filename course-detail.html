@@ -41,7 +41,7 @@
 
         <div class="title">{{detail.name}}</div>
         <div class="tt-info">
-            <div class="fl">课程总{{detail.lessonTotal}}节次</div>
+            <div class="fl">课程共{{detail.lessonTotal}}节</div>
             <div class="fr">
                 语速
                 <div class="speed">
@@ -95,7 +95,7 @@
             </ul>
         </div>
         <div class="add-comments" v-bind:class="{show:is_comments}">
-            <input type="text" id="add-comments" v-if="is_comments" placeholder="请输入评论..." v-model.trim="add_comments" v-focus />
+            <input type="text" id="add-comments" v-if="is_comments" placeholder="请输入评论..." v-model.trim="add_comments" @focus="scrollBottom()" v-focus />
             <div class="btn" @click="addComments">发送</div>
         </div>
         <div class="footer"></div>

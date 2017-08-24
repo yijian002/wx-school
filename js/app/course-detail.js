@@ -60,6 +60,11 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                     }
                 });
             },
+            scrollBottom: function() {
+                setTimeout(function() {
+                    window.scrollTo(0,document.body.scrollHeight);
+                }, 400);
+            },
             plusSpeed: function() {
                 if(this.speed >= 4) {
                     return;
@@ -153,6 +158,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
             $.each($audio_box, function(idx) {
                 app._players[idx] = new MediaElementPlayer($(this).find('audio')[0], {
                     stretching: 'auto',
+                    preload: 'auto',
                     success: function (media) {
                     }
                 });
