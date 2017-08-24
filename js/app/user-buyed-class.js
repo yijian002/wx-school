@@ -26,7 +26,11 @@ require(['vue', 'zepto', 'route', 'util', 'comm'], function(vue, $, route, util,
             show: false,
             list: []
         },
-        methods: {}
+        methods: {
+            goCourseDetail: function(id) {
+                location.href = 'course-detail.html?id=' + id;
+            }
+        }
     });
 
     var app = {

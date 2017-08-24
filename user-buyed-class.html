@@ -27,9 +27,8 @@
 
     <div id="user-class" class="list hide" v-bind:class="{show: show}">
         <ul>
-            <li v-for="item in list">
-                <a v-bind:href="'course-detail.html?id='+item.id"><img class="pic" v-bind:src="item.course.coverUrl" /></a>
-                <a v-bind:href="'course-detail.html?id='+item.id">
+            <li v-for="item in list" @click="goCourseDetail(item.course.id)">
+                <img class="pic" v-bind:src="item.course.coverUrl" />
                 <div class="info">
                     <div>
                         <div class="tt">{{item.name}}</div>
@@ -41,7 +40,6 @@
                         <div class="study">{{item.course.studentTotal}}人学过</div>
                     </div>
                 </div>
-                </a>
             </li>
         </ul>
         <div class="nothing" v-if="show && !list.length">您还没有购买课程</div>
