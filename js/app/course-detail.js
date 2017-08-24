@@ -17,6 +17,9 @@ require.config({
         },
         route: {
             deps: ['zepto', 'comm']
+        },
+        speed: {
+            deps: ['mediaelement']
         }
     }
 });
@@ -40,10 +43,13 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
         data: {
             show: false,
             detail: {},
+            lessons: [],
             comments: [],
             add_comments: '',
             is_comments: false,
-            is_vip: false
+            is_vip: false,
+            speed: 1,
+            studying: 0 // 学习进度
         },
         methods: {
             playSound: function(url, id) {
@@ -53,6 +59,22 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                         $('#free_class_' + id).find('.sound').removeClass('playing');
                     }
                 });
+            },
+            plusSpeed: function() {
+                if(this.speed >= 4) {
+                    return;
+                }
+
+                this.speed = this.speed + 0.05;
+                $('.audio-js-box').eq(app._player_idx).find('audio')[0].playbackRate = this.speed;
+            },
+            subtractSpeed: function() {
+                if(this.speed <= 0.55) {
+                    return;
+                }
+
+                this.speed = this.speed - 0.05;
+                $('.audio-js-box').eq(app._player_idx).find('audio')[0].playbackRate = this.speed;
             },
             join: function() {
                 if(this.detail.isGroup) { // 入群克
@@ -105,16 +127,31 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                 window.location.href = 'share.html?courseid=' + app._id;
             }
         },
-        // watch: {},
+        watch: {
+            studying: function() {
+                var idx = app._player_idx,
+                    $audio_box = $('.audio-js-box');
+
+                $audio_box.hide().eq(idx).show();
+                if(app.init) {
+                    return;
+                }
+
+                for(var k in app._players) {
+                    app._players[k].pause();
+                }
+                $audio_box.eq(idx).find('audio')[0].playbackRate = this.speed;
+                app._players[idx].play();
+            }
+        },
         updated: function() {
             var $audio_box = $('.audio-js-box');
-
-            if(o_swiper) {
-                o_swiper.destroy();
+            if($audio_box.find('.mejs__offscreen').length === this.lessons.length) {
+                return;
             }
 
             $.each($audio_box, function(idx) {
-                new MediaElementPlayer($(this).find('audio')[0], {
+                app._players[idx] = new MediaElementPlayer($(this).find('audio')[0], {
                     stretching: 'auto',
                     success: function (media) {
                     }
@@ -125,28 +162,29 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                 }
             });
 
+            if(o_swiper) {
+                o_swiper.destroy();
+            }
             o_swiper = new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination',
                 paginationClickable: false,
                 spaceBetween: 30,
-                loop: false,
-                nextButton: '.ico-next',
-                prevButton: '.ico-prev',
-                onSlideChangeEnd: function(swiper) {
-                    $.each($audio_box.find('.mejs__pause'), function(idx) {
-                        $(this).click();
-                    });
-
-                    $audio_box.hide().eq(swiper.activeIndex).show().find('.mejs__play').click();
-                }
+                loop: false
             });
+
+            if(app.init) {
+                delete app.init;
+            }
         }
     });
 
     var app = {
         _id: comm.getUrlParam('id'),
         _comment_page: 1,
+        _player_idx: 0,
+        _players: {},
         getInfo: function(callback) {
+            var _this = this;
             route({ url: '/api/course/info', params: { id: this._id } }, function(response) {
                 if (!response) {
                     return;
@@ -155,17 +193,53 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                 // response.lessons = [{
                 //     audioUrl: 'http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3'
                 // }]
-                var len = response.lessons.length - response.banners.length;
-                if(len > 0) { // lessons 和 banners的长度保持一致
-                    for (var i = 0; i < len; i++) {
-                        response.banners.push(response.banners[0]);
-                    }
-                }
+
+                // var len = response.lessons.length - response.banners.length;
+                // if(len > 0) { // lessons 和 banners的长度保持一致
+                //     for (var i = 0; i < len; i++) {
+                //         response.banners.push(response.banners[0]);
+                //     }
+                // }
+                vm.lessons = response.lessons;
                 vm.detail = response;
+                _this.resetStudying(0);
 
                 if(callback) {
                     callback();
                 }
+            });
+        },
+        resetStudying: function(idx) {
+            var len = vm.lessons.length || 1;
+            if(idx >= len - 1) {
+                vm.studying = 100;
+                return;
+            }
+
+            vm.studying = ((idx+1) / len * 100).toFixed(2);
+        },
+        showPlayer: function(idx) {
+            this.resetStudying(idx);
+        },
+        bindPlayer: function() {
+            var _this = this;
+
+            $('.ico-next').on('click', function() {
+                if(vm.studying === 100) {
+                    return;
+                }
+
+                _this._player_idx++;
+                _this.showPlayer(_this._player_idx);
+            });
+
+            $('.ico-prev').on('click', function() {
+                if(_this._player_idx === 0) {
+                    return;
+                }
+
+                _this._player_idx--;
+                _this.showPlayer(_this._player_idx);
             });
         },
         reloadComments: function() {
@@ -251,9 +325,10 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
             this.getComments();
 
             this.initSDK();
+            this.bindPlayer();
             this.bind();
 
-            delete this.init;
+            // delete this.init;
         }
     };
 

@@ -38,28 +38,48 @@
             </div>
             <div class="swiper-pagination"></div>
         </div>
+
+        <div class="title">{{detail.name}}</div>
+        <div class="tt-info">
+            <div class="fl">课程总{{detail.lessonTotal}}节次</div>
+            <div class="fr">
+                语速
+                <div class="speed">
+                    <div class="plus" @click="plusSpeed()"></div>
+                    <div class="num">{{speed.toFixed(2)}}</div>
+                    <div class="subtract" @click="subtractSpeed()"></div>
+                </div>
+            </div>
+        </div>
+
         <div class="player">
             <i class="ico-prev"></i>
             <i class="ico-next"></i>
-            <div class="audio-js-box" v-for="item in detail.lessons">
+            <div class="audio-js-box" v-for="item in lessons">
                 <audio v-bind:src="item.audioUrl" preload="preload"></audio>
             </div>
         </div>
+
         <div class="press">
             <span class="lf">{{detail.studentTotal}}人学过</span>
-            <span class="rg">{{detail.lessonTotal}}学时</span>
+            <span class="rg">学习进度{{studying}}%</span>
         </div>
+
         <div class="line"></div>
         <div class="contents">
             <h4>课程介绍</h4>
             <div class="desc">
                 <div class="ql-snow"><div class="ql-editor" v-html="detail.introduction"></div></div>
             </div>
-            <div class="btns">
+            <!-- <div class="btns">
                 <div class="sed" @click="invitationCard()">生成邀请卡</div>
                 <div @click="is_comments=true;add_comments='';">评论</div>
-            </div>
+            </div> -->
         </div>
+
+        <div class="btn-invitation" @click="invitationCard()">海报</div>
+        <div class="btn-comment" @click="is_comments=true;add_comments='';">评论</div>
+
         <div class="line"></div>
         <div class="comments">
             <ul>
