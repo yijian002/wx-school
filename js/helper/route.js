@@ -12,8 +12,9 @@ define('route', ['zepto', 'comm'], function($, comm) {
         var data = opts.params || {};
 
         var setting = {
-            url: 'http://wechat.qianbitour.com' + opts.url,
+            // url: 'http://wechat.qianbitour.com' + opts.url,
             // url: 'http://test.vrtyg.net' + opts.url,
+            url: opts.url,
             data: data,
             type: opts.type || 'GET',
             cache: opts.noParams ? true : false,

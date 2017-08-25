@@ -1,35 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title> 意见反馈 </title>
     <meta name="keywords" content="学堂系统" />
     <meta name="description" content="" />
-    <script type="text/javascript">
-    var w_width = parseInt(window.screen.width);
-    if(w_width < 370) {
-        var phoneScale = w_width / 375;　　
-        document.write('<meta name="viewport" content="width=375, minimum-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', target-densitydpi=device-dpi" />');
-    }
-    else {
-        document.write('<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />');
-    }    
-    </script>
-    <meta name="format-detection" content="telephone=no" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="css/user.css" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 
 <body class="user-feedback">
-    <div id="user-feedback-main">
-        <textarea placeholder="您的意见对我们很重要，请写下您想说的话..." v-model="content"></textarea>
-
-        <div class="footer"></div>
-        <div class="bt-joinme" @click="save()">提交</div>
-    </div>
+    <textarea placeholder="您的意见对我们很重要，请写下您想说的话..." v-model="content"></textarea>
+    <div style="margin: 10px;"><div class="bt-submit" @click="save()">提交</div></div>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script data-main="js/app/user-feedback.js" src="lib/require.js"></script>
 </body>
-
 </html>
-<script data-main="js/app/user-feedback.js" src="lib/require.js"></script>

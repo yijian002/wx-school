@@ -28,7 +28,7 @@ a {
 }
 
 footer {
-	font-size: px(14);
+	font-size: px(18);
 	color: #9B9B9B;
 	width: 100%;
 	height: px(50);
@@ -68,25 +68,12 @@ footer {
 	display: none;
 }
 
-.sound {
-	border: 1px solid #E6E6E6;
-	background: #fff;
-	background: url(../images/ico-sound.png) no-repeat;
-	background-size: px(42/2) auto;
-	background-position: 20px center;
-	&.playing {
-		background-color: #9CEA45;
-		background-image: url(../images/ico-sound-ing.png);
-		border: 1px solid #86CA3A;
-	}
-}
-
 .bt-joinme {
-	font-size: 16px;
+	font-size: 18px;
 	color: #FFFFFF;
 	width: 100%;
-	height: 50px;
-	line-height: 50px;
+	height: px(50);
+	line-height: px(50);
 	background: #FEC73A;
 	text-align: center;
 	position: fixed;

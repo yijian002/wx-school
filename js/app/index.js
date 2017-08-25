@@ -54,12 +54,17 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                     return;
                 }
 
-                $('.sound.playing').removeClass('playing');
-                $('#free_class_'+ id).find('.sound').toggleClass('playing');
-
-                util.sound({url: url, ended: function() {
-                    $('#free_class_'+ id).find('.sound').removeClass('playing');
-                }});
+                var s = $('.sound.playing').removeClass('playing').get(0);
+                if(!s || s.id !== 'sound_btn_' + id){
+                    $('#sound_btn_' + id).addClass('playing');
+                }
+                
+                var a = $('audio.playing').removeClass('playing').get(0);
+                a && a.pause();
+                if (!a || a.id !== 'audio_' + id) {
+                    a = $('#audio_' + id).addClass('playing').get(0);
+                    a && a.play();
+                }
             },
             inputSearch: function() {
                 clearTimeout(timer_srcoll);
@@ -94,6 +99,10 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                 loop: false,
                 autoplay: 3000,
                 autoplayDisableOnInteraction: false
+            });
+
+            $('.free-class').find('audio').on('ended', function(){
+                $(this).siblings('.sound.playing').removeClass('playing');
             });
         }
     });
@@ -198,34 +207,34 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                 vm.search_class = vm.search_class.concat(response.result);
             });
         },
-        initFirst: function() {
-            var _this = this;
-            var cache_name = 'welcome_first';
-            if(comm.getCache(cache_name)) {
-                return;
-            }
+        // initFirst: function() {
+        //     var _this = this;
+        //     var cache_name = 'welcome_first';
+        //     if(comm.getCache(cache_name)) {
+        //         return;
+        //     }
 
-            comm.setCache(cache_name, 1);
+        //     comm.setCache(cache_name, 1);
 
-            route({url: '/api/parentsHall/welcome'}, function(response) {
-                if(! response) {
-                    return;
-                }
+        //     route({url: '/api/parentsHall/welcome'}, function(response) {
+        //         if(! response) {
+        //             return;
+        //         }
 
-                var $dialog = util.dialog('.dialog-first', {close: function() {
-                    util.sound('pause');
-                }});
+        //         var $dialog = util.dialog('.dialog-first', {close: function() {
+        //             util.sound('pause');
+        //         }});
 
-                $dialog.find('.pic').html('<img src="'+ response.teacherHeadimgUrl +'" />');
-                $dialog.find('.sound').off().on('click', function() {
-                    $(this).toggleClass('playing');
+        //         $dialog.find('.pic').html('<img src="'+ response.teacherHeadimgUrl +'" />');
+        //         $dialog.find('.sound').off().on('click', function() {
+        //             $(this).toggleClass('playing');
 
-                    util.sound({url: response.teacherAudioUrl, ended: function() {
-                        $dialog.find('.sound').removeClass('playing');
-                    }});
-                });
-            });
-        },
+        //             util.sound({url: response.teacherAudioUrl, ended: function() {
+        //                 $dialog.find('.sound').removeClass('playing');
+        //             }});
+        //         });
+        //     });
+        // },
         initSearch: function() {
             var _this = this;
             $(window).off('scroll.search').on('scroll.search', function() {
@@ -280,9 +289,8 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
             this.initSearch();
 
             this.getBanners();
-            this.getFreeClass(function() {
-                _this.getBestClass(_this.loaded);
-            });
+            this.getFreeClass();
+            this.getBestClass(this.loaded);
 
             this.bind();
             delete this.init;

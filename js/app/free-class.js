@@ -33,13 +33,23 @@ require(['vue', 'zepto', 'route', 'util', 'comm'], function(vue, $, route, util,
                     return;
                 }
 
-                $('.sound.playing').removeClass('playing');
-                $('#free_class_'+ id).find('.sound').toggleClass('playing');
-
-                util.sound({url: url, ended: function() {
-                    $('#free_class_'+ id).find('.sound').removeClass('playing');
-                }});
+                var s = $('.sound.playing').removeClass('playing').get(0);
+                if(!s || s.id !== 'sound_btn_' + id){
+                    $('#sound_btn_' + id).addClass('playing');
+                }
+                
+                var a = $('audio.playing').removeClass('playing').get(0);
+                a && a.pause();
+                if (!a || a.id !== 'audio_' + id) {
+                    a = $('#audio_' + id).addClass('playing').get(0);
+                    a && a.play();
+                }
             }
+        },
+        updated: function() {
+            $('.free-class').find('audio').on('ended', function(){
+                $(this).siblings('.sound.playing').removeClass('playing');
+            });
         }
     });
 

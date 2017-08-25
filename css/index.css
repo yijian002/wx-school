@@ -547,14 +547,27 @@ button.swiper-pagination-bullet {
       height: 40px;
       background: #D8D8D8;
       margin-top: 4px;
+      margin-left: 14px;
+      margin-right: 14px;
       float: left; }
     .column .free-class .sound {
       width: 190px;
       height: 40px;
-      border-radius: 100px;
       float: left;
+      position: relative;
       margin-top: 4px;
-      margin-left: 20px; }
+      margin-left: 6px;
+      background-color: #b2e281;
+      border-radius: 3px; }
+      .column .free-class .sound .voice {
+        width: 23px;
+        height: 40px;
+        position: absolute;
+        left: 13px;
+        background: url(../images/audio.png) no-repeat;
+        background-position-y: center; }
+      .column .free-class .sound.playing .voice {
+        background-image: url(../images/audio_playing.gif); }
     .column .free-class .longtime {
       font-size: 14px;
       color: #9B9B9B;

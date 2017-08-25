@@ -75,17 +75,32 @@
 			background: #D8D8D8;
 			// border-radius: 4px;
 			margin-top: 4px;
+			margin-left: 14px;
+			margin-right: 14px;
 			float: left;
 		}
 		.sound {
 			width: 190px;
-			// min-width: px(80);
-			// max-width: px(232);
-			height: px(40);
-			border-radius: 100px;
+			height: 40px;
 			float: left;
+			position: relative;
 			margin-top: px(4);
-			margin-left: px(20);
+			margin-left: 6px;
+			background-color: #b2e281;
+			border-radius: 3px;
+			.voice {
+				width: 23px;
+				height: 40px;
+				position: absolute;
+				left: 13px;
+				background: url(../images/audio.png) no-repeat;
+				background-position-y: center;
+			}
+			&.playing {
+				.voice {
+					background-image: url(../images/audio_playing.gif);
+				}
+			}
 		}
 		.longtime {
 			font-size: 14px;

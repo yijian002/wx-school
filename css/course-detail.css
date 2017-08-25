@@ -1033,7 +1033,7 @@ footer.member > div:last-child {
 footer.guest > div:first-child {
   border-right: 1px solid #fff; }
   footer.guest > div:first-child span {
-    line-height: 16px;
+    line-height: 18px;
     display: inline-block;
     vertical-align: -8px;
     margin-right: 10px;

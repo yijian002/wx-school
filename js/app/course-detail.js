@@ -66,19 +66,19 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                 }, 400);
             },
             plusSpeed: function() {
-                if(this.speed >= 4) {
+                if(this.speed >= 2) {
                     return;
                 }
 
-                this.speed = this.speed + 0.05;
+                this.speed = this.speed + 0.5;
                 $('.audio-js-box').eq(app._player_idx).find('audio')[0].playbackRate = this.speed;
             },
             subtractSpeed: function() {
-                if(this.speed <= 0.55) {
+                if(this.speed <= 1) {
                     return;
                 }
 
-                this.speed = this.speed - 0.05;
+                this.speed = this.speed - 0.5;
                 $('.audio-js-box').eq(app._player_idx).find('audio')[0].playbackRate = this.speed;
             },
             join: function() {
@@ -157,8 +157,6 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
 
             $.each($audio_box, function(idx) {
                 app._players[idx] = new MediaElementPlayer($(this).find('audio')[0], {
-                    stretching: 'auto',
-                    preload: 'auto',
                     success: function (media) {
                     }
                 });

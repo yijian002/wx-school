@@ -1,8 +1,6 @@
-/* 基于 ! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/*  ! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
-/**
- *针对webkit桌面app优化
- */
+
 html {
   font-size: px($baseFontSize);
   font-family: "Microsoft YaHei";
@@ -416,12 +414,7 @@ td,
 th {
   padding: 0;
 }
-// li,h1,h2,h3,h4,h5,h6{
-//   font-family:"Microsoft YaHei","微软雅黑","SimHei","黑体",sans-serif;
-// }
-// div,p,td,th{
-//   font-family: "SimSun","宋体","Arial Narrow",HELVETICA,sans-serif;
-// }
+
 ul,ol{
   list-style: none;
 }

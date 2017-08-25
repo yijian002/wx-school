@@ -1,8 +1,4 @@
-@charset "UTF-8";
-/* 基于 ! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-/**
- *针对webkit桌面app优化
- */
+/*  ! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-size: 12px;
   font-family: "Microsoft YaHei";
@@ -511,7 +507,7 @@ a {
   height: 50px; }
 
 footer {
-  font-size: 14px;
+  font-size: 18px;
   color: #9B9B9B;
   width: 100%;
   height: 50px;
@@ -545,19 +541,8 @@ footer {
 #audio {
   display: none; }
 
-.sound {
-  border: 1px solid #E6E6E6;
-  background: #fff;
-  background: url(../images/ico-sound.png) no-repeat;
-  background-size: 21px auto;
-  background-position: 20px center; }
-  .sound.playing {
-    background-color: #9CEA45;
-    background-image: url(../images/ico-sound-ing.png);
-    border: 1px solid #86CA3A; }
-
 .bt-joinme {
-  font-size: 16px;
+  font-size: 18px;
   color: #FFFFFF;
   width: 100%;
   height: 50px;

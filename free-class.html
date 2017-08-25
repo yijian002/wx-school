@@ -37,8 +37,10 @@
 	        <ul class="free-class">
 	            <li v-for="item in free_class" v-bind:id="'free_class_'+ item.id">
 	            	<img class="pic" v-bind:src="item.imageUrl" />
-	            	<audio v-bind:src="item.audioUrl" preload="preload" class="hide"></audio>
-	            	<div class="sound" v-on:click="playSound(item.audioUrl, item.id)"></div>
+	            	<audio v-bind:src="item.audioUrl" :id="'audio_'+item.id"></audio>
+					<div class="sound" v-on:click="playSound(item.audioUrl, item.id)" :id="'sound_btn_'+item.id">
+                        <div class="voice"></div>
+                    </div>
                     <div class="longtime">{{ item.longtime }}</div>
 	            </li>
 	        </ul>
