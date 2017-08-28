@@ -20,6 +20,7 @@
     <meta name="format-detection" content="telephone=no" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
     .column .free-class li {
     	height: 60px;
@@ -39,6 +40,7 @@
 	            	<img class="pic" v-bind:src="item.imageUrl" />
 	            	<audio v-bind:src="item.audioUrl" :id="'audio_'+item.id"></audio>
 					<div class="sound" v-on:click="playSound(item.audioUrl, item.id)" :id="'sound_btn_'+item.id">
+                        <i class="fa fa-caret-left" aria-hidden="true" style="color: #b2e281; left: -4px; top: 14px; position: absolute;"></i>
                         <div class="voice"></div>
                     </div>
                     <div class="longtime">{{ item.longtime }}</div>

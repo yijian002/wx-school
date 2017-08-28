@@ -4,7 +4,6 @@ require.config({
         vue: 'lib/vue.min',
         zepto: 'lib/zepto.min',
         route: 'js/helper/route',
-        util: 'js/helper/util',
         comm: 'js/helper/comm'
     },
     shim: {
@@ -38,10 +37,6 @@ require(['vue', 'zepto', 'route'], function(vue, $, route) {
                     params: JSON.stringify({content: this.content}),
                     isJson: true
                 }, function(response) {
-                    if (!response) {
-                        return;
-                    }
-
                     alert('感谢您的反馈');
                     window.location.href = 'user.html';
                 });

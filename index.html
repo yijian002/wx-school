@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title> 学堂系统 </title>
-    <meta name="keywords" content="学堂系统" />
+    <title>铅笔头学堂</title>
+    <meta name="keywords" content="铅笔头学堂" />
     <meta name="description" content="" />
     <script type="text/javascript">
     var w_width = parseInt(window.screen.width);
@@ -19,7 +19,8 @@
     </script>
     <meta name="format-detection" content="telephone=no" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -48,6 +49,7 @@
 	            	<img class="pic" v-bind:src="item.imageUrl" />
 	            	<audio v-bind:src="item.audioUrl" :id="'audio_'+item.id"></audio>
 					<div class="sound" v-on:click="playSound(item.audioUrl, item.id)" :id="'sound_btn_'+item.id">
+						<i class="fa fa-caret-left" aria-hidden="true" style="color: #b2e281; left: -4px; top: 14px; position: absolute;"></i>
 						<div class="voice"></div>
 					</div>
 	            	<div class="longtime">{{ item.longtime }}</div>

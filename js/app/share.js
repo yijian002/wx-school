@@ -31,11 +31,13 @@ require(['vue', 'zepto', 'route', 'comm', 'wx'], function(vue, $, route, comm, w
     });
 
     var app = {
-        _courseid: comm.getUrlParam('courseid'),
+        _courseId: comm.getUrlParam('courseId'),
+        _userId: comm.getUrlParam('userId'),
         _myposter: comm.getUrlParam('myposter'),
+        _addPointsUrl: null,
         getInvitation: function(callback) {
             route({
-                url: '/api/course/invitation?courseId=' + this._courseid,
+                url: '/api/course/invitation?courseId=' + this._courseId + '&userId=' + this._userId,
                 type: 'POST',
             }, function(response) {
                 if(callback) {
@@ -99,35 +101,43 @@ require(['vue', 'zepto', 'route', 'comm', 'wx'], function(vue, $, route, comm, w
                     ]
                 });
 
-                var SHARE_TITLE = _this._courseid ? '课程邀请卡' : '我的海报';
+                var SHARE_TITLE = '铅笔头您身边的家庭教育顾问';
+                var SHARE_DESC = '分享、传播、影响你、我、她！';
+                var SHARE_LINK = window.location.href;
+                var SHARE_IMG_URL = 'http://' + window.location.host + '/images/logo.jpg';
 
                 // 分享到朋友圈
                 wx.onMenuShareTimeline({
                     title: SHARE_TITLE,
-                    link: window.location.href,
-                    // imgUrl: IMG_TT,
+                    link: SHARE_LINK,
+                    imgUrl: SHARE_IMG_URL,
                     success: function() {
-                        
+                        alert('分享成功！');
+                        route({url: _this._addPointsUrl, type: 'POST'}, function(){});
                     }
                 });
 
                 // 分享给朋友
                 wx.onMenuShareAppMessage({
                     title: SHARE_TITLE,
-                    desc: _this._courseid ? '非常棒的课程，邀请你也来试试吧！' : '快来看我的海报吧，棒棒哒~',
-                    link: window.location.href,
-                    // imgUrl: IMG_TT,
+                    desc: SHARE_DESC,
+                    link: SHARE_LINK,
+                    imgUrl: SHARE_IMG_URL,
                     success: function() {
-                        
+                        alert('分享成功！');
+                        var url = 
+                        route({url: _this._addPointsUrl, type: 'POST'}, function(){});
                     }
                 });
             });
         },
         init: function() {
-            if(this._courseid) {
-                this.getInvitation();    
+            if(this._courseId) {
+                this._addPointsUrl = '/api/points/shareCoursePoster';
+                this.getInvitation();
             }
             else {
+                this._addPointsUrl = '/api/points/shareMyPoster';
                 this.getPoster();
             }
             

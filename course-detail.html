@@ -78,7 +78,7 @@
         </div>
 
         <div class="btn-invitation" @click="invitationCard()">海报</div>
-        <div class="btn-comment" @click="is_comments=true;add_comments='';">评论</div>
+        <div class="btn-comment" @click="is_comments=!is_comments;">评论</div>
 
         <div class="line"></div>
         <div class="comments">
@@ -95,33 +95,33 @@
             </ul>
         </div>
         <div class="add-comments" v-bind:class="{show:is_comments}">
-            <input type="text" id="add-comments" v-if="is_comments" placeholder="请输入评论..." v-model.trim="add_comments" @focus="scrollBottom()" v-focus />
+            <input type="text" id="add-comments" v-if="is_comments" placeholder="请输入评论..." v-model.trim="add_comments" />
             <div class="btn" @click="addComments">发送</div>
         </div>
-        <div class="footer"></div>
-        <!-- 会员 -->
-        <footer class="member" v-if="is_vip && detail.vipPrice>0" v-bind:class="{hide:is_comments}" @click="buy()">
-            <div class="selected">营员购买</div>
-            <div class="selected">营员价 ¥{{detail.vipPrice}}
-                <br />原 价 <span class="t-lineth">¥{{detail.price}}</span></div>
-        </footer>
-        <!-- 访客 -->
-        <div class="dialog dialog-playend hide" v-if="!is_vip">
-            <div>
-                <div class="top"><i class="close"></i></div>
-                <div class="contents">
-                    <div class="tip">试听结束</div>
-                    <a href="#" @click="buy()" class="btn-join">听完整课程</a>
+        <div v-if="detail.isEntryGroup === true && (courseId !== null || is_vip && detail.vipPrice === 0)">
+            <footer><div class="selected" @click="entryGroup">快速入群</div></footer>
+        </div>
+        <div v-else-if="courseId === null">
+            <footer class="member" v-if="is_vip && detail.vipPrice > 0" v-bind:class="{hide:is_comments}" @click="buy()">
+                <div class="selected">营员购买</div>
+                <div class="selected">营员价 ¥{{detail.vipPrice}}<br />原 价 <span class="t-lineth">¥{{detail.price}}</span></div>
+            </footer>
+            <footer class="guest" v-if="!is_vip" v-bind:class="{hide:is_comments}">
+                <div class="selected" @click="join()"><span>加入成长营<br />免费畅听</span>¥{{clubPrice}}/年</div>
+                <div class="selected" @click="buy()">单次购买 ¥{{detail.price}}</div>
+            </footer>
+            <div class="dialog dialog-playend hide" v-if="!is_vip">
+                <div>
+                    <div class="top"><i class="close"></i></div>
+                    <div class="contents">
+                        <div class="tip">试听结束</div>
+                        <a href="#" @click="buy()" class="btn-join">听完整课程</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- 访客 -->
-        <footer class="guest" v-if="!is_vip" v-bind:class="{hide:is_comments}">
-            <div class="selected" @click="join()"><span>加入成长营<br />免费畅听</span>¥{{detail.vipPrice}}/年</div>
-            <div class="selected" @click="buy()">单次购买 ¥{{detail.price}}</div>
-        </footer>
     </div>
-</body>
 
+    <script data-main="js/app/course-detail.js" src="lib/require.js"></script>
+</body>
 </html>
-<script data-main="js/app/course-detail.js" src="lib/require.js"></script>

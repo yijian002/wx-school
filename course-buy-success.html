@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title> 入群 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/user.css" />
+</head>
+
+<body class="user-join">
+    <div class="content" id="user-join">
+        <div class="welcome">您好，我是本次课程小秘书，请按照以下步骤完成即可入群。</div>
+        <div class="step">
+            <div class="num">1</div>
+            <div class="desc">复制以下验证码，长按即可复制</div>
+            <div class="code" v-html="randomCode"></div>
+        </div>
+        <div class="step">
+            <div class="num">2</div>
+            <div class="desc">长按二维码添加老师微信为好友</div>
+            <img class="qrcode" :src="imageUrl"></img>
+        </div>
+        <div class="step">
+            <div class="num">3</div>
+            <div class="desc">添加成功后，根据提示发送验证码</div>
+        </div>
+    </div>
+
+    <script data-main="js/app/course-buy-success.js" src="lib/require.js"></script>
+</body>
+</html>

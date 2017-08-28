@@ -48,6 +48,10 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
             add_comments: '',
             is_comments: false,
             is_vip: false,
+            userId: null,
+            courseId: null,
+            studyDuration: null,
+            clubPrice: null,
             speed: 1,
             studying: 0 // 学习进度
         },
@@ -82,14 +86,10 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                 $('.audio-js-box').eq(app._player_idx).find('audio')[0].playbackRate = this.speed;
             },
             join: function() {
-                if(this.detail.isGroup) { // 入群克
-                    window.location.href = 'user-join.html';
-                    return;
-                }
-
-                window.location.href='user-camp.html?id=' + app._id;
+                window.location.href='user-camp.html';
             },
             buy: function() {
+                var _this = this;
                 route({
                     url: '/api/pay/payInfo/buyCourse',
                     type: 'POST',
@@ -101,10 +101,28 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
 
                     util.wxPay({
                         wx: wx,
-                        success: function() {
-                            window.location.reload(true);
-                        }}, response);
+                        success: function () {
+                            if (_this.detail.isEntryGroup) {
+                                window.location.href = 'course-buy-success.html?courseId=' + app._id; // 入群页面
+                            } else {
+                                window.location.reload(true);
+                            }
+                        }
+                    }, response);
                 });
+            },
+            entryGroup: function() {
+                if (this.detail.isEntryGroup) {
+                    if(this.courseId !== null){
+                        window.location.href = 'course-buy-success.html?courseId=' + app._id; // 入群页面
+                    }else{
+                        route({url:'/api/course/entryGroup?courseId=' + app._id, type:'POST'}, function(data){
+                            if(data === true){
+                                window.location.href = 'course-buy-success.html?courseId=' + app._id; // 入群页面
+                            }
+                        });
+                    }
+                }
             },
             addComments: function(event) {
                 this.is_comments = false;
@@ -129,7 +147,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                 });
             },
             invitationCard: function() { // 邀请卡
-                window.location.href = 'share.html?courseid=' + app._id;
+                window.location.href = 'share.html?courseId=' + app._id + '&userId=' + this.userId;
             }
         },
         watch: {
@@ -194,16 +212,6 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                     return;
                 }
 
-                // response.lessons = [{
-                //     audioUrl: 'http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3'
-                // }]
-
-                // var len = response.lessons.length - response.banners.length;
-                // if(len > 0) { // lessons 和 banners的长度保持一致
-                //     for (var i = 0; i < len; i++) {
-                //         response.banners.push(response.banners[0]);
-                //     }
-                // }
                 vm.lessons = response.lessons;
                 vm.detail = response;
                 _this.resetStudying(0);
@@ -276,14 +284,13 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
                 vm.comments = vm.comments.concat(response.result);
             });
         },
-        getUserInfo: function(callback) {
-            route({ url: '/api/me/userInfo' }, function(response) {
-
-                vm.is_vip = response.clubTag || false;
-
-                if (callback) {
-                    callback();
-                }
+        getExtraInfo: function() {
+            route({ url: '/api/course/extraInfo?courseId=' + this._id }, function(data) {
+                vm.is_vip = data.clubTag || false;
+                vm.userId = data.userId;
+                vm.courseId = data.courseId;//购买过课程才有值
+                vm.studyDuration = data.studyDuration;//购买过课程才有值，学习进度
+                vm.clubPrice = data.clubPrice;
             });
         },
         initSDK: function() {
@@ -324,8 +331,8 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
         init: function() {
             var _this = this;
             
-            this.getUserInfo();
             this.getInfo(this.loaded);
+            this.getExtraInfo();
             this.getComments();
 
             this.initSDK();
