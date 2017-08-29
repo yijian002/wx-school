@@ -48,7 +48,7 @@
 	            <li v-for="item in free_class" v-bind:id="'free_class_'+ item.id">
 	            	<img class="pic" v-bind:src="item.imageUrl" />
 	            	<audio v-bind:src="item.audioUrl" :id="'audio_'+item.id"></audio>
-					<div class="sound" v-bind:class="{new: item.news==1}" v-on:click="playSound(item)" :id="'sound_btn_'+item.id">
+					<div class="sound" v-bind:class="{new: item.news==1, playing: item.playing==1}" v-on:click="playSound(item)" :id="'sound_btn_'+item.id">
 						<i class="fa fa-caret-left" aria-hidden="true" style="color: #b2e281; left: -4px; top: 14px; position: absolute;"></i>
 						<div class="voice"></div>
 					</div>

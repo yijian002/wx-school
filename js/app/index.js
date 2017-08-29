@@ -59,17 +59,29 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                     return;
                 }
 
-                var s = $('.sound.playing').removeClass('playing').get(0);
-                if(!s || s.id !== 'sound_btn_' + id){
-                    $('#sound_btn_' + id).addClass('playing');
+                var $this = $('#sound_btn_' + id),
+                    is_playing = item.playing === 1,
+                    list = [];
+
+                for (var i = this.free_class.length - 1; i >= 0; i--) {
+                    list[i] = this.free_class[i];
+
+                    if(list[i].id === id && !is_playing) {
+                        list[i].playing = 1;
+                    }
+                    else {
+                        list[i].playing = 0;
+                    }
                 }
-                
-                var a = $('audio.playing').removeClass('playing').get(0);
-                a && a.pause();
-                if (!a || a.id !== 'audio_' + id) {
-                    a = $('#audio_' + id).addClass('playing').get(0);
-                    a && a.play();
+
+                if(is_playing) {
+                    $this.siblings('audio')[0].pause();
                 }
+                else {
+                    $this.siblings('audio')[0].play();
+                }
+
+                this.free_class = list;
             },
             inputSearch: function() {
                 clearTimeout(timer_srcoll);
