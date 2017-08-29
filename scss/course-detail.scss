@@ -115,23 +115,23 @@ video::-webkit-media-controls {
 	margin: 0 auto;
 	position: relative;
 	.ico-prev {
-		width: 22px;
-		height: 22px;
+		height: px(128/2);
+		width: px(128/2);
 		background: url(../images/ico-prev.png) no-repeat;
 		background-size: 100% 100%;
 		position: absolute;
-		top: 50px;
-		left: 40px;
+		top: 27px;
+		left: 56px;
 		z-index: 15;
 	}
 	.ico-next {
-		width: 22px;
-		height: 22px;
+		height: px(128/2);
+		width: px(128/2);
 		background: url(../images/ico-next.png) no-repeat;
 		background-size: 100% 100%;
 		position: absolute;
-		top: 50px;
-		right: 50px;
+		top: 27px;
+		right: 56px;
 		z-index: 15;
 	}
 	.audio-js-box {
@@ -161,12 +161,13 @@ video::-webkit-media-controls {
     position: absolute;
     top: 50px;
     left: 50%;
-    width: 22px;
-	height: 22px;
+    width: px(128/2);
+	height: px(128/2);
 	background-repeat: no-repeat;
 	background-position: 0 0;
 	background-size: 100% 100%;
-    margin-left: -11px;
+    margin-left: px(128/2/-2);
+    margin-top: -24px;
     &.mejs__play {
     	background-image: url(../images/ico-play.png);
     }
@@ -206,10 +207,12 @@ video::-webkit-media-controls {
 	.mejs__time-total {
 		margin: 0;
 		top: 0;
-		background: rgba(255, 255, 255,0);
+		// background: rgba(255, 255, 255,0);
+		background: #d2d2d2;
 	}
 	.mejs__time-loaded {
-		background: rgba(255,255,255,.4);
+		// background: rgba(255,255,255,.4);
+		background: #00a0e9;
 		border-radius: 2px;
 	}
 	.mejs__time-handle {
@@ -229,7 +232,8 @@ video::-webkit-media-controls {
 		}
 	}
 	.mejs__time-current, .mejs__time-handle-content {
-		background: rgba(0, 0, 0, 0.8);
+		// background: rgba(0, 0, 0, 0.8);
+		background: #d2d2d2;
 	}
 }
 
@@ -262,6 +266,9 @@ video::-webkit-media-controls {
 	width: 350px;
 	height: 15px;
 	margin: 0 auto 18px auto;
+	&.s {
+		height: 5px;
+	}
 }
 
 .btn-invitation {
@@ -291,8 +298,11 @@ video::-webkit-media-controls {
 	h4 {
 		font-weight: normal;
 		font-size: 18px;
-		color: #4A4A4A;
+		color: #7d7a7a;
 		letter-spacing: -0.43px;
+		text-align: center;
+		border-bottom: 1px solid rgba(136,136,136,.1);
+		padding-bottom: 10px;
 	}
 	.desc {
 		font-size: 14px;
