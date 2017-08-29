@@ -48,7 +48,12 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                     }
                 }
             },
-            playSound: function(url, id) {
+            playSound: function(item) {
+                var url = item.audioUrl,
+                    id = item.id;
+
+                item.news = 0;
+
                 if(!url) {
                     alert('没有发现音频文件');
                     return;
@@ -134,6 +139,8 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'swiper'], function(vue, $, ro
                 }
 
                 for (var i = 0; i < response.result.length; i++) {
+                    response.result[i].news = 1;
+
                     if(response.result[i].duration) {
                         response.result[i].longtime = parseInt(response.result[i].duration/60) + "'";
                         if(response.result[i].duration%60 > 0) {

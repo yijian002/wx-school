@@ -45,6 +45,11 @@
 	}
 }
 
+.line-b {
+	border-color: #eee;
+	border-width: 5px;
+}
+
 .column {
 	margin-top: px(20);
 	padding: 0 px(20);
@@ -55,11 +60,21 @@
 		font-size: px(18);
 		color: #4a4a4a;
 		letter-spacing: -0.43px;
+		padding-left: 5px;
 		.more {
 			font-size: 14px;
 			color: #4A4A4A;
 			letter-spacing: -0.34px;
 			float: right;
+		}
+		&.free-tt {
+			color: #847d7d;
+			border-left: 3px solid #eb6877;
+			// border-radius: 3px 0 3px 0;
+		}
+		&.best-tt {
+			color: #847d7d;
+			border-left: 3px solid #b3e282;
 		}
 	}
 	.free-class { // 免费微课
@@ -96,6 +111,17 @@
 				background: url(../images/audio.png) no-repeat;
 				background-position-y: center;
 			}
+			&.new:after {
+				content: '';
+				width: 6px;
+				height: 6px;
+				background: #f00303;
+				border-radius: 50%;
+				position: absolute;
+				top: 0;
+				right: -10px;
+				z-index: 5;
+			}
 			&.playing {
 				.voice {
 					background-image: url(../images/audio_playing.gif);
@@ -121,7 +147,8 @@
 			display: flex;
 			-webkit-flex-direction: row;
 			flex-direction: row;
-			border-bottom: 1px solid #ccc;
+			// border-bottom: 1px solid #ccc;
+			border-bottom: 1px solid rgba(42,46,49,.2);
 			&:last-child {
 				border-bottom: 0;
 			}
@@ -156,12 +183,16 @@
 				flex-direction: row;
 			}
 			.tt {
-				color: #4A4A4A;
+				color: #534f4f;
 				font-size: px(18);
+				font-weight: 500;
+				line-height: 18px;
 				letter-spacing: -0.5px;
 				float: left;
 				-webkit-flex: 1;
 				flex: 1;
+				padding: 0;
+				margin-top: 5px;
 				@include ellipsis();
 			}
 			// .price {
@@ -173,10 +204,10 @@
 			// 	flex-shrink: 0;
 			// }
 			.teacher {
-				color: #9B9B9B;
+				color: #a4a4a4;
 				text-align: left;
 				clear: both;
-				margin-top: px(10);
+				// margin-top: px(-5);
 			}
 			.study {
 				float: left;
@@ -189,7 +220,6 @@
 			.price {
 				float: right;
 				text-align: right;
-				color: #9B9B9B;
 				-webkit-flex: 1;
 				flex: 1;
 				font-size: 14px;
