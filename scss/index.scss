@@ -57,10 +57,22 @@
 		margin-top: 60px;
 	}
 	.tt {
-		font-size: px(18);
-		color: #4a4a4a;
+		font-size: px(15);
+		line-height: 15px;
+		color: rgb(132,125,125);
 		letter-spacing: -0.43px;
-		padding-left: 5px;
+		padding-left: px(5+3);
+		position: relative;
+		&:after {
+			content: '';
+			height: 100%;
+			width: 3px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 2;
+			border-radius: 2px;
+		}
 		.more {
 			font-size: 14px;
 			color: #4A4A4A;
@@ -68,13 +80,16 @@
 			float: right;
 		}
 		&.free-tt {
-			color: #847d7d;
-			border-left: 3px solid #eb6877;
-			// border-radius: 3px 0 3px 0;
+			// border-left: 3px solid #eb6877;
+			&:after {
+				background: #eb6877;
+			}
 		}
 		&.best-tt {
-			color: #847d7d;
-			border-left: 3px solid #b3e282;
+			// border-left: 3px solid #b3e282;
+			&:after {
+				background: #b3e282;
+			}
 		}
 	}
 	.free-class { // 免费微课
@@ -148,7 +163,7 @@
 			-webkit-flex-direction: row;
 			flex-direction: row;
 			// border-bottom: 1px solid #ccc;
-			border-bottom: 1px solid rgba(42,46,49,.2);
+			border-bottom: 1px solid rgba(0,0,0,.08);
 			&:last-child {
 				border-bottom: 0;
 			}

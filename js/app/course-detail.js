@@ -34,7 +34,7 @@ require(['vue', 'zepto', 'route', 'util', 'comm', 'wx', 'swiper', 'mediaelement'
             setTimeout(function() {
                 window.scrollTo(0,document.body.scrollHeight);
                 el.focus();
-            }, 150);
+            }, 250);
         }
     });
 

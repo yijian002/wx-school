@@ -98,10 +98,14 @@
             <input type="text" id="add-comments" v-if="is_comments" placeholder="请输入评论..." v-model.trim="add_comments" />
             <div class="btn" @click="addComments">发送</div>
         </div>
+
         <div v-if="detail.isEntryGroup === true && (courseId !== null || is_vip && detail.vipPrice === 0)" v-bind:class="{hide:is_comments}" >
+            <div class="footer"></div>
             <footer><div class="selected" @click="entryGroup">快速入群</div></footer>
         </div>
+
         <div v-else-if="courseId === null" v-bind:class="{hide:is_comments}" >
+            <div class="footer"></div>
             <footer class="member" v-if="is_vip && detail.vipPrice > 0" @click="buy()">
                 <div class="selected">营员购买</div>
                 <div class="selected">营员价 ¥{{detail.vipPrice}}<br />原 价 <span class="t-lineth">¥{{detail.price}}</span></div>
@@ -111,6 +115,7 @@
                 <div class="selected" @click="buy()">单次购买 ¥{{detail.price}}</div>
             </footer>
         </div>
+
         <div class="dialog dialog-playend hide" v-if="!is_vip">
             <div>
                 <div class="top"><i class="close"></i></div>
