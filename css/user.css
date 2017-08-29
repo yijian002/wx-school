@@ -191,7 +191,7 @@ body {
   display: flex;
   -webkit-flex-direction: row;
   flex-direction: row;
-  border-bottom: 1px solid #ccc; }
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
 .user-buyed-class .pic {
   width: 120px;
   height: 90px;
@@ -220,7 +220,10 @@ body {
   .user-buyed-class .info .tt {
     width: 100%;
     height: 26px;
+    color: #534f4f;
     font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
     float: left;
     overflow: hidden;
     word-wrap: break-word;
@@ -238,6 +241,7 @@ body {
     float: right;
     text-align: right; }
   .user-buyed-class .info .teacher {
+    color: #a4a4a4;
     text-align: left;
     clear: both;
     margin-top: 10px; }

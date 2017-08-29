@@ -240,7 +240,7 @@ body {
 		display: flex;
 		-webkit-flex-direction: row;
 		flex-direction: row;
-		border-bottom: 1px solid #ccc;
+		border-bottom: 1px solid rgba(0,0,0,.08);
 	}
 	.pic {
 		width: px(120);
@@ -272,7 +272,10 @@ body {
 		.tt {
 			width: 100%;
 			height: 26px;
+			color: #534f4f;
 			font-size: px(18);
+			font-weight: 500;
+			letter-spacing: -0.5px;
 			float: left;
 			// -webkit-flex: 1;
 			// flex: 1;
@@ -287,6 +290,7 @@ body {
 			// flex-shrink: 0;
 		}
 		.teacher {
+			color: #a4a4a4;
 			text-align: left;
 			clear: both;
 			margin-top: px(10);
