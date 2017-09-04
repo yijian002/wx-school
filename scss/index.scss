@@ -199,7 +199,8 @@
 			}
 			.tt {
 				color: #534f4f;
-				font-size: px(18);
+				font-size: 18px;
+				height: 18px;
 				font-weight: 500;
 				line-height: 18px;
 				letter-spacing: -0.5px;
@@ -210,19 +211,10 @@
 				margin-top: 5px;
 				@include ellipsis();
 			}
-			// .price {
-			// 	width: 60px;
-			// 	float: right;
-			// 	text-align: right;
-			// 	color: #F6A623;
-			// 	-webkit-flex-shrink: 0;
-			// 	flex-shrink: 0;
-			// }
 			.teacher {
 				color: #a4a4a4;
 				text-align: left;
 				clear: both;
-				// margin-top: px(-5);
 			}
 			.study {
 				float: left;
