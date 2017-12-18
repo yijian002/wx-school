@@ -1,10 +1,3 @@
 # School System
 
-## Files
-- Pages
-
-## Base Libs
-- VueJs
-- Zepto
-- RequireJs
-- Swiper
+## A dishonest partner
